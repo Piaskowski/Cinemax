@@ -1,0 +1,13 @@
+﻿<div class="card bg-light">
+    <div class="card-header">
+        <h5>@Title</h5>
+    </div>
+    <div class="card-body">
+        @CardBody
+    </div>
+</div>
+
+@code {
+    [Parameter] public required string Title { get; set; }
+    [Parameter] public RenderFragment? CardBody { get; set; }
+}

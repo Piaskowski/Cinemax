@@ -1,0 +1,165 @@
+﻿@typeparam TItem
+@using System.Linq.Expressions
+@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+<div class="multi-select-chips" @ref="_containerRef">
+    <div class="multi-select-input"
+         tabindex="0"
+         @onclick="OpenDropdown">
+
+        @if (SelectedItems.Any())
+        {
+            @foreach (var item in SelectedItems)
+            {
+                <span class="multi-select-chip" @onclick:stopPropagation="true">
+                    @GetText(item)
+
+                    <button type="button"
+                            class="multi-select-chip-remove"
+                            @onclick="() => RemoveItem(item)">
+                        ×
+                    </button>
+                </span>
+            }
+        }
+        else
+        {
+            <span class="multi-select-placeholder">@Placeholder</span>
+        }
+    </div>
+
+    @if (_isOpen)
+    {
+        <div class="multi-select-dropdown" @onclick:stopPropagation="true">
+            <div class="multi-select-search-wrapper">
+                <input class="multi-select-search"
+                       placeholder="@SearchPlaceholder"
+                       @bind="_searchText"
+                       @bind:event="oninput" />
+            </div>
+
+            @if (FilteredItems.Any())
+            {
+                @foreach (var item in FilteredItems)
+                {
+                    var id = GetValue(item);
+                    var isSelected = Value.Contains(id);
+
+                    <div class="multi-select-option @(isSelected ? "selected" : null)"
+                         @onclick="() => ToggleItem(item)">
+
+                        <input type="checkbox"
+                               checked="@isSelected"
+                               @onclick:stopPropagation="true"
+                               @onchange="() => ToggleItem(item)" />
+
+                        <span>@GetText(item)</span>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="multi-select-empty">
+                    Brak wyników
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public IEnumerable<TItem> Items { get; set; } = [];
+    [Parameter] public Guid[] Value { get; set; } = [];
+    [Parameter] public EventCallback<Guid[]> ValueChanged { get; set; }
+    [Parameter] public Expression<Func<Guid[]>>? ValueExpression { get; set; }
+
+    [Parameter] public required Func<TItem, Guid> GetValue { get; set; }
+    [Parameter] public required Func<TItem, string> GetText { get; set; }
+
+    [Parameter] public string Placeholder { get; set; } = "Wybierz...";
+    [Parameter] public string SearchPlaceholder { get; set; } = "Szukaj...";
+
+    private bool _isOpen;
+    private string _searchText = string.Empty;
+
+    private ElementReference _containerRef;
+    private DotNetObjectReference<MultiSelect<TItem>>? _dotNetRef;
+    private IJSObjectReference? _outsideClickHandler;
+
+    private IEnumerable<TItem> SelectedItems =>
+        Items.Where(item => Value.Contains(GetValue(item)));
+
+    private IEnumerable<TItem> FilteredItems =>
+        string.IsNullOrWhiteSpace(_searchText)
+            ? Items
+            : Items.Where(item =>
+                GetText(item).Contains(_searchText, StringComparison.OrdinalIgnoreCase));
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _dotNetRef = DotNetObjectReference.Create(this);
+
+            _outsideClickHandler = await JS.InvokeAsync<IJSObjectReference>(
+                "multiSelectChips.registerOutsideClick",
+                _containerRef,
+                _dotNetRef);
+        }
+    }
+
+    private void OpenDropdown()
+    {
+        _isOpen = true;
+    }
+
+    [JSInvokable]
+    public async Task CloseDropdown()
+    {
+        if (!_isOpen)
+        {
+            return;
+        }
+
+        _isOpen = false;
+        _searchText = string.Empty;
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task ToggleItem(TItem item)
+    {
+        var id = GetValue(item);
+
+        if (Value.Contains(id))
+        {
+            Value = Value.Where(x => x != id).ToArray();
+        }
+        else
+        {
+            Value = [.. Value, id];
+        }
+
+        await ValueChanged.InvokeAsync(Value);
+    }
+
+    private async Task RemoveItem(TItem item)
+    {
+        var id = GetValue(item);
+
+        Value = Value.Where(x => x != id).ToArray();
+
+        await ValueChanged.InvokeAsync(Value);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_outsideClickHandler is not null)
+        {
+            await _outsideClickHandler.InvokeVoidAsync("dispose");
+        }
+
+        _dotNetRef?.Dispose();
+    }
+}

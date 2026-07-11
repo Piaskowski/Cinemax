@@ -1,0 +1,126 @@
+﻿@page "/account/register"
+@using Cinemax.Shared.Contracts.Auth
+@using Cinemax.Shared.Resources.Auth
+@using Cinemax.Client.Pages.Shared
+
+@inject HttpClient Http
+@inject IStringLocalizer<AuthMessages> AuthL
+@inject IStringLocalizer<CommonMessages> CommonL
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <EditForm Enhance Model="_user" OnValidSubmit="@HandleRegistration">
+                <DataAnnotationsValidator />
+                <div class="card">
+                    <div class="card-header">@AuthL["RegistrationForm_Title"]</div>
+                    <div class="card-body">
+                        @if (!string.IsNullOrEmpty(_errorMessage))
+                        {
+                            <FormAlert Title="@_errorMessage" 
+                                Errors="@_errors"
+                                Type="AlertType.Error"/>
+                        }
+                        @if (!string.IsNullOrEmpty(_successMessage))
+                        {
+                            <FormAlert Title="Konto utworzone"
+                                       Message="@_successMessage"
+                                       Type="AlertType.Success" />
+                        }
+
+                        <div class="form-group mt-3">
+                            <label class="form-label">@AuthL["Label_FirstName"]:</label>
+                            <InputText id="register-first-name-input" @bind-Value="_user.FirstName" class="form-control"></InputText>
+                            <div id="register-first-name-validation" class="alert-danger">
+                                <ValidationMessage For="@(() => _user.FirstName)" />
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label">@AuthL["Label_LastName"]:</label>
+                            <InputText id="register-last-name-input" @bind-Value="_user.LastName" class="form-control"></InputText>
+                            <div id="register-last-name-validation" class="alert-danger">
+                                <ValidationMessage For="@(() => _user.LastName)" />
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label">@AuthL["Label_Email"]:</label>
+                            <InputText id="email-input" @bind-Value="_user.Email" class="form-control"></InputText>
+                            <div id="email-validation" class="alert-danger">
+                                <ValidationMessage For="@(() => _user.Email)" />
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label">@AuthL["Label_Password"]:</label>
+                            <InputText id="register-password-input" type="password" @bind-value="_user.Password" class="form-control"></InputText>
+                            <div id="register-password-validation" class=" alert-danger">
+                                <ValidationMessage For="@(() => _user.Password)" />
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label">@AuthL["Label_ConfirmPassword"]:</label>
+                            <InputText id="register-confirm-password-input" type="password" @bind-value="_user.ConfirmPassword" class="form-control"></InputText>
+                            <div id="register-confirm-password-validation" class="alert-danger">
+                                <ValidationMessage For="@(() => _user.ConfirmPassword)" />
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <button id="register-submit-button" class="btn btn-outline-primary float-end" type="submit">@CommonL["Btn_Submit"]</button>
+                        </div>
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    private RegisterRequest _user = new();
+    private string? _successMessage;
+    private string? _errorMessage;
+    private IEnumerable<string> _errors = [];
+    private bool _isSubmitting = false;
+
+    private async Task HandleRegistration()
+    {
+        _isSubmitting = true;
+        _successMessage = null;
+        _errorMessage = null;
+        _errors = [];
+
+        try
+        {
+            var response = await Http.PostAsJsonAsync("api/auth/register", _user);
+            if (response.IsSuccessStatusCode)
+            {
+                var registerResponse = await response.Content.ReadFromJsonAsync<RegisterResponse>();
+                _successMessage = registerResponse?.Message;
+
+                _user = new RegisterRequest();
+            }
+            else
+            {
+                var errorResponse = await response.Content.ReadFromJsonAsync<ErrorResponse>();
+
+                if (errorResponse is null)
+                {
+                    _errorMessage = CommonL["Error_UnexpectedError"];
+                    return;
+                }
+
+                _errorMessage = errorResponse.Message;
+                if (errorResponse.Errors.Count > 0)
+                {
+                    _errors = errorResponse.Errors;
+                }
+            }
+        }
+        catch
+        {
+            _errorMessage = CommonL["Error_LostConnection"];
+        }
+        finally
+        {
+            _isSubmitting = false;
+        }
+    }
+}

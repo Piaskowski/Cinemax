@@ -1,0 +1,33 @@
+﻿
+<div class="alert @CssClass">
+    <strong class="d-block mb-2">
+        @Title
+    </strong>
+    @if (!string.IsNullOrEmpty(Message))
+    {
+        <p class="mb-0">@Message</p>
+    }
+    @if (Errors?.Count() > 0)
+    {
+        <ul class="mb-0 mt-2">
+            @foreach(var error in Errors)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    }
+</div>
+
+@code {
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? Message { get; set; }
+    [Parameter] public IEnumerable<string>? Errors { get; set; } = [];
+    [Parameter] public AlertType Type { get; set; }
+
+    private string CssClass => Type switch
+    {
+        AlertType.Success => "alert-success",
+        AlertType.Error => "alert-danger",
+        _ => "alert-info"
+    };
+}

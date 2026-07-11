@@ -1,0 +1,36 @@
+﻿@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Shared.Contracts.TicketPrices
+
+@page "/admin/ticket-prices"
+@attribute [Authorize(Roles = "Admin")]
+@layout AdminPanelLayout
+
+@inject HttpClient HttpClient
+
+<AdminContentCard Title="Cennik">
+    <CardBody>
+        <DataGrid @ref="_ticketPricesGrid" TItem="TicketPriceDto" LoadData="@LoadData">
+            <GridToolbar>
+                <GridButton Icon="reload" OnClick="@RefreshDataAsync" />
+                <GridButton Text="Dodaj" Icon="add" Toggle="modal" 
+                    Target="@_createTicketPriceDialogId" />
+            </GridToolbar>
+            <GridColumns>
+                <GridColumn Title="Typ seansu" Field="t => t.ScreeningType" />
+                <GridColumn Title="Typ biletu" Field="t => t.TicketType" />
+                <GridColumn Title="Cena" Field="t => t.Price" />
+                <GridColumn Title="Aktywny" Field="@(x => x.IsActive ? "Tak" : "Nie")" />
+            </GridColumns>
+            <GridRowActions Context="ticketPrice">
+                <GridButton Icon="edit" Toggle="modal" Target="@_createTicketPriceDialogId"
+                            OnClick="@(() => SelectTicketPrice(ticketPrice))" />
+                <GridButton Icon="delete"
+                            OnClick="@(() => SelectTicketPrice(ticketPrice))" />
+            </GridRowActions>
+        </DataGrid>
+    </CardBody>
+</AdminContentCard>
+
+<TicketPriceFormDialog Id="@_createTicketPriceDialogId"
+                       TicketPrice="@_selectedTicketPrice"
+                       OnSuccess="@RefreshDataAsync" />

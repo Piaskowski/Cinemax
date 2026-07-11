@@ -1,0 +1,45 @@
+﻿@using Cinemax.Client.Services
+@using Cinemax.Shared.Enums
+@using Cinemax.Client.Pages.Shared.AdminPanel
+
+@inject HttpClient _httpClient
+@inject NotificationService _notificationService
+
+<AdminFormDialog @ref="_form" 
+                Id="@Id" 
+                Title="Dodaj salę" 
+                Model="@Hall"
+                 OnValidSubmit="@OnValidSubmit"
+                OnCancel="@HandleCancel"
+                ErrorMessage="@_errorMessage"
+                Errors="@_errors"
+                IsSubmitting="@_isSubmitting">
+    <Body>
+        <div class="form-group mt-3">
+            <label class="form-label">Numer:</label>
+            <InputNumber @bind-Value="@Hall.Number" class="form-control"></InputNumber>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => Hall.Number)" />
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <label class="form-label">Typ:</label>
+            <InputSelect class="form-select" @bind-Value="@Hall.Type">
+                @foreach (var type in Enum.GetValues<CinemaHallType>())
+                {
+                    <option value="@type">@type</option>
+                }
+            </InputSelect>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => Hall.Type)" />
+            </div>
+        </div>
+        @if (IsEditMode)
+        {
+            <div class="form-group mt-3">
+                <label class="form-label">Aktywny:</label>
+                <InputCheckbox @bind-Value="@Hall.IsActive" class="form-check-input"></InputCheckbox>
+            </div>
+        }
+    </Body>
+</AdminFormDialog>

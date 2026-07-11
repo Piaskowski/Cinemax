@@ -1,0 +1,43 @@
+﻿@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Shared.Contracts.CinemaHalls
+
+@page "/admin/cinemahalls"
+@attribute [Authorize(Roles = "Admin")]
+@layout AdminPanelLayout
+
+@inject HttpClient HttpClient
+
+<AdminContentCard Title="Sale kinowe">
+    <CardBody>
+        <DataGrid @ref="_cinemahallGrid" TItem="CinemaHallDto" LoadData="@LoadData">
+            <GridToolbar>
+                <GridButton Icon="reload" OnClick="@RefreshDataAsync" />
+                <GridButton Text="Dodaj" Icon="add" Toggle="modal" Target="@_createCinemahallModalId" />
+            </GridToolbar>
+            <GridColumns>
+                <GridColumn Title="Numer Sali" Field="x => x.Number" />
+                <GridColumn Title="Typ" Field="x => x.Type" />
+                <GridColumn Title="Liczba miejsc" Field="x => x.SeatCount" />
+                <GridColumn Title="Aktywny" Field="@(x => x.IsActive ? "Tak" : "Nie")" />
+            </GridColumns>
+            <GridRowActions Context="cinemaHall">
+                <GridButton Icon="edit" Text="Siedzenia" Toggle="modal" Target="@_createSeatsModalId"
+                            OnClick="@(() => SelectCinemaHall(cinemaHall))" />
+                <GridButton Icon="edit" Toggle="modal" Target="@_createCinemahallModalId"
+                            OnClick="@(() => SelectCinemaHall(cinemaHall))" />
+                <GridButton Icon="delete"/>
+            </GridRowActions>
+        </DataGrid>
+    </CardBody>
+</AdminContentCard>
+
+<CinemaHallFormDialog Id="@_createCinemahallModalId"
+                      Hall="@_selectedCinemaHall"
+                      OnSuccess="@RefreshDataAsync" />
+
+<CreateSeatsFormDialog Id="@_createSeatsModalId"
+                       CinemaHallId="@_selectedCinemaHall?.Id"
+                       OnCreated="@RefreshDataAsync" />
+
+
+

@@ -1,0 +1,30 @@
+﻿@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Shared.Contracts.Orders
+
+@page "/admin/orders"
+@attribute [Authorize(Roles = "Admin, Employee")]
+@layout AdminPanelLayout
+
+@inject HttpClient HttpClient
+
+<AdminContentCard Title="Zamówienia">
+    <CardBody>
+        <DataGrid @ref="_ordersGrid" TItem="OrderDto" LoadData="@LoadData">
+            <GridToolbar>
+                <GridButton Icon="reload" OnClick="@RefreshDataAsync" />
+            </GridToolbar>
+            <GridColumns>
+                <GridColumn Title="Email klienta" Field="o => o.CustomerEmail" />
+                <GridColumn Title="Utworzone przez" Field="o => o.CreatedByUserEmail" />
+                <GridColumn Title="Źródło" Field="o => o.Source" />
+                <GridColumn Title="Id seansu" Field="o => o.ScreeningId" />
+                <GridColumn Title="Data seansu" Field="o => o.ScreeningDate" />
+                <GridColumn Title="Liczba biletów" Field="o => o.ReservationCount" />
+                <GridColumn Title="Status" Field="o => o.Status" />
+                <GridColumn Title="Data utworzenia" Field="o => o.CreatedAt" />
+                <GridColumn Title="Termin ważności rezerwacji" Field="o => o.ExpiresAt" />
+            </GridColumns>
+        </DataGrid>
+    </CardBody>
+</AdminContentCard>
+

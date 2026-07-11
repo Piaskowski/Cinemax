@@ -1,0 +1,49 @@
+﻿using Cinemax.Client.Pages.Shared.AdminPanel;
+using Cinemax.Shared.Contracts.Common;
+using Cinemax.Shared.Contracts.Movies;
+using System.Net.Http.Json;
+
+namespace Cinemax.Client.Pages.AdminPanel.Movies
+{
+    public partial class MovieManagement
+    {
+        private DataGrid<MovieDto>? _moviesGrid;
+        private string _createMovieDialogId = "create-movie-modal";
+        private MovieFormModel _selectedMovie = new();
+        private async Task<GridResponse<MovieDto>> LoadData(GridRequest request)
+        {
+            var response = await HttpClient.PostAsJsonAsync("api/admin/Movies", request);
+
+            if (!response.IsSuccessStatusCode)
+                return new GridResponse<MovieDto>();
+
+            return await response.Content.ReadFromJsonAsync<GridResponse<MovieDto>>() ?? new GridResponse<MovieDto>();
+        }
+
+        private void SelectMovie(MovieDto movie)
+        {
+            _selectedMovie = new MovieFormModel
+            {
+                Id = movie.Id,
+                Title = movie.Title,
+                Director = movie.Director,
+                Description = movie.Description,
+                DurationMinutes = movie.DurationMinutes,
+                PosterUrl = movie.PosterUrl,
+                TrailerUrl = movie.TrailerUrl,
+                GenresIds = [.. movie.Genres.Select(x => x.Id)],
+                IsActive = movie.IsActive
+            };
+        }
+
+        private async Task RefreshDataAsync()
+        {
+            _selectedMovie = new();
+            await _moviesGrid!.ReloadAsync();
+        }
+        private async Task ImportFromFile()
+        {
+
+        }
+    }
+}

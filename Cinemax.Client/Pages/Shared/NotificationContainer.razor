@@ -1,0 +1,82 @@
+﻿@using Cinemax.Client.Services
+@implements IDisposable
+@inject NotificationService NotificationService
+
+<div class="notification-container">
+    @foreach (var notification in _notifications)
+    {
+        <div class="notification-toast @GetCssClass(notification.Type)">
+            <div class="notification-content">
+                @notification.Message
+            </div>
+
+            <button type="button"
+                    class="notification-close"
+                    aria-label="Close"
+                    @onclick="() => Remove(notification)">
+                ×
+            </button>
+        </div>
+    }
+</div>
+
+@code {
+    private readonly List<NotificationItem> _notifications = [];
+
+    protected override void OnInitialized()
+    {
+        NotificationService.OnShow += Show;
+    }
+
+    private void Show(NotificationMessage message)
+    {
+        var item = new NotificationItem(
+            Id: Guid.NewGuid(),
+            Message: message.Message,
+            Type: message.Type
+        );
+
+        _notifications.Add(item);
+
+        InvokeAsync(StateHasChanged);
+
+        _ = RemoveAfterDelayAsync(item);
+    }
+
+    private async Task RemoveAfterDelayAsync(NotificationItem item)
+    {
+        await Task.Delay(4000);
+
+        Remove(item);
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private void Remove(NotificationItem item)
+    {
+        _notifications.RemoveAll(x => x.Id == item.Id);
+    }
+
+    private static string GetCssClass(NotificationType type)
+    {
+        return type switch
+        {
+            NotificationType.Success => "notification-success",
+            NotificationType.Error => "notification-error",
+            NotificationType.Warning => "notification-warning",
+            NotificationType.Info => "notification-info",
+            _ => "notification-info"
+        };
+    }
+
+    public void Dispose()
+    {
+        NotificationService.OnShow -= Show;
+    }
+
+    private record NotificationItem(
+        Guid Id,
+        string Message,
+        NotificationType Type
+    );
+}

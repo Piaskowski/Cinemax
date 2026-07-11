@@ -1,0 +1,75 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+
+@inherits LayoutComponentBase
+
+@inject HttpClient HttpClient
+@inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager NavManager
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <AuthorizeView Context="mainAuth">
+                <Authorized>
+                    <div class="nav-item dropdown px-3">
+                        <a class="nav-link dropdown-toggle"
+                           href="#"
+                           id="my-account"
+                           role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Moje konto
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="my-account">
+                            <AuthorizeView Roles="Admin" Context="adminAuth">
+                                <Authorized>
+                                    <li>
+                                        <NavLink class="dropdown-item" href="admin/orders">
+                                            Panel administratora
+                                        </NavLink>
+                                    </li>
+                                </Authorized>
+                            </AuthorizeView>
+                            <li>
+                                <NavLink class="dropdown-item" href="a">
+                                    Historia zamówień
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="dropdown-item" href="a">
+                                    Zarządzaj kontem
+                                </NavLink>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="" @onclick="@LogoutHandler">
+                                    Wyloguj
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </Authorized>
+                <NotAuthorized>
+                    <NavLink href="account/login">Logowanie</NavLink>
+                    <NavLink href="account/register">Rejestracja</NavLink>
+                </NotAuthorized>
+            </AuthorizeView>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code{
+    private async Task LogoutHandler()
+    {
+        await ((CustomAuthStateProvider)AuthStateProvider).MarkUserAsLoggedOut();
+        NavManager.NavigateTo("/", forceLoad: true);
+    }
+}

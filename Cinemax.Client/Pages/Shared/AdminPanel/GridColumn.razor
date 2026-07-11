@@ -1,0 +1,22 @@
+﻿@typeparam TItem
+
+@code {
+    [CascadingParameter]
+    public DataGrid<TItem> Grid { get; set; } = default!;
+
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public Func<TItem, object?> Field { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        Grid.AddColumn(this);
+    }
+
+    public object? GetValue(TItem item)
+    {
+        return Field(item);
+    }
+}

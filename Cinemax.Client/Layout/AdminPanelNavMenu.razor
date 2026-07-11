@@ -1,0 +1,59 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Cinemax.Client</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="nav flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/orders" Match="NavLinkMatch.All">
+                <i class="bi bi-archive nav-icon" aria-hidden="true"></i> Zamówienia
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/users" Match="NavLinkMatch.All">
+                <i class="bi bi-people nav-icon" aria-hidden="true"></i> Użytkownicy
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/screenings">
+                <i class="bi bi-projector nav-icon" aria-hidden="true"></i> Repertuar
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/movies">
+                <i class="bi bi-film nav-icon" aria-hidden="true"></i> Filmy
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/genres">
+                <i class="bi bi-box nav-icon" aria-hidden="true"></i> Gatunki
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/cinemahalls">
+                <i class="bi bi-border-style nav-icon" aria-hidden="true"></i> Sale kinowe
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="admin/ticket-prices">
+                <i class="bi bi-ticket-detailed nav-icon" aria-hidden="true"></i> Cennik
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

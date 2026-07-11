@@ -1,0 +1,57 @@
+﻿@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Client.Services
+@using Cinemax.Shared.Enums
+
+@inject HttpClient HttpClient
+@inject NotificationService NotificationService
+
+<AdminFormDialog @ref="_form"
+    Id="@Id" 
+    Model="@TicketPrice"
+    OnValidSubmit="@OnValidSubmit"
+    OnCancel="@HandleCancel"
+    Title="Dodaj bilet"
+    ErrorMessage="@_errorMessage"
+    Errors="@_errors"
+    IsSubmitting="@_isSubmitting">
+    <Body>
+        <div class="form-group">
+            <label class="form-label">Typ seansu:</label>
+            <InputSelect class="form-select" @bind-Value="TicketPrice.ScreeningType">
+                @foreach (var screeningType in Enum.GetValues<ScreeningType>())
+                {
+                    <option value="@screeningType">@screeningType</option>
+                }
+            </InputSelect>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => TicketPrice.ScreeningType)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Typ biletu:</label>
+            <InputSelect class="form-select" @bind-Value="TicketPrice.TicketType">
+                @foreach (var ticketType in Enum.GetValues<TicketType>())
+                {
+                    <option value="@ticketType">@ticketType</option>
+                }
+            </InputSelect>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => TicketPrice.TicketType)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Cena zł:</label>
+            <InputNumber class="form-control" @bind-Value="@TicketPrice.Price"></InputNumber>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => TicketPrice.Price)" />
+            </div>
+        </div>
+        @if (IsEditMode)
+        {
+            <div class="form-group mt-3">
+                <label class="form-label">Aktywny:</label>
+                <InputCheckbox @bind-Value="@TicketPrice.IsActive" class="form-check-input"></InputCheckbox>
+            </div>
+        }
+    </Body>
+</AdminFormDialog>

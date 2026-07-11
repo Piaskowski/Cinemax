@@ -1,0 +1,57 @@
+﻿@typeparam TModel
+@inject IJSRuntime JS
+
+<div id="@Id" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="form">
+        <div class="modal-content">
+            <Loader IsLoading="@IsSubmitting"/>
+            <EditForm Model="@Model" OnValidSubmit="@OnValidSubmit">
+                <DataAnnotationsValidator />
+                <div class="modal-header">
+                    <h5 class="modal-title">@Title</h5>
+                    <button 
+                        type="button" 
+                        class="btn-close" 
+                        data-bs-dismiss="modal" 
+                        aria-label="Close"
+                        @onclick="OnCancel"></button>
+                </div>
+                <div class="modal-body">
+                    @if (!string.IsNullOrEmpty(ErrorMessage) || Errors.Count() > 0)
+                    {
+                        <FormAlert Title="@ErrorMessage"
+                                   Errors="@Errors"
+                                   Type="AlertType.Error" />
+                    }
+                    @Body
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-primary float-end" type="submit">Zapisz</button>
+                    <button class="btn btn-outline-secondary float-end" 
+                        data-bs-dismiss="modal" 
+                        type="button"
+                        @onclick="OnCancel">Anuluj</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public required string Id { get; set; }
+    [Parameter] public required string Title { get; set; }
+    [Parameter] public RenderFragment? Body { get; set; }
+    [Parameter] public required TModel Model { get; set; }
+
+    [Parameter] public required EventCallback OnValidSubmit { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+
+    [Parameter] public string? ErrorMessage { get; set; }
+    [Parameter] public IEnumerable<string> Errors { get; set; } = [];
+    [Parameter] public bool IsSubmitting { get; set; }
+
+    public async Task CloseAsync()
+    {
+        await JS.InvokeVoidAsync("bootstrapModal.hide", Id);
+    }
+}

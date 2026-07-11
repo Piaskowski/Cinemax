@@ -1,0 +1,38 @@
+﻿@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Shared.Contracts.Scrennings
+
+@page "/admin/screenings"
+@attribute [Authorize(Roles = "Admin")]
+@layout AdminPanelLayout
+
+@inject HttpClient HttpClient
+
+<AdminContentCard Title="Repertuar">
+    <CardBody>
+        <DataGrid @ref="_screeningGrid" TItem="ScreeningDto" LoadData="@LoadData">
+            <GridToolbar>
+                <GridButton Icon="reload" OnClick="@RefreshDataAsync" />
+                <GridButton Text="Dodaj" Icon="add" Toggle="modal" Target="@_createScreeningDialogId" />
+                <GridButton Text="Import" Icon="import" />
+            </GridToolbar>
+            <GridColumns>
+                <GridColumn Title="Tytuł filmu" Field="s => s.Movie.Title" />
+                <GridColumn Title="Numer sali" Field="s => s.CinemaHall.Number" />
+                <GridColumn Title="Data" Field="s => s.StartTime" />
+                <GridColumn Title="Status" Field="x => x.Status" />
+            </GridColumns>
+            <GridRowActions Context="screening">
+                <GridButton Icon="edit" Toggle="modal" Target="@_createScreeningDialogId"
+                            OnClick="@(() => SelectScreening(screening))"/>
+                <GridButton Icon="delete" 
+                            OnClick="@(() => SelectScreening(screening))" />
+            </GridRowActions>
+        </DataGrid>
+    </CardBody>
+</AdminContentCard>
+
+<ScreeningFormDialog Id="@_createScreeningDialogId"
+                     Screening="@_selectedScreening"
+                     OnSuccess=@RefreshDataAsync />
+
+

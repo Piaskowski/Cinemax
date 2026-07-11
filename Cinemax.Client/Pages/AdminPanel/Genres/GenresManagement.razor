@@ -1,0 +1,36 @@
+﻿@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Shared.Contracts.Genres
+
+@page "/admin/genres"
+@attribute [Authorize(Roles = "Admin")]
+@layout AdminPanelLayout
+
+@inject HttpClient HttpClient
+
+<AdminContentCard Title="Gatunki">
+    <CardBody>
+        <DataGrid @ref="_genresGrid" TItem="GenreDto" LoadData="@LoadData">
+            <GridToolbar>
+                <GridButton Icon="reload" OnClick="@RefreshDataAsync" />
+                <GridButton Text="Dodaj" 
+                    Icon="add" 
+                    Toggle="modal" 
+                    Target="@_genresFormDialogId" />
+                <GridButton Text="Import" Icon="import" />
+            </GridToolbar>
+            <GridColumns>
+                <GridColumn Field="g => g.Name" />
+                <GridColumn Title="Aktywny" Field="@(x => x.IsActive ? "Tak" : "Nie")" />
+            </GridColumns>
+            <GridRowActions Context="genre">
+                <GridButton Icon="edit" Toggle="modal" Target="@_genresFormDialogId"
+                            OnClick="@(() => SelectGenre(genre))" />
+                <GridButton Icon="delete" />
+            </GridRowActions>
+        </DataGrid>
+    </CardBody>
+</AdminContentCard>
+
+<GenreFormDialog Id="@_genresFormDialogId"
+    Genre="@_selectedGenre"
+    OnSuccess="@RefreshDataAsync"/>

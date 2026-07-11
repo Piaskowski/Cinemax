@@ -1,0 +1,64 @@
+﻿@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Client.Services
+@using Cinemax.Shared.Enums
+
+@inject HttpClient _httpClient
+@inject NotificationService _notificationService
+
+<AdminFormDialog @ref="_form"
+                 Id="@Id"
+                 Model="@Screening"
+                 OnValidSubmit="@OnValidSubmit"
+                 OnCancel="@HandleCancel"
+                 Title="Dodaj seans"
+                 ErrorMessage="@_errorMessage"
+                 Errors="@_errors"
+                 IsSubmitting="@_isSubmitting">
+    <Body>
+        <div class="form-group">
+            <label class="form-label">Numer sali:</label>
+            <InputSelect class="form-select" @bind-Value="Screening.CinemaHallId">
+                @foreach (var hall in _halls)
+                {
+                    <option value="@hall.Id">@hall.Number</option>
+                }
+            </InputSelect>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => Screening.CinemaHallId)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Tytuł filmu:</label>
+            <InputSelect class="form-select" @bind-Value="Screening.MovieId">
+                @foreach (var movie in _movies)
+                {
+                    <option value="@movie.Id">@movie.Title</option>
+                }
+            </InputSelect>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => Screening.MovieId)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Data:</label>
+            <InputDate class="form-select" @bind-Value="Screening.StartTime"></InputDate>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => Screening.StartTime)" />
+            </div>
+        </div>
+        @if (IsEditMode)
+        {
+            <div class="form-group">
+                <label class="form-label">Status:</label>
+                <InputSelect class="form-select"
+                disabled ="@DisableStatusInputSelect"
+                             @bind-Value="Screening.Status">
+                    @foreach (var status in Enum.GetValues<ScreeningStatus>())
+                    {
+                        <option value="@status">@status</option>
+                    }
+                </InputSelect>
+            </div>
+        }
+    </Body>
+</AdminFormDialog>

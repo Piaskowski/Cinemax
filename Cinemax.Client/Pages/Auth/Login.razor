@@ -1,0 +1,104 @@
+﻿@page "/account/login"
+@using Cinemax.Shared.Contracts.Auth
+@using Cinemax.Shared.Resources.Auth
+@using Cinemax.Client.Pages.Shared
+@using Microsoft.AspNetCore.Components.Authorization
+
+@inject HttpClient HttpClient
+@inject IStringLocalizer<AuthMessages> AuthL
+@inject IStringLocalizer<CommonMessages> CommonL
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthStateProvider
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <EditForm Enhance Model="_user" OnValidSubmit="@HandleLogin">
+                <DataAnnotationsValidator />
+                <div class="card">
+                    <div class="card-header">@AuthL["LoginForm_Title"]</div>
+                    <div class="card-body">
+                        @if (_errors?.Count() > 0)
+                        {
+                            <FormAlert Title="Logowanie nie powiodło się"
+                                        Message="@_errorMessage"
+                                        Errors="@_errors"
+                                        Type="AlertType.Error"/>
+                        }
+                        <div class="form-group mt-3">
+                            <label class="form-label">@AuthL["Label_Email"]:</label>
+                            <InputText id="login-email" @bind-Value="_user.Email" class="form-control"></InputText>
+                            <div id="login-email-validation" class="alert-danger">
+                                <ValidationMessage For="@(() => _user.Email)" />
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label">@AuthL["Label_Password"]:</label>
+                            <input id="login-password" type="password" @bind="_user.Password" class="form-control"></input>
+                            <div id="login-password-validation" class="alert-danger">
+                                <ValidationMessage For="@(() => _user.Password)" />
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <button id="login-submit-button" class="btn btn-outline-primary float-end" type="submit">@CommonL["Btn_Submit"]</button>
+                        </div>
+                    </div>
+                    </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    private LoginRequest _user = new();
+    private string? _errorMessage;
+    private IEnumerable<string>? _errors = [];
+    private bool _isSubmitting = false;
+
+    private async Task HandleLogin()
+    {
+        _isSubmitting = true;
+        _errors = [];
+
+        try
+        {
+            var response = await HttpClient.PostAsJsonAsync("api/Auth/login", _user);
+            if (response.IsSuccessStatusCode)
+            {
+                var loginResponse = await response.Content.ReadFromJsonAsync<LoginResponse>();
+                if (loginResponse != null && !string.IsNullOrEmpty(loginResponse.Token))
+                {
+                    await ((CustomAuthStateProvider)AuthStateProvider)
+                            .MarkUserAsAuthenticated(loginResponse.Token);
+
+                    NavigationManager.NavigateTo("/", forceLoad: true);
+                }else
+                {
+                    _errorMessage = CommonL["Error_UnexpectedError"];
+                }
+            }
+            else 
+            {
+                var errorResponse = await response.Content.ReadFromJsonAsync<ErrorResponse>();
+                if (errorResponse is null)
+                {
+                    _errorMessage = CommonL["Error_UnexpectedError"];
+                }
+
+                _errorMessage = errorResponse.Message;
+                if (errorResponse.Errors.Count > 0)
+                {
+                    _errors = errorResponse.Errors;
+                }
+            }
+        }
+        catch
+        {
+            _errorMessage = CommonL["Error_LostConnection"];
+        }
+        finally
+        {
+            _isSubmitting = false;
+        }
+    }
+}

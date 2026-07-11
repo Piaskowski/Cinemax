@@ -1,0 +1,81 @@
+﻿@using Cinemax.Client.Pages.Shared
+@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Client.Services
+@using Cinemax.Shared.Enums
+@using Cinemax.Shared.Contracts.Genres
+
+@inject HttpClient HttpClient
+@inject NotificationService NotificationService
+
+<AdminFormDialog @ref="_form" 
+    Id="@Id"
+    Title="Dodaj film"
+    Model="@Movie"
+    OnValidSubmit="@OnValidSubmit"
+    OnCancel="@HandleCancel"
+    ErrorMessage="@_errorMessage"
+    Errors="@_errors"
+    IsSubmitting="@_isSubmitting">
+    <Body>
+        <div class="form-group mt-3">
+            <label class="form-label">Tytuł:</label>
+            <InputText @bind-Value="@Movie.Title" class="form-control"></InputText>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => Movie.Title)" />
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <label class="form-label">Reżyser:</label>
+            <InputText class="form-control" @bind-Value="@Movie.Director"></InputText>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => Movie.Director)" />
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <label class="form-label">Opis:</label>
+            <InputText class="form-control" @bind-Value="@Movie.Description"></InputText>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => Movie.Description)" />
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <label class="form-label">Czas trwania [min]:</label>
+            <InputNumber class="form-control" @bind-Value="@Movie.DurationMinutes"></InputNumber>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => Movie.DurationMinutes)" />
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <label class="form-label">Gatunek:</label>
+
+            <MultiSelect TItem="GenreDto"
+                              Items="@_genres"
+                              @bind-Value="Movie.GenresIds"
+                              GetValue="genre => genre.Id"
+                              GetText="genre => genre.Name ?? string.Empty"
+                              Placeholder="Wybierz gatunki..." />
+
+            <div class="alert-danger">
+                <ValidationMessage For="(() => Movie.GenresIds)" />
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <label>Plakat:</label>
+            <InputFile OnChange="@OnPosterSelected" accept=".jpg,.jpeg,.png,.webp"></InputFile>
+            <div class="alert-danger">
+                @_posterValidationMessage
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <label class="form-label">Link do zwiastunu:</label>
+            <InputText class="form-control" @bind-Value="Movie.TrailerUrl"></InputText>
+        </div>
+        @if (IsEditMode)
+        {
+            <div class="form-group mt-3">
+                <label class="form-label">Aktywny:</label>
+                <InputCheckbox @bind-Value="@Movie.IsActive" class="form-check-input"></InputCheckbox>
+            </div>
+        }
+    </Body>
+</AdminFormDialog>

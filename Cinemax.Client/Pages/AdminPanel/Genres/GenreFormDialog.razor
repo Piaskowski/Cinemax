@@ -1,0 +1,33 @@
+﻿@using Cinemax.Client.Services
+@using Cinemax.Shared.Enums
+@using Cinemax.Client.Pages.Shared.AdminPanel
+
+@inject HttpClient _httpClient
+@inject NotificationService _notificationService
+
+<AdminFormDialog @ref="_form"
+                 Id="@Id"
+                 Title="Dodaj gatunek"
+                 Model="@Genre"
+                 OnValidSubmit="@OnValidSubmit"
+                 OnCancel="@HandleCancel"
+                 ErrorMessage="@_errorMessage"
+                 Errors="@_errors"
+                 IsSubmitting="@_isSubmitting">
+    <Body>
+        <div class="form-group mt-3">
+            <label class="form-label">Nazwa:</label>
+            <InputText @bind-Value="@Genre.Name" class="form-control"></InputText>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => Genre.Name)" />
+            </div>
+        </div>
+        @if (IsEditMode)
+        {
+            <div class="form-group mt-3">
+                <label class="form-label">Aktywny:</label>
+                <InputCheckbox @bind-Value="@Genre.IsActive" class="form-check-input"></InputCheckbox>
+            </div>
+        }
+    </Body>
+</AdminFormDialog>

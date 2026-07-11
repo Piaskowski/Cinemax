@@ -1,0 +1,35 @@
+﻿<button type="@(Type ?? "button")" 
+    class="btn"
+    data-bs-toggle="@(Toggle ?? null)"
+    data-bs-target="@(Target != null ?$"#{Target}" : null)"
+    @onclick="OnClick">
+    @if (!string.IsNullOrEmpty(Icon))
+    {
+        <i class="@SetIcon"></i>
+    }
+    @if (!string.IsNullOrEmpty(Text))
+    {
+        @Text
+    }
+</button>
+
+@code {
+    [Parameter] public string? Text { get; set; }
+    [Parameter] public string? Icon { get; set; }
+    [Parameter] public string? Type { get; set; }
+    [Parameter] public string? Toggle { get; set; }
+    [Parameter] public string? Target { get; set; }
+
+    [Parameter] public EventCallback OnClick { get; set; }
+
+    private string? SetIcon => Icon switch
+    {
+        "add" => "bi bi-plus-lg",
+        "edit" => "bi bi-pencil",
+        "delete" => "bi bi-trash",
+        "import" => "bi bi-file-excel",
+        "reload" => "bi bi-arrow-clockwise",
+        _ => null
+    };
+
+}

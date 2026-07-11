@@ -1,0 +1,41 @@
+﻿@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Shared.Contracts.Movies
+
+@page "/admin/movies"
+@attribute [Authorize(Roles = "Admin")]
+@layout AdminPanelLayout
+
+@inject HttpClient HttpClient
+
+<AdminContentCard Title="Filmy">
+    <CardBody>
+        <DataGrid @ref="_moviesGrid" TItem="MovieDto" LoadData="@LoadData">
+            <GridToolbar>
+                <GridButton Icon="reload" OnClick="@RefreshDataAsync" />
+                <GridButton Text="Dodaj" 
+                    Icon="add" 
+                    Toggle="modal" 
+                    Target="@_createMovieDialogId" />
+                <GridButton Text="Import" Icon="import" />
+            </GridToolbar>
+            <GridColumns>
+                <GridColumn Title="Tytuł" Field="m => m.Title" />
+                <GridColumn Title="Reżyser" Field="m => m.Director" />
+                <GridColumn Title="Opis" Field="m => m.Description" />
+                <GridColumn Title="Czas trwania" Field="m => m.DurationMinutes" />
+                <GridColumn Title="Aktywny" Field="@(x => x.IsActive ? "Tak" : "Nie")" />
+                <GridColumn Title="Url plakatu" Field="m => m.PosterUrl" />
+                <GridColumn Title="Url zwiastunu" Field="m => m.TrailerUrl" />
+            </GridColumns>
+            <GridRowActions Context="movie">
+                <GridButton Icon="edit" Toggle="modal" Target="@_createMovieDialogId"
+                            OnClick="@(() => SelectMovie(movie))" />
+                <GridButton Icon="delete" />
+            </GridRowActions>
+        </DataGrid>
+    </CardBody>
+</AdminContentCard>
+
+<MovieFormDialog Id="@_createMovieDialogId"
+                 Movie="@_selectedMovie"
+                 OnSuccess="@RefreshDataAsync"/>

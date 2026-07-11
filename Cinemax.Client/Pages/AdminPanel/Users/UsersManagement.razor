@@ -1,0 +1,31 @@
+﻿@using Cinemax.Client.Pages.Shared
+@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Shared.Contracts.Identity
+
+@page "/admin/users"
+@attribute [Authorize(Roles = "Admin")]
+@layout AdminPanelLayout
+
+@inject HttpClient HttpClient
+
+<AdminContentCard Title="Użytkownicy">
+    <CardBody>
+        <DataGrid @ref="_userGrid" TItem="UserDto" LoadData="@LoadData">
+            <GridToolbar>
+                <GridButton Icon="reload" OnClick="@RefreshDataAsync"/>
+                <GridButton Text="Dodaj" Icon="add" Toggle="modal" Target="@_createUserDialogId" />
+            </GridToolbar>
+            <GridColumns>
+                <GridColumn Title="Imię" Field="u => u.FirstName" />
+                <GridColumn Title="Nazwisko" Field="u => u.LastName" />
+                <GridColumn Title="Czy Aktywny" Field="u => u.IsActive" />
+                <GridColumn Title="Data utworzenia" Field="u => u.CreatedAt" />
+                <GridColumn Title="Data Modyfikacji" Field="u => u.ModifiedAt" />
+                <GridColumn Title="Zmodyfikowane przez" Field="u => u.ModifiedBy" />
+            </GridColumns>
+        </DataGrid>
+    </CardBody>
+</AdminContentCard>
+<CreateUserFormDialog Id="@_createUserDialogId"
+                      OnCreated="@RefreshDataAsync" />
+
