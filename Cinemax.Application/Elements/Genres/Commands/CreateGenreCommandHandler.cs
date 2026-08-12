@@ -1,6 +1,7 @@
 ﻿using Cinemax.Application.Elements.Genres.Repositories;
 using Cinemax.Application.Exceptions;
 using Cinemax.Domain.Entities;
+using Cinemax.Shared.Resources.Validation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +20,7 @@ namespace Cinemax.Application.Elements.Genres.Commands
                 .AnyAsync(g => g.Name.ToUpper().Equals(normalizedName), ct);
 
             if (exists)
-                throw new ValidationException([$"Kategoria o nazwie \"{request.Name}\" już istnieje."]);
+                throw new ValidationException([string.Format(ValidationMessages.Genre_UnavailableName,request.Name)]);
 
             var newGenre = new Genre { Name = request.Name };
             await _repository.CreateAsync(newGenre, ct);

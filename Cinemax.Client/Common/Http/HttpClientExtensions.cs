@@ -56,6 +56,25 @@ namespace Cinemax.Client.Common.Http
             }
         }
 
+        public static async Task<ApiResult> DeleteAndReadAsync(
+            this HttpClient httpClient,
+            string requestUri,
+            CancellationToken ct = default)
+        {
+            var response = await httpClient.DeleteAsync(requestUri, ct);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return ApiResult.Success();
+            }
+
+            var error = await response.Content.ReadFromJsonAsync<ErrorResponse>(
+                cancellationToken: ct
+            );
+
+            return ApiResult.Failure(error.Message, error.Errors);
+        }
+
         private static async Task<ApiResult<TResponse>> ReadAsync<TResponse>(HttpResponseMessage response)
         {
             if (response.IsSuccessStatusCode)

@@ -1,4 +1,5 @@
 ﻿using Cinemax.Shared.Enums;
+using Cinemax.Shared.Resources.Validation;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cinemax.Shared.Contracts.TicketPrices
@@ -7,13 +8,20 @@ namespace Cinemax.Shared.Contracts.TicketPrices
     {
         public Guid? Id { get; set; }
 
-        [Required(ErrorMessage = "Format jest wymagany.")]
+        [Required(
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.Required_ScreeningType))]
         public ScreeningType ScreeningType { get; set; }
 
-        [Required(ErrorMessage = "Typ biletu jest wymagany.")]
+
+        [Required(
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.Required_TicketType))]
         public TicketType TicketType { get; set; }
 
-        [Range(0.01, double.MaxValue, ErrorMessage = "Cena musi być większa od 0")]
+        [Range(0.01, double.MaxValue, 
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.MinPrice))]
         public decimal Price { get; set; }
         public bool IsActive { get; set; }
     }

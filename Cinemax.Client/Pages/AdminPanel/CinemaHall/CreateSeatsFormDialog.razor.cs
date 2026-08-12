@@ -14,7 +14,7 @@ namespace Cinemax.Client.Pages.AdminPanel.CinemaHall
 
         private AdminFormDialog<CreateSeatsRequest>? _form;
         private CreateSeatsRequest _seats = new();
-        private int _maxFileSize = 2 * 1024 * 1024;
+        private readonly int _maxFileSize = 2 * 1024 * 1024;
 
         private string? _errorMessage;
         private IEnumerable<string> _errors = [];

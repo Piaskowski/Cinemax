@@ -1,5 +1,7 @@
-﻿using Cinemax.Application.Elements.Screenings.Commands;
+﻿using Cinemax.Application.Elements.Genres.Commands;
+using Cinemax.Application.Elements.Screenings.Commands;
 using Cinemax.Application.Elements.Screenings.Queries;
+using Cinemax.Application.Elements.Seats.Commands;
 using Cinemax.Shared.Contracts.Common;
 using Cinemax.Shared.Contracts.Scrennings;
 using MediatR;
@@ -40,6 +42,33 @@ namespace Cinemax.Server.Controllers.AdminPanel
 
             await _mediator.Send(command);
             return NoContent();
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteScreening([FromRoute] Guid id)
+        {
+            var command = new DeleteScreeningCommand(id);
+
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpPost("create-screenings")]
+        public async Task<IActionResult> ImportScreenings([FromForm] IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest("Plik nie został poprawnie przesłany.");
+            }
+
+            var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            memoryStream.Seek(0, SeekOrigin.Begin);
+
+            var errors = await _mediator.Send(
+                    new ImportScreeningsCommand(memoryStream));
+
+            return errors.Any() ? BadRequest(errors) : NoContent();
         }
     }
 }

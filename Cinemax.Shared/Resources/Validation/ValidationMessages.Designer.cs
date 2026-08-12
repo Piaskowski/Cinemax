@@ -61,6 +61,33 @@ namespace Cinemax.Shared.Resources.Validation {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie można usunąć sali kinowej, ponieważ istnieją przypisane do niej seanse..
+        /// </summary>
+        public static string Cinemahall_AssignedScreenings {
+            get {
+                return ResourceManager.GetString("Cinemahall_AssignedScreenings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wskazana sala nie istnieje..
+        /// </summary>
+        public static string Cinemahall_NotExists {
+            get {
+                return ResourceManager.GetString("Cinemahall_NotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Sala o podanym numerze już istnieje..
+        /// </summary>
+        public static string Cinemhall_UnavailableNumber {
+            get {
+                return ResourceManager.GetString("Cinemhall_UnavailableNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Hasła nie są takie same..
         /// </summary>
         public static string Compare_ConfirmPassword {
@@ -75,6 +102,51 @@ namespace Cinemax.Shared.Resources.Validation {
         public static string EmailAddress {
             get {
                 return ResourceManager.GetString("EmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Data musi być przyszła..
+        /// </summary>
+        public static string FutureDate {
+            get {
+                return ResourceManager.GetString("FutureDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie można usunąć danej kategorii, ponieważ istnieją przypisane do niej filmy.
+        /// </summary>
+        public static string Genre_AssignedMovies {
+            get {
+                return ResourceManager.GetString("Genre_AssignedMovies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Kategoria nie istnieje..
+        /// </summary>
+        public static string Genre_NotExists {
+            get {
+                return ResourceManager.GetString("Genre_NotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Kategoria o nazwie &quot;{0}&quot; już istnieje..
+        /// </summary>
+        public static string Genre_UnavailableName {
+            get {
+                return ResourceManager.GetString("Genre_UnavailableName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Maksymalna długość znaków: {1}..
+        /// </summary>
+        public static string MaxLength {
+            get {
+                return ResourceManager.GetString("MaxLength", resourceCulture);
             }
         }
         
@@ -106,6 +178,24 @@ namespace Cinemax.Shared.Resources.Validation {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Maksymalna długość znaków dla pola {0}: {1}..
+        /// </summary>
+        public static string MaxLength_Property {
+            get {
+                return ResourceManager.GetString("MaxLength_Property", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Czas trwania musi być większy od 0.
+        /// </summary>
+        public static string MinDuration {
+            get {
+                return ResourceManager.GetString("MinDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Imię musi składać się z co najmniej 2 znaków..
         /// </summary>
         public static string MinLength_FirstName {
@@ -133,11 +223,128 @@ namespace Cinemax.Shared.Resources.Validation {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Cena musi być większa od 0.
+        /// </summary>
+        public static string MinPrice {
+            get {
+                return ResourceManager.GetString("MinPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Numer sali kinowej musi być większy od 0..
+        /// </summary>
+        public static string MinValue_CinemaHall {
+            get {
+                return ResourceManager.GetString("MinValue_CinemaHall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie można usunąć danego filmu, ponieważ istnieją przypisane do niego seanse..
+        /// </summary>
+        public static string Movie_AssignedScreenings {
+            get {
+                return ResourceManager.GetString("Movie_AssignedScreenings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wskazany film nie istnieje..
+        /// </summary>
+        public static string Movie_NotExists {
+            get {
+                return ResourceManager.GetString("Movie_NotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Film o tytule &quot;{0}&quot; już istnieje..
+        /// </summary>
+        public static string Movie_UnavailableTitle {
+            get {
+                return ResourceManager.GetString("Movie_UnavailableTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wymagany przynajmniej jeden gatunek..
+        /// </summary>
+        public static string NotEmpty_GenresList {
+            get {
+                return ResourceManager.GetString("NotEmpty_GenresList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie znaleziono filmu..
+        /// </summary>
+        public static string NotFound_Movie {
+            get {
+                return ResourceManager.GetString("NotFound_Movie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie przesłano wymaganych danych..
+        /// </summary>
+        public static string NotNull {
+            get {
+                return ResourceManager.GetString("NotNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Sala jest wymagana..
+        /// </summary>
+        public static string Required_CinemaHall {
+            get {
+                return ResourceManager.GetString("Required_CinemaHall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Typ sali kinowej jest wymagany..
+        /// </summary>
+        public static string Required_CinemaHallType {
+            get {
+                return ResourceManager.GetString("Required_CinemaHallType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Potwierdzenie hasła jest wymagane..
         /// </summary>
         public static string Required_ConfirmPassword {
             get {
                 return ResourceManager.GetString("Required_ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Data jest wymagana..
+        /// </summary>
+        public static string Required_Date {
+            get {
+                return ResourceManager.GetString("Required_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Opis jest wymagany..
+        /// </summary>
+        public static string Required_Description {
+            get {
+                return ResourceManager.GetString("Required_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Reżyser jest wymagany..
+        /// </summary>
+        public static string Required_Director {
+            get {
+                return ResourceManager.GetString("Required_Director", resourceCulture);
             }
         }
         
@@ -169,11 +376,137 @@ namespace Cinemax.Shared.Resources.Validation {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Film jest wymagany..
+        /// </summary>
+        public static string Required_Movie {
+            get {
+                return ResourceManager.GetString("Required_Movie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nazwa jest wymagana..
+        /// </summary>
+        public static string Required_Name {
+            get {
+                return ResourceManager.GetString("Required_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Hasło nie może być puste..
         /// </summary>
         public static string Required_Password {
             get {
                 return ResourceManager.GetString("Required_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Rola jest wymagana..
+        /// </summary>
+        public static string Required_Role {
+            get {
+                return ResourceManager.GetString("Required_Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Format jest wymagany..
+        /// </summary>
+        public static string Required_ScreeningType {
+            get {
+                return ResourceManager.GetString("Required_ScreeningType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Typ biletu jest wymagany..
+        /// </summary>
+        public static string Required_TicketType {
+            get {
+                return ResourceManager.GetString("Required_TicketType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Tytuł jest wymagany..
+        /// </summary>
+        public static string Required_Title {
+            get {
+                return ResourceManager.GetString("Required_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie można usunąć danego seansu, ponieważ istnieją przypisane do niego zamówienia..
+        /// </summary>
+        public static string Screening_AssignedOrders {
+            get {
+                return ResourceManager.GetString("Screening_AssignedOrders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Kolizja z  {0}  - {1}.
+        /// </summary>
+        public static string Screening_DateCollision {
+            get {
+                return ResourceManager.GetString("Screening_DateCollision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wskazany seans nie istnieje..
+        /// </summary>
+        public static string Screening_NotExists {
+            get {
+                return ResourceManager.GetString("Screening_NotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Miejsce w rzędzie {0}, numer {1} występuje {2} razy..
+        /// </summary>
+        public static string Seats_Duplication {
+            get {
+                return ResourceManager.GetString("Seats_Duplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wskazana cena biletu nie istnieje..
+        /// </summary>
+        public static string TicketPrice_NotExists {
+            get {
+                return ResourceManager.GetString("TicketPrice_NotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Cena dla wybranego typu seansu i typu biletu już istnieje..
+        /// </summary>
+        public static string TicketPrice_UnavailableScreeningAndTicketType {
+            get {
+                return ResourceManager.GetString("TicketPrice_UnavailableScreeningAndTicketType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie można usunąć danego użytkownika, ponieważ istnieją przypisane do niego zamówienia..
+        /// </summary>
+        public static string User_AssignedOrders {
+            get {
+                return ResourceManager.GetString("User_AssignedOrders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Użytkownik o podanym adresie email już istnieje..
+        /// </summary>
+        public static string User_UnavailableEmail {
+            get {
+                return ResourceManager.GetString("User_UnavailableEmail", resourceCulture);
             }
         }
     }

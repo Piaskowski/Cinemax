@@ -1,0 +1,98 @@
+﻿@page "/order/{Id:guid}"
+
+@using Cinemax.Client.Pages.Shared
+@using Cinemax.Shared.Contracts.Scrennings
+@using Cinemax.Shared.Contracts.Seats
+@using Cinemax.Shared.Enums
+
+@inject HttpClient _httpClient
+
+<Loader IsLoading="_isLoading" />
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Wybór miejsc</h2>
+        </div>
+        <div class="card-body">
+            <div id="screening-details">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-2 d-flex justify-content-center">
+                            <div class="poster-container">
+                                <div class="movie-poster">
+                                    <img class="img-fluid w-100"
+                                         src="@_screening.PosterUrl"
+                                         alt="@_screening.MovieTitle" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4 class="uppercase">@_screening.MovieTitle</h4>
+                            <p><i class="bi bi-calendar4-week gold-gradient"></i> Data seansu: @_screening.StartTime</p>
+                            <p><i class="bi bi-clock gold-gradient"></i> @_screening.DurationMinutes min</p>
+                            @* <p><i class="bi bi-calendar-event gold-gradient"></i> Premiera 21 sierpnia</p> *@
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                </div>
+            </div>
+            @if (_stage == OrderStage.SelectingSeats)
+            {
+                <div id="cinema-hall-seats">
+                    <div id="screen">
+                        <div class="screen-shape">
+                            <span id="cinemahall-number">Sala @_screening.CinemaHallNumber</span>
+                        </div>
+                    </div>
+                    <div id="seats">
+                        @foreach (var row in _screening.SeatsRows)
+                        {
+                            <div class="seats-row">
+                                <div>@row.Row</div>
+                                <div class="seats">
+                                    @foreach (var seat in row.Seats)
+                                    {
+                                        <div class="seat @(seat.Type.Equals(SeatType.Couch) ? "sofa" : "") @(GetSeatStatusClass(seat))"
+                                             @onclick="() => SelectSeat(seat)">
+                                            @seat.Number
+                                        </div>
+                                    }
+                                </div>
+                                <div>@row.Row</div>
+                            </div>
+                        }
+                    </div>
+                    <div id="summary">
+                        <div id="selected-seats">
+                            @foreach (var row in _selectedSeats.GroupBy(s => s.Row).OrderBy(g => g.Key))
+                            {
+                                <div class="row justify-content-center">
+                                    <div class="col-md-3 fw-bold text-end">Rząd @row.Key: </div>
+                                    <div class="col-md-3 fw-bold text-start">
+                                        @string.Join(", ", row.OrderBy(s => s.Number).Select(s => s.Number))
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-3">
+                                <a class="btn btn-cancel" href="/"><i class="bi bi-caret-left-fill"></i>Anuluj</a>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-next" disabled="@(!(_selectedSeats.Count > 0))" @onclick="ProceedToTicketSelection">Zatwierdź miejsca</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else if (_stage == OrderStage.EditingTickets)
+            {
+                
+            }
+            else if (_stage == OrderStage.PlacingOrder)
+            {
+
+            }
+        </div>
+    </div>
+</div>

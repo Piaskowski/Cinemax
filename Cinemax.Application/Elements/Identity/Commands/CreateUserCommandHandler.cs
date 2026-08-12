@@ -1,6 +1,8 @@
 ﻿using Cinemax.Application.Exceptions;
 using Cinemax.Domain.Entities.Identity;
 using Cinemax.Shared.Contracts.Identity;
+using Cinemax.Shared.Resources.Auth;
+using Cinemax.Shared.Resources.Validation;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
@@ -15,7 +17,7 @@ namespace Cinemax.Application.Elements.Identity.Commands
 
             var user = await _userManager.FindByEmailAsync(request.Email);
             if (user != null)
-                throw new ValidationException(["Użytkownik o podanym adresie email już istnieje."]);
+                throw new ValidationException([ValidationMessages.User_UnavailableEmail]);
 
             var newUser = new ApplicationUser
             {
@@ -36,7 +38,7 @@ namespace Cinemax.Application.Elements.Identity.Commands
 
             return new CreateUserResponse
             {
-                Message = "Użytkownik został utworzony"
+                Message = AuthMessages.CreateSuccess
             };
         }
     }

@@ -123,6 +123,9 @@
   <data name="Error_LostConnection" xml:space="preserve">
     <value>Verbindung zum Server fehlgeschlagen.</value>
   </data>
+  <data name="Error_OperationFailed" xml:space="preserve">
+    <value>Der Vorgang ist fehlgeschlagen.</value>
+  </data>
   <data name="Error_UnexpectedError" xml:space="preserve">
     <value>Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut.</value>
   </data>

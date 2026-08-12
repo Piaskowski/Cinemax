@@ -1,7 +1,65 @@
 ﻿@page "/"
+@using Cinemax.Shared.Contracts.Movies
+@using Cinemax.Client.Pages.Shared
+
+@inject HttpClient _httpClient
+@inject IJSRuntime JS;
 
 <PageTitle>Home</PageTitle>
+<div class="col-12 movies-container">
+    <h2>Na Ekranie</h2>
+    <Swiper Id="on-screen-swiper"
+            Class="movie-swiper"
+            TItem="MovieCarouselDto"
+            Items="@_moviesComingSoon"
+            GetUrl="@(m => $"/movies/{m.Id.ToString()}")"
+            GetTitle="m => m.Title"
+            GetImageUrl="m => m.PosterUrl" />
+    <h2>Wkrótce</h2>
+    <Swiper Id="coming-soon-swiper"
+            Class="movie-swiper"
+            TItem="MovieCarouselDto"
+            Items="@_moviesComingSoon"
+            GetTitle="m => m.Title"
+            GetImageUrl="m => m.PosterUrl" />
+</div>
 
-<h1>Hello, world!</h1>
+@code{
+    private IEnumerable<MovieCarouselDto> _moviesOnScreen = [];
+    private IEnumerable<MovieCarouselDto> _moviesComingSoon = [];
 
-Welcome to your new app.
+    private string? _errorMessage;
+    private IEnumerable<string> _errors = [];
+    private bool _isLoading = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetMovies();
+    }
+
+    private async Task GetMovies()
+    {
+        _isLoading = true;
+        try
+        {
+            var response = await _httpClient.GetAndReadAsync<GetMovieCarouselsResponse>("api/movies/highlights");
+
+            if (response.IsSuccess)
+            {
+
+                var data = response.Data!;
+
+                _moviesOnScreen = data.MoviesOnScreen;
+                _moviesComingSoon = data.MoviesComingSoon;
+            }else
+            {
+                _errorMessage = response.ErrorMessage;
+                _errors = response.Errors;
+            }
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+}

@@ -1,0 +1,177 @@
+﻿@page "/movies/{Id:guid}"
+@using Cinemax.Shared.Contracts.Movies
+@using Cinemax.Client.Pages.Shared
+@using Cinemax.Shared.Contracts.Scrennings
+
+@inject HttpClient _httpClient
+
+<Loader IsLoading="_isLoading" />
+@if(_movieDto != null)
+{
+    <section id="movie-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <p class="breadcrumbs">
+                            <a href="/" title="Start" aria-label="Start">
+                                Start
+                            </a>
+                            <i class="bi bi-caret-right"></i>
+                            <a href="/movies" title="Filmy" aria-label="Filmy">
+                                Filmy
+                            </a>
+                            <i class="bi bi-caret-right"></i>
+                            <span>
+                                @_movieDto.Title
+                            </span>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <h1 class="uppercase">@_movieDto.Title</h1>
+                    </div>
+                    @* Dorobić datę premiery w encji i uzupełnić istniejące filmy od datę premiery *@
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="movie-dates">
+                                <i class="bi bi-clock"></i>
+
+                                <div>
+                                    <h4>Czas trwania filmu</h4>
+                                    <p>@_movieDto.DurationMinutes min</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="movie-description" class="row">
+                        <p>@_movieDto.Description</p>
+                    </div>
+                    <div id="movie-details-table">
+                        <dl class="mb-0">
+                            <div class="row movie-detail-row">
+                                <dt class="col-sm-4">Tytuł:</dt>
+                                <dd class="col-sm-8">@_movieDto.Title</dd>
+                            </div>
+
+                            <div class="row movie-detail-row">
+                                <dt class="col-sm-4">Reżyser:</dt>
+                                <dd class="col-sm-8">@_movieDto.Director</dd>
+                            </div>
+
+                            <div class="row movie-detail-row">
+                                <dt class="col-sm-4">Gatunek:</dt>
+                                <dd class="col-sm-8">
+                                    @string.Join(", ", _movieDto.Genres.Select(g => g.Name))
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="movie-poster">
+                        <img class="img-fluid w-100"
+                             src="@_movieDto.PosterUrl"
+                             alt="@_movieDto.Title" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @if (!string.IsNullOrWhiteSpace(_movieDto.TrailerUrl))
+    {
+        <section id="trailer">
+            <div class="container">
+                <div class="mt-4 mb-5">
+                    <h2 class="mb-3">Zwiastun</h2>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="@_movieDto.TrailerUrl"
+                                title="Zwiastun filmu @_movieDto.Title"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    <section id="showtimes">
+        <ScreeningShowtimes MovieShowtimes="@_showtimes"
+                            SelectedDate="@_selectedDate"
+                            ShowBreadCrumbs="false"
+                            ChangeDate="@ChangeDate" />
+    </section>
+}
+
+@code {
+    [Parameter]
+    public Guid Id { get; set; }
+
+    private MovieDto? _movieDto;
+    private bool _isLoading = false;
+
+    private IEnumerable<MovieShowtimesDto> _showtimes = [];
+    private DateOnly _selectedDate { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+
+    private string? _errorMessage;
+    private IEnumerable<string> _errors = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetMovieDetails();
+        await GetShowtimes();
+    }
+
+    private async Task GetMovieDetails()
+    {
+        _isLoading = true;
+        try
+        {
+            var response = await _httpClient.GetAndReadAsync<GetMovieDetailsResponse>($"api/movies/{Id.ToString()}");
+
+            if (response.IsSuccess)
+            {
+
+                var data = response.Data!;
+                _movieDto = data.MovieDto;
+            }
+            else
+            {
+                _errorMessage = response.ErrorMessage;
+                _errors = response.Errors;
+            }
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+
+    private async Task GetShowtimes()
+    {
+        _isLoading = true;
+        try
+        {
+            var strDate = _selectedDate.ToString("yyyy-MM-dd");
+            var response = await _httpClient
+                .GetAndReadAsync<GetScreeningsByDateResponse>($"api/showtimes?at={strDate}&movie={Id.ToString()}");
+
+            if (response.IsSuccess)
+            {
+
+                var data = response.Data!;
+                _showtimes = data.MovieShowtimes;
+            }
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+
+    private async Task ChangeDate(DateOnly date)
+    {
+        _selectedDate = date;
+        await GetShowtimes();
+    }
+}

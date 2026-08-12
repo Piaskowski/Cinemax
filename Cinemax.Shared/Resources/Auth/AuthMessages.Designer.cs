@@ -61,6 +61,15 @@ namespace Cinemax.Shared.Resources.Auth {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Użytkownik został utworzony.
+        /// </summary>
+        public static string CreateSuccess {
+            get {
+                return ResourceManager.GetString("CreateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Konto jest nieaktywne..
         /// </summary>
         public static string Error_InactiveUser {
@@ -147,6 +156,15 @@ namespace Cinemax.Shared.Resources.Auth {
         public static string RegistrationForm_Title {
             get {
                 return ResourceManager.GetString("RegistrationForm_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Rola jest wymagana..
+        /// </summary>
+        public static string Required_Role {
+            get {
+                return ResourceManager.GetString("Required_Role", resourceCulture);
             }
         }
     }

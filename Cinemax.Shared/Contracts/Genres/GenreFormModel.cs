@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Cinemax.Shared.Resources.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace Cinemax.Shared.Contracts.Genres
 {
@@ -6,8 +7,13 @@ namespace Cinemax.Shared.Contracts.Genres
     {
         public Guid? Id { get; set; }
 
-        [Required(ErrorMessage = "Nazwa jest wymagana.")]
-        [MaxLength(50, ErrorMessage = "Maksymalna długość znaków: 50.")]
+        [Required(
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.Required_Name))]
+        [MaxLength(
+            50,
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.MaxLength))]
         public string Name { get; set; } = string.Empty;
         public bool IsActive { get; set; }
     }

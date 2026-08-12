@@ -2,6 +2,7 @@
 using Cinemax.Application.Elements.Movies.Repositories;
 using Cinemax.Application.Exceptions;
 using Cinemax.Domain.Entities;
+using Cinemax.Shared.Resources.Validation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,7 +23,7 @@ namespace Cinemax.Application.Elements.Movies.Commands
                 .AnyAsync(m => m.Title.ToUpper() == normalizedTitle, ct);
 
             if (exists)
-                throw new ValidationException([$"Film o tytule \"{request.Title}\" już istnieje."]);
+                throw new ValidationException([string.Format(ValidationMessages.Movie_UnavailableTitle, request.Title)]);
 
             var genres = await _genreRepository.Query()
                 .Where(g => request.GenresIds.Contains(g.Id))

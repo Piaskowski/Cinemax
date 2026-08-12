@@ -3,52 +3,59 @@
 @using Cinemax.Client.Services
 @using Cinemax.Shared.Enums
 
-@inject HttpClient HttpClient
+@inject HttpClient _httpClient
 @inject IStringLocalizer<CommonMessages> CommonL
-@inject NotificationService NotificationService
+@inject NotificationService _notificationService
 
 <AdminFormDialog @ref="_form"
     Id="@Id" 
-    Model="@_user"
-    OnValidSubmit="@CreateUserHandler" 
+    Model="@User"
+    OnValidSubmit="@HandleValidSubmit"
     OnCancel="@Cancelhandler" 
-    Title="Dodaj użytkownika"
+    Title="@Title"
     ErrorMessage="@_errorMessage"
     Errors="@_errors"
     IsSubmitting="@_isSubmitting">
     <Body>
         <div class="form-group mt-3">
             <label class="form-label">Imię:</label>
-            <InputText @bind-Value="@_user.FirstName" class="form-control"></InputText>
+            <InputText @bind-Value="@User.FirstName" class="form-control"></InputText>
             <div class="alert-danger">
-                <ValidationMessage For="(() => _user.FirstName)" />
+                <ValidationMessage For="(() => User.FirstName)" />
             </div>
         </div>
         <div class="form-group mt-3">
             <label class="form-label">Nazwisko:</label>
-            <InputText class="form-control" @bind-Value="@_user.LastName"></InputText>
+            <InputText class="form-control" @bind-Value="@User.LastName"></InputText>
             <div class="alert-danger">
-                <ValidationMessage For="(() => _user.LastName)" />
+                <ValidationMessage For="(() => User.LastName)" />
             </div>
         </div>
         <div class="form-group mt-3">
             <label class="form-label">Email:</label>
-            <InputText class="form-control" @bind-Value="@_user.Email"></InputText>
+            <InputText class="form-control" @bind-Value="@User.Email"></InputText>
             <div class="alert-danger">
-                <ValidationMessage For="(() => _user.Email)" />
+                <ValidationMessage For="(() => User.Email)" />
             </div>
         </div>
         <div class="form-group mt-3">
             <label class="form-label">Rola:</label>
-            <InputSelect class="form-select" @bind-Value="@_user.Role">
+            <InputSelect class="form-select" @bind-Value="@User.Role">
                 @foreach (var role in Enum.GetValues<UserRole>())
                 {
                     <option value="@role">@role</option>
                 }
             </InputSelect>
             <div class="alert-danger">
-                <ValidationMessage For="(() => _user.Role)" />
+                <ValidationMessage For="(() => User.Role)" />
             </div>
         </div>
+        @if (IsEditMode)
+        {
+            <div class="form-group mt-3">
+                <label class="form-label">Aktywny:</label>
+                <InputCheckbox @bind-Value="@User.IsActive" class="form-check-input"></InputCheckbox>
+            </div>
+        }
     </Body>
 </AdminFormDialog>

@@ -10,7 +10,7 @@
                  Model="@Screening"
                  OnValidSubmit="@OnValidSubmit"
                  OnCancel="@HandleCancel"
-                 Title="Dodaj seans"
+                 Title="@Title"
                  ErrorMessage="@_errorMessage"
                  Errors="@_errors"
                  IsSubmitting="@_isSubmitting">
@@ -41,7 +41,7 @@
         </div>
         <div class="form-group">
             <label class="form-label">Data:</label>
-            <InputDate class="form-select" @bind-Value="Screening.StartTime"></InputDate>
+            <InputDate class="form-select" @bind-Value="Screening.StartTime" Type="InputDateType.DateTimeLocal"></InputDate>
             <div class="alert-danger">
                 <ValidationMessage For="(() => Screening.StartTime)" />
             </div>

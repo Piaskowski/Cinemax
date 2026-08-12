@@ -1,4 +1,5 @@
 using Cinemax.Application.Abstractions.Interfaces;
+using Cinemax.Application.Common;
 using Cinemax.Application.Elements.CinemaHalls.Repositories;
 using Cinemax.Application.Elements.Genres.Repositories;
 using Cinemax.Application.Elements.Identity.Commands;
@@ -17,6 +18,8 @@ using Cinemax.Server.Extensions.Auth;
 using Cinemax.Server.Middlewares;
 using Cinemax.Server.Services;
 using Cinemax.Shared.Settings;
+using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,12 +42,14 @@ builder.Services.Configure<AuthSettings>(
 builder.Services.AddJwtBearerAuthentication(builder.Configuration);
 builder.Services.AddAuthorization();
 
-// MadiatR Commands
+// MadiatR Commands and FluentValidation
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssemblies(typeof(CreateAccountCommand).Assembly);
 });
+builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
 // Repositories
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
@@ -63,6 +68,10 @@ builder.Services.AddScoped<IUnitOfWork>(provider =>
     provider.GetRequiredService<AppDbContext>());
 
 builder.Services.AddTransient<ErrorHandlingMiddleware>();
+
+// Settings
+builder.Services.Configure<HomeSettings>(
+    builder.Configuration.GetSection("HomeSettings"));
 
 var app = builder.Build();
 

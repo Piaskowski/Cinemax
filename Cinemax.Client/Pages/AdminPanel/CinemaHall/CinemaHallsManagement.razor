@@ -1,11 +1,13 @@
 ﻿@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Client.Services
 @using Cinemax.Shared.Contracts.CinemaHalls
 
 @page "/admin/cinemahalls"
 @attribute [Authorize(Roles = "Admin")]
 @layout AdminPanelLayout
 
-@inject HttpClient HttpClient
+@inject HttpClient _httpClient
+@inject NotificationService _notificationService
 
 <AdminContentCard Title="Sale kinowe">
     <CardBody>
@@ -25,7 +27,8 @@
                             OnClick="@(() => SelectCinemaHall(cinemaHall))" />
                 <GridButton Icon="edit" Toggle="modal" Target="@_createCinemahallModalId"
                             OnClick="@(() => SelectCinemaHall(cinemaHall))" />
-                <GridButton Icon="delete"/>
+                <GridButton Icon="delete" Toggle="modal" Target="@_deleteCinemahallModalId" 
+                    OnClick="@(() => SelectCinemaHallForDelete(cinemaHall))" />
             </GridRowActions>
         </DataGrid>
     </CardBody>
@@ -38,6 +41,12 @@
 <CreateSeatsFormDialog Id="@_createSeatsModalId"
                        CinemaHallId="@_selectedCinemaHall?.Id"
                        OnCreated="@RefreshDataAsync" />
+
+<ConfirmDialog @ref="_deleteDialog" 
+               Id="@_deleteCinemahallModalId"
+               OnSubmit="@DeleteCinemaHallAsync" 
+               Text="Czy na pewno chcesz usunąć salę?"
+               IsSubmitting="@_isDeleting"/>
 
 
 

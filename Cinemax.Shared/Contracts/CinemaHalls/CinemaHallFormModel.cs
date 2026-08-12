@@ -1,5 +1,5 @@
-﻿
-using Cinemax.Shared.Enums;
+﻿using Cinemax.Shared.Enums;
+using Cinemax.Shared.Resources.Validation;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cinemax.Shared.Contracts.CinemaHalls
@@ -8,10 +8,10 @@ namespace Cinemax.Shared.Contracts.CinemaHalls
     {
         public Guid? Id { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Numer musi być większy od 0.")]
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(ValidationMessages), ErrorMessageResourceName = nameof(ValidationMessages.MinValue_CinemaHall))]
         public int Number { get; set; }
 
-        [Required(ErrorMessage = "Typ sali kinowej jest wymagany")]
+        [Required(ErrorMessageResourceType = typeof(ValidationMessages), ErrorMessageResourceName = nameof(ValidationMessages.Required_CinemaHallType))]
         public CinemaHallType Type { get; set; }
         public bool IsActive { get; set; }
     }

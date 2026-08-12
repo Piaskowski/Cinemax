@@ -1,0 +1,97 @@
+﻿@using Cinemax.Shared.Contracts.Movies
+@using Cinemax.Shared.Contracts.Scrennings
+@using Cinemax.Shared.Enums
+
+<div id="screenings-container" class="container">
+    <div class="datepicker">
+        @if (ShowBreadCrumbs)
+        {
+            <div class="row">
+                <p class="breadcrumbs">
+                    <a href="/" title="Start" aria-label="Start">
+                        Start
+                    </a>
+                    <i class="bi bi-caret-right"></i>
+                    <span>
+                        Repertuar
+                    </span>
+                </p>
+            </div>
+        }
+        <h3 class="uppercase">Repertuar</h3>
+        <div class="datepicker-row">
+            <div class="btn-group">
+                @for (var i = 0; i < 7; i++)
+                {
+                    var date = DateOnly.FromDateTime(DateTime.Today.AddDays(i));
+                    string day;
+                    if (i == 0)
+                    {
+                        day = "Dziś";
+                    }
+                    else
+                    {
+                        var rawDay = date.ToString("ddd");
+                        day = char.ToUpper(rawDay[0]) + rawDay.Substring(1, 1);
+                    }
+                    <button class="btn btn-day @(date.Equals(SelectedDate) ? "active" : "")" @onclick="() => ChangeDate.InvokeAsync(date)">@day</button>
+                }
+                <InputDate id="date-input" class="form-control w-auto ms-2" Value="SelectedDate"
+                           ValueExpression="() => SelectedDate" @onchange="OnDateChanged"></InputDate>
+            </div>
+        </div>
+    </div>
+    <div id="movie-screenings">
+        @foreach (var movie in MovieShowtimes)
+        {
+            <div class="movie-screening">
+                <div class="gradient-space"></div>
+                <div class="row">
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <div class="poster-container">
+                            <div class="movie-poster">
+                                <img class="img-fluid w-100"
+                                     src="@movie.PosterUrl"
+                                     alt="@movie.Title" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="movie-basic-details">
+                            <h4 class="uppercase">@movie.Title</h4>
+                            <div class="d-flex gap-1">
+                                <span>@string.Join(", ", movie.Genres)</span>
+                                <span>|</span>
+                                <span>@movie.DurationMinutes min</span>
+                            </div>
+                        </div>
+                        <div class="movie-showtimes">
+                            @{
+                                var groupIndex = 0;
+                            }
+                            @foreach (var group in movie.Showtimes.GroupBy(s => s.Type))
+                            {
+                                <div id="@group.Key.ToString().ToLower()">
+                                    @if (groupIndex > 0)
+                                    {
+                                        <div class="gradient-space"></div>
+                                    }
+
+                                    <span><strong>@group.Key</strong></span>
+
+                                    <div class="d-flex gap-1">
+                                        @foreach (var showtime in group.OrderBy(s => s.StartTime))
+                                        {
+                                            <a class="btn btn-showtime" href="/order/@(showtime.Id.ToString())">@showtime.StartTime.ToShortTimeString()</a>
+                                        }
+                                    </div>
+                                </div>
+                                groupIndex++;
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

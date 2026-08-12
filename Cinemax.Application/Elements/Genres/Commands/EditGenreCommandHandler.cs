@@ -1,6 +1,7 @@
 ﻿using Cinemax.Application.Elements.Genres.Repositories;
 using Cinemax.Application.Exceptions;
 using Cinemax.Domain.Entities;
+using Cinemax.Shared.Resources.Validation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -23,10 +24,10 @@ namespace Cinemax.Application.Elements.Genres.Commands
                 !g.Id.Equals(request.Id), ct);
 
             if (exists)
-                throw new ValidationException([$"Kategoria o nazwie \"{request.Name}\" już istnieje."]);
+                throw new ValidationException([string.Format(ValidationMessages.Genre_UnavailableName, request.Name)]);
 
             var editedGenre = await _genres.GetByIdAsync(request.Id, ct) ?? 
-                throw new ValidationException([$"Kategoria nie istnieje."]);
+                throw new ValidationException([ValidationMessages.Genre_NotExists]);
 
             editedGenre.Name = request.Name;
             editedGenre.IsActive = request.IsActive;

@@ -2,6 +2,17 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+:root {
+    /* Kolory g³ówne */
+    --main-color: #143545;
+    --available-color: rgb(76, 175, 80);
+    --available-color-hover: rgb(116, 215, 120);
+    --booked-color: crimson;
+    --sold-color: grey;
+    /* transition */
+    --transition-background-color: background-color 0.2s ease-in-out;
+}
+
 h1:focus {
     outline: none;
 }
@@ -20,8 +31,8 @@ a, .btn-link {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-.content {
-    padding-top: 1.1rem;
+.content > div {
+/*    padding-top: 1.1rem;*/
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -299,13 +310,13 @@ code {
     cursor: pointer;
 }
 
-    .multi-select-option:hover {
-        background-color: #f8f9fa;
-    }
+.multi-select-option:hover {
+    background-color: #f8f9fa;
+}
 
-    .multi-select-option.selected {
-        background-color: #e7f1ff;
-    }
+.multi-select-option.selected {
+    background-color: #e7f1ff;
+}
 
 .multi-select-search-wrapper {
     padding: 0.5rem;
@@ -320,14 +331,168 @@ code {
     font-size: 0.875rem;
 }
 
-    .multi-select-search:focus {
-        border-color: #86b7fe;
-        outline: 0;
-        box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.2);
-    }
+.multi-select-search:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.2);
+}
 
 .multi-select-empty {
     padding: 0.75rem;
     color: #6c757d;
     font-size: 0.875rem;
+}
+
+/* SWIPERS */
+.movies-container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.movies-container h2 {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.movie-swiper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: 380px;
+    margin: 0 auto;
+    padding: 30px 45px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.movie-swiper .swiper-wrapper {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    align-items: stretch;
+}
+
+.movie-swiper .swiper-slide {
+    width: 200px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.movie-swiper .swiper-slide:hover {
+    transform: scale(1.1);
+}
+
+.movie-swiper .swiper-slide a{
+    color: white;
+    text-decoration: none;
+}
+
+.movie-poster {
+    width: 100%;
+    aspect-ratio: 5 / 7;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-radius: 12px;
+}
+
+.movie-poster img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.movie-title {
+    width: 100%;
+    margin-top: 8px;
+    text-align: center;
+    line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+.movie-dates {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.movie-dates > i {
+    font-size: 3rem;
+}
+
+.movie-dates h4 {
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.movie-dates p {
+    margin-bottom: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.movie-detail-row {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.movie-detail-row dt,
+.movie-detail-row dd {
+    margin-bottom: 0;
+}
+
+#trailer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* COMMON */
+.uppercase {
+    text-transform: uppercase;
+}
+
+.gold-gradient {
+    background: linear-gradient( 180deg, #f8dc7a 0%, #e5b94f 35%, #d4a437 65%, #b77b18 100% );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.border-gold {
+    border: 2px solid;
+    border-image: linear-gradient( 180deg, #f8dc7a 0%, #e5b94f 35%, #d4a437 65%, #b77b18 100% ) 1;
+    padding: 6px 12px;
+}
+
+.breadcrumbs {
+    background: none;
+    font-size: 14px;
+    margin-bottom: 16px;
+    margin-top: 24px;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumbs a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.breadcrumbs i {
+    color: gray;
 }

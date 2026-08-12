@@ -123,6 +123,9 @@
   <data name="EmailAddress" xml:space="preserve">
     <value>Die Email-Adresse ist falsch.</value>
   </data>
+  <data name="MaxLength_Property" xml:space="preserve">
+    <value>Maximale Zeichenanzahl für Feld {0}: {1}.</value>
+  </data>
   <data name="MaxLength_Email" xml:space="preserve">
     <value>E-Mails dürfen maximal 320 Zeichen lang sein.</value>
   </data>
@@ -141,6 +144,15 @@
   <data name="MinLength_Password" xml:space="preserve">
     <value>Das Passwort muss mindestens 8 Zeichen lang sein.</value>
   </data>
+  <data name="MinValue_CinemaHall" xml:space="preserve">
+    <value>Die Kinosaalnummer muss größer als 0 sein.</value>
+  </data>
+  <data name="NotNull" xml:space="preserve">
+    <value>Die erforderlichen Daten wurden nicht gesendet.</value>
+  </data>
+  <data name="Required_CinemaHallType" xml:space="preserve">
+    <value>Der Kinosaaltyp ist erforderlich.</value>
+  </data>
   <data name="Required_ConfirmPassword" xml:space="preserve">
     <value>Die Passwortbestätigung ist erforderlich.</value>
   </data>
@@ -153,7 +165,106 @@
   <data name="Required_LastName" xml:space="preserve">
     <value>Name ist erforderlich.</value>
   </data>
+  <data name="Required_Name" xml:space="preserve">
+    <value>Name ist erforderlich.</value>
+  </data>
   <data name="Required_Password" xml:space="preserve">
     <value>Passwort darf nicht leer sein</value>
+  </data>
+  <data name="MaxLength" xml:space="preserve">
+    <value>Maximale Zeichenanzahl: {1}.</value>
+  </data>
+  <data name="Required_Role" xml:space="preserve">
+    <value>Role ist erforderlich.</value>
+  </data>
+  <data name="Required_Title" xml:space="preserve">
+    <value>Titel ist erforderlich.</value>
+  </data>
+  <data name="Required_Director" xml:space="preserve">
+    <value>Direktor ist erforderlich.</value>
+  </data>
+  <data name="Required_Description" xml:space="preserve">
+    <value>Beschreibung ist erforderlich.</value>
+  </data>
+  <data name="MinDuration" xml:space="preserve">
+    <value>Die Dauer muss größer als 0 sein.</value>
+  </data>
+  <data name="NotEmpty_GenresList" xml:space="preserve">
+    <value>Mindestens ein Filmgenre ist erforderlich.</value>
+  </data>
+  <data name="Required_Movie" xml:space="preserve">
+    <value>Film ist erforderlich.</value>
+  </data>
+  <data name="Required_CinemaHall" xml:space="preserve">
+    <value>Sie müssen eine Kinosaal wählen.</value>
+  </data>
+  <data name="Required_Date" xml:space="preserve">
+    <value>Sie müssen ein Datum auswählen.</value>
+  </data>
+  <data name="FutureDate" xml:space="preserve">
+    <value>Das Datum muss in der Zukunft liegen.</value>
+  </data>
+  <data name="Required_ScreeningType" xml:space="preserve">
+    <value>Die Art des Screenings ist erforderlich.</value>
+  </data>
+  <data name="Required_TicketType" xml:space="preserve">
+    <value>Sie müssen die Ticketart wählen.</value>
+  </data>
+  <data name="MinPrice" xml:space="preserve">
+    <value>Der Preis muss größer als 0 sein.</value>
+  </data>
+  <data name="Cinemhall_UnavailableNumber" xml:space="preserve">
+    <value>Ein Kinosaal mit der angegebenen Nummer existiert bereits.</value>
+  </data>
+  <data name="Cinemahall_AssignedScreenings" xml:space="preserve">
+    <value>Der Kinosaal kann nicht gelöscht werden, da ihm Vorführungen zugeordnet sind.</value>
+  </data>
+  <data name="Cinemahall_NotExists" xml:space="preserve">
+    <value>Der angegebene Kinosaal existiert nicht.</value>
+  </data>
+  <data name="Genre_UnavailableName" xml:space="preserve">
+    <value>Eine Kategorie mit dem Namen „{0}“ ist bereits vorhanden.</value>
+  </data>
+  <data name="Genre_NotExists" xml:space="preserve">
+    <value>Die angegebene Kategorie existiert nicht.</value>
+  </data>
+  <data name="Genre_AssignedMovies" xml:space="preserve">
+    <value>Die Kategorie kann nicht gelöscht werden, da sie Filmen zugewiesen ist.</value>
+  </data>
+  <data name="User_UnavailableEmail" xml:space="preserve">
+    <value>Die E-Mail-Adresse ist bereits vergeben.</value>
+  </data>
+  <data name="User_AssignedOrders" xml:space="preserve">
+    <value>Der Benutzer kann nicht gelöscht werden, da ihm Bestellungen zugeordnet sind.</value>
+  </data>
+  <data name="Movie_UnavailableTitle" xml:space="preserve">
+    <value>Ein film mit dem Namen „{0}“ ist bereits vorhanden.</value>
+  </data>
+  <data name="Movie_NotExists" xml:space="preserve">
+    <value>Der angegebene film existiert nicht.</value>
+  </data>
+  <data name="Movie_AssignedScreenings" xml:space="preserve">
+    <value>Der Film kann nicht gelöscht werden, da ihm Vorführungen zugeordnet sind.</value>
+  </data>
+  <data name="Screening_DateCollision" xml:space="preserve">
+    <value>Kollision mit {0} – {1}</value>
+  </data>
+  <data name="Screening_NotExists" xml:space="preserve">
+    <value>Das angegebene Screening existiert nicht.</value>
+  </data>
+  <data name="Screening_AssignedOrders" xml:space="preserve">
+    <value>Das angegebene Screening kann nicht gelöscht werden, da ihm Aufträge zugeordnet sind.</value>
+  </data>
+  <data name="Seats_Duplication" xml:space="preserve">
+    <value>Der Sitz in Reihe {0}, Nummer {1}, erscheint {2}-mal.</value>
+  </data>
+  <data name="TicketPrice_UnavailableScreeningAndTicketType" xml:space="preserve">
+    <value>Für die gewählte Vorführungs- und Ticketart existiert bereits ein Preis.</value>
+  </data>
+  <data name="TicketPrice_NotExists" xml:space="preserve">
+    <value>Der angegebene Ticketpreis existiert nicht.</value>
+  </data>
+  <data name="NotFound_Movie" xml:space="preserve">
+    <value>Der Film wurde nicht gefunden.</value>
   </data>
 </root>

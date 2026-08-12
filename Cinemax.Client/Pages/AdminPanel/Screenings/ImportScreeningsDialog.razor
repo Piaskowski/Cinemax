@@ -1,0 +1,26 @@
+﻿@using Cinemax.Client.Services
+@using Cinemax.Shared.Enums
+@using Cinemax.Client.Pages.Shared.AdminPanel
+
+@inject HttpClient _httpClient
+@inject NotificationService _notificationService
+
+<AdminFormDialog @ref="_form"
+                 Id="@Id"
+                 Title="Zaimportuj seanse"
+                 Model="@_screenings"
+                 OnValidSubmit="@HandleImportScreenings"
+                 OnCancel="@HandleCanel"
+                 ErrorMessage="@_errorMessage"
+                 Errors="@_errors"
+                 IsSubmitting="@_isSubmitting">
+    <Body>
+        <div class="form-group mt-3">
+            <label class="form-label">Wybierz plik do importu (.xlsx):</label>
+            <InputFile OnChange="@OnFileSelected" accept=".xlsx"></InputFile>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => _screenings.File)" />
+            </div>
+        </div>
+    </Body>
+</AdminFormDialog>

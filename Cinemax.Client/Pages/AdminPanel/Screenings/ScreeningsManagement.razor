@@ -1,11 +1,13 @@
 ﻿@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Client.Services
 @using Cinemax.Shared.Contracts.Scrennings
 
 @page "/admin/screenings"
 @attribute [Authorize(Roles = "Admin")]
 @layout AdminPanelLayout
 
-@inject HttpClient HttpClient
+@inject HttpClient _httpClient
+@inject NotificationService _notificationService
 
 <AdminContentCard Title="Repertuar">
     <CardBody>
@@ -13,7 +15,7 @@
             <GridToolbar>
                 <GridButton Icon="reload" OnClick="@RefreshDataAsync" />
                 <GridButton Text="Dodaj" Icon="add" Toggle="modal" Target="@_createScreeningDialogId" />
-                <GridButton Text="Import" Icon="import" />
+                <GridButton Text="Import" Icon="import" Toggle="modal" Target="@_importScreeningsDialogId" />
             </GridToolbar>
             <GridColumns>
                 <GridColumn Title="Tytuł filmu" Field="s => s.Movie.Title" />
@@ -24,8 +26,8 @@
             <GridRowActions Context="screening">
                 <GridButton Icon="edit" Toggle="modal" Target="@_createScreeningDialogId"
                             OnClick="@(() => SelectScreening(screening))"/>
-                <GridButton Icon="delete" 
-                            OnClick="@(() => SelectScreening(screening))" />
+                <GridButton Icon="delete" Toggle="modal" Target="@_deleteScreeningModalId"
+                            OnClick="@(() => SelectScreeningForDelete(screening))" />
             </GridRowActions>
         </DataGrid>
     </CardBody>
@@ -34,5 +36,14 @@
 <ScreeningFormDialog Id="@_createScreeningDialogId"
                      Screening="@_selectedScreening"
                      OnSuccess=@RefreshDataAsync />
+
+<ImportScreeningsDialog Id="@_importScreeningsDialogId"
+                        OnCreated="@RefreshDataAsync" />
+
+<ConfirmDialog @ref="_deleteDialog"
+               Id="@_deleteScreeningModalId"
+               OnSubmit="@DeleteScreeningAsync"
+               Text="Czy na pewno chcesz usunąć salę?"
+               IsSubmitting="@_isDeleting" />
 
 

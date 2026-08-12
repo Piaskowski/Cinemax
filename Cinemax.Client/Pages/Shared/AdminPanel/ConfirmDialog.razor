@@ -1,0 +1,44 @@
+﻿@inject IJSRuntime JS
+
+<div id="@Id" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <Loader IsLoading="@IsSubmitting" />
+            <div class="modal-header">
+                <h5 class="modal-title">Potwierdzenie operacji</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                @Text
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-primary float-end" 
+                        data-bs-dismiss="modal" 
+                        type="submit"
+                        @onclick="OnSubmit">Ok</button>
+                <button class="btn btn-outline-secondary float-end"
+                        data-bs-dismiss="modal"
+                        type="button">Anuluj</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public required string Id { get; set; }
+    [Parameter] public string Text { get; set; } = string.Empty;
+
+    [Parameter] public EventCallback OnSubmit { get; set; }
+
+    [Parameter] public bool IsSubmitting { get; set; }
+
+
+    public async Task CloseAsync()
+    {
+        await JS.InvokeVoidAsync("bootstrapModal.hide", Id);
+    }
+}

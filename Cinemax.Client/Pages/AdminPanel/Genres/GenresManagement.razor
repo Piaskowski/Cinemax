@@ -1,11 +1,13 @@
 ﻿@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Client.Services
 @using Cinemax.Shared.Contracts.Genres
 
 @page "/admin/genres"
 @attribute [Authorize(Roles = "Admin")]
 @layout AdminPanelLayout
 
-@inject HttpClient HttpClient
+@inject HttpClient _httpClient
+@inject NotificationService _notificationService
 
 <AdminContentCard Title="Gatunki">
     <CardBody>
@@ -25,7 +27,8 @@
             <GridRowActions Context="genre">
                 <GridButton Icon="edit" Toggle="modal" Target="@_genresFormDialogId"
                             OnClick="@(() => SelectGenre(genre))" />
-                <GridButton Icon="delete" />
+                <GridButton Icon="delete" Toggle="modal" Target="@_deleteGenreModalId"
+                            OnClick="@(() => SelectGenreForDelete(genre))" />
             </GridRowActions>
         </DataGrid>
     </CardBody>
@@ -34,3 +37,9 @@
 <GenreFormDialog Id="@_genresFormDialogId"
     Genre="@_selectedGenre"
     OnSuccess="@RefreshDataAsync"/>
+
+<ConfirmDialog @ref="_deleteDialog"
+               Id="@_deleteGenreModalId"
+               OnSubmit="@DeleteGenreAsync"
+               Text="Czy na pewno chcesz usunąć gatunek?"
+               IsSubmitting="@_isDeleting" />

@@ -1,0 +1,57 @@
+﻿@typeparam TItem
+
+@inject IJSRuntime JS
+
+<div id="@Id" class="swiper @Class">
+    <div class="swiper-wrapper">
+        @foreach (var item in Items)
+        {
+            <div class="swiper-slide">
+                <a href="@GetUrl(item)">
+                    <div class="movie-poster">
+                        <img src="@GetImageUrl(item)"
+                             alt="@GetTitle(item)" />
+                    </div>
+
+                    <div class="movie-title">
+                        @GetTitle(item)
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-scrollbar"></div>
+</div>
+
+@code {
+    [Parameter] public required string Id { get; set; }
+    [Parameter] public required string Class { get; set; }
+    [Parameter] public IEnumerable<TItem> Items { get; set; } = [];
+
+    [Parameter, EditorRequired]
+    public Func<TItem, string> GetImageUrl { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public Func<TItem, string> GetTitle { get; set; } = default!;
+
+    [Parameter]
+    public Func<TItem, string> GetUrl { get; set; } = (s => "");
+
+    private bool _initialized;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (_initialized || !Items.Any())
+        {
+            return;
+        }
+
+        _initialized = true;
+
+        await JS.InvokeVoidAsync(
+            "movieSwiper.initialize",
+            Id);
+    }
+}

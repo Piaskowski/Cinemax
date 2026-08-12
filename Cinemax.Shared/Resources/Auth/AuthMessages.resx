@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CreateSuccess" xml:space="preserve">
+    <value>Użytkownik został utworzony</value>
+  </data>
   <data name="Error_InactiveUser" xml:space="preserve">
     <value>Konto jest nieaktywne.</value>
   </data>
@@ -146,5 +149,8 @@
   </data>
   <data name="RegistrationForm_Title" xml:space="preserve">
     <value>Wypełnij formularz rejestracyjny</value>
+  </data>
+  <data name="Required_Role" xml:space="preserve">
+    <value>Rola jest wymagana.</value>
   </data>
 </root>

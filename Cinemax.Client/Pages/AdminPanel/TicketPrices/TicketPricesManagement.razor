@@ -1,11 +1,13 @@
 ﻿@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Client.Services
 @using Cinemax.Shared.Contracts.TicketPrices
 
 @page "/admin/ticket-prices"
 @attribute [Authorize(Roles = "Admin")]
 @layout AdminPanelLayout
 
-@inject HttpClient HttpClient
+@inject HttpClient _httpClient
+@inject NotificationService _notificationService
 
 <AdminContentCard Title="Cennik">
     <CardBody>
@@ -24,8 +26,8 @@
             <GridRowActions Context="ticketPrice">
                 <GridButton Icon="edit" Toggle="modal" Target="@_createTicketPriceDialogId"
                             OnClick="@(() => SelectTicketPrice(ticketPrice))" />
-                <GridButton Icon="delete"
-                            OnClick="@(() => SelectTicketPrice(ticketPrice))" />
+                <GridButton Icon="delete" Toggle="modal" Target="@_deleteTicketPriceModalId"
+                            OnClick="@(() => SelectTicketPriceForDelete(ticketPrice))" />
             </GridRowActions>
         </DataGrid>
     </CardBody>
@@ -34,3 +36,9 @@
 <TicketPriceFormDialog Id="@_createTicketPriceDialogId"
                        TicketPrice="@_selectedTicketPrice"
                        OnSuccess="@RefreshDataAsync" />
+
+<ConfirmDialog @ref="_deleteDialog"
+               Id="@_deleteTicketPriceModalId"
+               OnSubmit="@DeleteTicketPriceAsync"
+               Text="Czy na pewno chcesz usunąć tę cenę?"
+               IsSubmitting="@_isDeleting" />

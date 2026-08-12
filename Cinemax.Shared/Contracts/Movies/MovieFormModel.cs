@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Cinemax.Shared.Resources.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace Cinemax.Shared.Contracts.Movies
 {
@@ -6,19 +7,29 @@ namespace Cinemax.Shared.Contracts.Movies
     {
         public Guid? Id { get; set; }
 
-        [Required(ErrorMessage = "Tytuł jest wymagany.")]
+        [Required(
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.Required_Title))]
         public string Title { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Reżyser jest wymagany.")]
+        [Required(
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.Required_Director))]
         public string Director { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Opis jest wymagany.")]
+        [Required(
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.Required_Description))]
         public string Description { get; set; } = string.Empty;
 
-        [Range(1, 1200, ErrorMessage = "Czas trwania musi być większy od 0")]
+        [Range(1, 1200, 
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.MinDuration))]
         public int DurationMinutes { get; set; }
 
-        [MinLength(1, ErrorMessage = "Wymagany przynajmniej jeden gatunek.")]
+        [MinLength(1, 
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.NotEmpty_GenresList))]
         public Guid[] GenresIds { get; set; } = [];
         public string? PosterUrl { get; set; }
         public string? TrailerUrl { get; set; }

@@ -69,5 +69,14 @@ namespace Cinemax.Server.Controllers.AdminPanel
 
             return errors.Any() ? BadRequest(errors) : NoContent();
         }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteCinemaHall([FromRoute] Guid id)
+        {
+            var command = new DeleteCinemaHallCommand(id);
+
+            await _mediator.Send(command);
+            return NoContent();
+        }
     }
 }

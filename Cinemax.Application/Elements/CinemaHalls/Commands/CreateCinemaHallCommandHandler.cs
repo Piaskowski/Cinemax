@@ -1,12 +1,9 @@
-﻿
-using Cinemax.Application.Elements.CinemaHalls.Repositories;
-using Cinemax.Application.Elements.Genres.Repositories;
-using Cinemax.Application.Elements.Movies.Repositories;
+﻿using Cinemax.Application.Elements.CinemaHalls.Repositories;
 using Cinemax.Application.Exceptions;
 using Cinemax.Domain.Entities;
+using Cinemax.Shared.Resources.Validation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Cinemax.Application.Elements.CinemaHalls.Commands
 {
@@ -22,7 +19,7 @@ namespace Cinemax.Application.Elements.CinemaHalls.Commands
                 .AnyAsync(c => c.Number == request.Number, ct);
 
             if (exists)
-                throw new ValidationException([$"Sala o podanym numerze już istnieje."]);
+                throw new ValidationException([ValidationMessages.Cinemhall_UnavailableNumber]); 
 
             var newCinemaHall = new CinemaHall
             {

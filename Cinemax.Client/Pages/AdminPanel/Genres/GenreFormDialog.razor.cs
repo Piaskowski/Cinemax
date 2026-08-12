@@ -13,7 +13,7 @@ namespace Cinemax.Client.Pages.AdminPanel.Genres
 
         private AdminFormDialog<GenreFormModel>? _form;
         private bool IsEditMode => Genre.Id.HasValue;
-
+        private string Title => IsEditMode ? "Edycja gatunku" : "Dodawanie gatunku";
         private string? _errorMessage;
         private IEnumerable<string> _errors = [];
         private bool _isSubmitting = false;

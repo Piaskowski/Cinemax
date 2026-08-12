@@ -1,0 +1,25 @@
+﻿#footer .footer-content{
+    background-color: #1b1b1b;
+    color: white;
+}
+
+#footer h2 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+#footer .copyright {
+    background-color: black;
+    text-align: center;
+}
+
+#contact-list a {
+    color: #b8b8b8;
+    text-decoration: none;
+}
+
+#contact-list a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}

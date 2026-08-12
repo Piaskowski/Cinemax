@@ -51,5 +51,14 @@ namespace Cinemax.Server.Controllers.AdminPanel
             await _mediator.Send(command);
             return NoContent();
         }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteGenre([FromRoute] Guid id)
+        {
+            var command = new DeleteGenreCommand(id);
+
+            await _mediator.Send(command);
+            return NoContent();
+        }
     }
 }

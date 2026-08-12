@@ -123,6 +123,9 @@
   <data name="Error_LostConnection" xml:space="preserve">
     <value>Failed to connect to server.</value>
   </data>
+  <data name="Error_OperationFailed" xml:space="preserve">
+    <value>The operation failed.</value>
+  </data>
   <data name="Error_UnexpectedError" xml:space="preserve">
     <value>An unexpected error occured. Try again later.</value>
   </data>

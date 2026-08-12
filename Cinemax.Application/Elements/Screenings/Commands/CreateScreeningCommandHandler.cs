@@ -2,6 +2,7 @@
 using Cinemax.Application.Elements.Screenings.Repositories;
 using Cinemax.Application.Exceptions;
 using Cinemax.Domain.Entities;
+using Cinemax.Shared.Resources.Validation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,12 +17,10 @@ namespace Cinemax.Application.Elements.Screenings.Commands
         {
             var request = command.Request;
             if (request.StartTime <= DateTime.UtcNow)
-                throw new ValidationException(["Data seansu nie może być przeszła."]);
+                throw new ValidationException([ValidationMessages.FutureDate]);
 
-            var movie = await _movies.GetByIdAsync(request.MovieId, ct);
-
-            if (movie == null)
-                throw new ValidationException(["Wskazany film nie istnieje."]);
+            var movie = await _movies.GetByIdAsync(request.MovieId, ct)
+                ?? throw new ValidationException([ValidationMessages.Movie_NotExists]);
 
             var endTime = request.StartTime.AddMinutes(movie.DurationMinutes);
 
@@ -39,8 +38,8 @@ namespace Cinemax.Application.Elements.Screenings.Commands
                 foreach (var screening in screeningsThatCollide)
                 {
                     var start = screening.StartTime.TimeOfDay;
-                    var end = screening.StartTime.AddDays(screening.Movie.DurationMinutes).TimeOfDay;
-                    errors.Add("Kolizja z " + start + " - " + end);
+                    var end = screening.StartTime.AddMinutes(screening.Movie.DurationMinutes).TimeOfDay;
+                    errors.Add(string.Format(ValidationMessages.Screening_DateCollision, start, end));
                 }
                 throw new ValidationException(errors);
             }

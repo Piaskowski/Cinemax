@@ -1,4 +1,5 @@
-﻿using Cinemax.Application.Elements.Tickets.Commands;
+﻿using Cinemax.Application.Elements.Genres.Commands;
+using Cinemax.Application.Elements.Tickets.Commands;
 using Cinemax.Application.Elements.Tickets.Queries;
 using Cinemax.Shared.Contracts.Common;
 using Cinemax.Shared.Contracts.TicketPrices;
@@ -36,6 +37,15 @@ namespace Cinemax.Server.Controllers.AdminPanel
         public async Task<IActionResult> EditTicketPrice([FromBody] EditTicketPriceRequest request)
         {
             var command = new EditTicketPriceCommand(request);
+
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteTicketPrice([FromRoute] Guid id)
+        {
+            var command = new DeleteTicketPriceCommand(id);
 
             await _mediator.Send(command);
             return NoContent();

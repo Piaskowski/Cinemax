@@ -1,12 +1,14 @@
 ﻿@using Cinemax.Client.Pages.Shared
 @using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Client.Services
 @using Cinemax.Shared.Contracts.Identity
 
 @page "/admin/users"
 @attribute [Authorize(Roles = "Admin")]
 @layout AdminPanelLayout
 
-@inject HttpClient HttpClient
+@inject HttpClient _httpClient
+@inject NotificationService _notificationService
 
 <AdminContentCard Title="Użytkownicy">
     <CardBody>
@@ -18,14 +20,30 @@
             <GridColumns>
                 <GridColumn Title="Imię" Field="u => u.FirstName" />
                 <GridColumn Title="Nazwisko" Field="u => u.LastName" />
+                <GridColumn Title="Email" Field="u => u.Email" />
+                <GridColumn Title="Rola" Field="u => u.Role" />
                 <GridColumn Title="Czy Aktywny" Field="u => u.IsActive" />
                 <GridColumn Title="Data utworzenia" Field="u => u.CreatedAt" />
                 <GridColumn Title="Data Modyfikacji" Field="u => u.ModifiedAt" />
                 <GridColumn Title="Zmodyfikowane przez" Field="u => u.ModifiedBy" />
             </GridColumns>
+            <GridRowActions Context="user">
+                <GridButton Icon="edit" Toggle="modal" Target="@_createUserDialogId"
+                            OnClick="@(() => SelectUser(user))" />
+                <GridButton Icon="delete" Toggle="modal" Target="@_deleteUserModalId"
+                            OnClick="@(() => SelectUserForDelete(user))" />
+            </GridRowActions>
         </DataGrid>
     </CardBody>
 </AdminContentCard>
-<CreateUserFormDialog Id="@_createUserDialogId"
-                      OnCreated="@RefreshDataAsync" />
+
+<UserFormDialog Id="@_createUserDialogId"
+                User="@_selectedUser"     
+                OnCreated="@RefreshDataAsync" />
+
+<ConfirmDialog @ref="_deleteDialog"
+               Id="@_deleteUserModalId"
+               OnSubmit="@DeleteUserAsync"
+               Text="Czy na pewno chcesz usunąć tego użytkownika?"
+               IsSubmitting="@_isDeleting" />
 

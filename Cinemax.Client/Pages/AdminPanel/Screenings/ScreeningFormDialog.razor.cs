@@ -19,7 +19,7 @@ namespace Cinemax.Client.Pages.AdminPanel.Screenings
         private IEnumerable<CinemaHallSelectItemDto> _halls = [];
         private IEnumerable<MovieSelectItemDto> _movies = [];
         private bool IsEditMode => Screening.Id.HasValue;
-
+        private string Title => IsEditMode ? "Edycja seansu" : "Dodawanie seansu";
         private string? _errorMessage;
         private IEnumerable<string> _errors = [];
         private bool _isSubmitting = false;

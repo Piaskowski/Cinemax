@@ -5,6 +5,7 @@ using Cinemax.Application.Elements.Seats.Repositories;
 using Cinemax.Application.Exceptions;
 using Cinemax.Domain.Entities;
 using Cinemax.Shared.Contracts.Seats;
+using Cinemax.Shared.Resources.Validation;
 using MediatR;
 
 namespace Cinemax.Application.Elements.Seats.Commands
@@ -25,7 +26,7 @@ namespace Cinemax.Application.Elements.Seats.Commands
             var duplicatedSeatsErrors = result.Items
                 .GroupBy(x => new { x.Row, x.Number })
                 .Where(g => g.Count() > 1)
-                .Select(g => $"Miejsce w rzędzie {g.Key.Row}, numer {g.Key.Number} występuje {g.Count()} razy.")
+                .Select(g => string.Format(ValidationMessages.Seats_Duplication, g.Key.Row, g.Key.Number, g.Count()))
                 .ToList();
 
             result.Errors.AddRange(duplicatedSeatsErrors);
@@ -36,7 +37,7 @@ namespace Cinemax.Application.Elements.Seats.Commands
 
             // == import seats ==
             var cinemahall = await _hallRepository.GetByIdAsync(command.CinemahallId) ??
-                throw new ValidationException(["Dana sala kinowa nie istnieje"]);
+                throw new ValidationException([ValidationMessages.Cinemahall_NotExists]);
 
             await _unitOfWork.BeginTransactionAsync(ct);
             try

@@ -1,7 +1,7 @@
 ﻿using Cinemax.Application.Elements.Genres.Repositories;
 using Cinemax.Application.Elements.Movies.Repositories;
 using Cinemax.Application.Exceptions;
-using Cinemax.Domain.Entities;
+using Cinemax.Shared.Resources.Validation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,12 +22,12 @@ namespace Cinemax.Application.Elements.Movies.Commands
                 .AnyAsync(m => m.Title.ToUpper() == normalizedTitle && m.Id != request.Id, ct);
 
             if (exists)
-                throw new ValidationException([$"Film o tytule \"{request.Title}\" już istnieje."]);
+                throw new ValidationException([string.Format(ValidationMessages.Movie_UnavailableTitle, request.Title)]);
 
             var editedMovie = await _movies.Query()
                 .Include(m => m.Genres)
                 .FirstOrDefaultAsync(m => m.Id == request.Id) ??
-                throw new ValidationException([$"Wskazany film nie istnieje."]);
+                throw new ValidationException([ValidationMessages.Movie_NotExists]);
 
             var genres = await _genres.Query()
                 .Where(g => request.GenresIds.Contains(g.Id))

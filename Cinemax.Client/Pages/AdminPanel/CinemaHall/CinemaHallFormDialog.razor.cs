@@ -13,7 +13,7 @@ namespace Cinemax.Client.Pages.AdminPanel.CinemaHall
 
         private AdminFormDialog<CinemaHallFormModel>? _form;
         private bool IsEditMode => Hall.Id.HasValue;
-
+        private string Title => IsEditMode ? "Edycja sali kinowej" : "Dodawanie sali kinowej";
         private string? _errorMessage;
         private IEnumerable<string> _errors = [];
         private bool _isSubmitting = false;

@@ -20,7 +20,7 @@ namespace Cinemax.Client.Pages.AdminPanel.Movies
         private IEnumerable<GenreDto> _genres = [];
         private IBrowserFile? _posterFile;
         private bool IsEditMode => Movie.Id.HasValue;
-
+        private string Title => IsEditMode ? "Edycja filmu" : "Dodawanie filmu";
         private string? _posterValidationMessage = string.Empty;
         private string? _errorMessage;
         private IEnumerable<string> _errors = [];

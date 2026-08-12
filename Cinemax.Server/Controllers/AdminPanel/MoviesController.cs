@@ -1,5 +1,4 @@
-﻿using Cinemax.Application.Abstractions.Interfaces;
-using Cinemax.Application.Elements.Movies.Commands;
+﻿using Cinemax.Application.Elements.Movies.Commands;
 using Cinemax.Application.Elements.Movies.Queries;
 using Cinemax.Shared.Contracts.Common;
 using Cinemax.Shared.Contracts.Movies;
@@ -47,6 +46,15 @@ namespace Cinemax.Server.Controllers.AdminPanel
         public async Task<IActionResult> EditMovie([FromBody] EditMovieRequest request)
         {
             var command = new EditMovieCommand(request);
+
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteMovie([FromRoute] Guid id)
+        {
+            var command = new DeleteMovieCommand(id);
 
             await _mediator.Send(command);
             return NoContent();

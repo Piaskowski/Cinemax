@@ -79,6 +79,15 @@ namespace Cinemax.Shared.Resources.Common {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Operacja nie powiodła się..
+        /// </summary>
+        public static string Error_OperationFailed {
+            get {
+                return ResourceManager.GetString("Error_OperationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wystąpił nieoczekiwany błąd. Spróbuj ponownie później..
         /// </summary>
         public static string Error_UnexpectedError {

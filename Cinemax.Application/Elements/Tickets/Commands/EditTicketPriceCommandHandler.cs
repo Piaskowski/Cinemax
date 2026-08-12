@@ -1,6 +1,7 @@
 ﻿using Cinemax.Application.Elements.Tickets.Repositories;
 using Cinemax.Application.Exceptions;
 using Cinemax.Domain.Entities.Orders;
+using Cinemax.Shared.Resources.Validation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,10 +23,10 @@ namespace Cinemax.Application.Elements.Tickets.Commands
                 );
 
             if (exists)
-                throw new ValidationException(["Cena dla wybranego typu seansu i typu biletu już istnieje."]);
+                throw new ValidationException([ValidationMessages.TicketPrice_UnavailableScreeningAndTicketType]);
 
             var editedTicketPrice = await _ticketPrices.GetByIdAsync(request.Id, ct) ??
-                throw new ValidationException(["Wskazana cena biletu nie istnieje."]);
+                throw new ValidationException([ValidationMessages.TicketPrice_NotExists]);
 
             editedTicketPrice.ScreeningType = request.ScreeningType;
             editedTicketPrice.TicketType = request.TicketType;

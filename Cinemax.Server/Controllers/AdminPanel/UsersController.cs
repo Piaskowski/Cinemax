@@ -32,5 +32,23 @@ namespace Cinemax.Server.Controllers.AdminPanel
             var response = await _mediator.Send(command);
             return Ok(response);
         }
+
+        [HttpPost("edit-user")]
+        public async Task<IActionResult> CreateUser([FromBody] EditUserRequest request)
+        {
+            var command = new EditUserCommand(request);
+
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
+        {
+            var command = new DeleteUserCommand(id);
+
+            await _mediator.Send(command);
+            return NoContent();
+        }
     }
 }

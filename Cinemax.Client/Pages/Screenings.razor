@@ -1,0 +1,68 @@
+﻿@page "/screenings"
+@using Cinemax.Client.Pages.Shared
+@using Cinemax.Shared.Contracts.Movies
+@using Cinemax.Shared.Contracts.Scrennings
+@using Cinemax.Shared.Enums
+
+@inject NavigationManager _navManager
+@inject HttpClient _httpClient
+
+<Loader IsLoading="_isLoading" />
+<ScreeningShowtimes SelectedDate="@SelectedDate"
+                    MovieShowtimes="@_showtimes"
+                    ChangeDate="@ChangeDate" />
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "at")]
+    public string? At { get; set; }
+
+    private IEnumerable<MovieShowtimesDto> _showtimes = [];
+    public DateOnly SelectedDate { get; set; }
+    // public string Day = DateTime.Today.DayOfWeek.ToString();
+
+    private bool _isLoading = false;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (DateOnly.TryParse(At, out var parsedDate))
+        {
+            SelectedDate = parsedDate;
+            await LoadDataAsync();
+        }
+        else
+        {
+            var todayStr = DateTime.Today.ToString("yyyy-MM-dd");
+            var newUrl = $"/screenings?at={todayStr}";
+
+            _navManager.NavigateTo(newUrl, replace: true);
+        }
+    }
+
+    private async Task LoadDataAsync()
+    {
+        _isLoading = true;
+        try
+        {
+            var strDate = SelectedDate.ToString("yyyy-MM-dd");
+            var response = await _httpClient.GetAndReadAsync<GetScreeningsByDateResponse>($"api/showtimes?at={strDate}");
+
+            if (response.IsSuccess)
+            {
+
+                var data = response.Data!;
+                _showtimes = data.MovieShowtimes;
+            }
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+
+    private void ChangeDate(DateOnly date)
+    {
+        var dateStr = date.ToString("yyyy-MM-dd");
+        _navManager.NavigateTo($"/screenings?at={dateStr}");
+    }
+}

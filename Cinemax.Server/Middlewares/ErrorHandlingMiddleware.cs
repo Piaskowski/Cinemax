@@ -23,6 +23,16 @@ namespace Cinemax.Server.Middlewares
                     Errors = [.. e.Errors]
                 });
             }
+            catch (NotFoundException e)
+            {
+                _logger.LogWarning(e, e.Message);
+
+                context.Response.StatusCode = 400;
+                await context.Response.WriteAsJsonAsync(new ErrorResponse
+                {
+                    Message = e.Message,
+                });
+            }
             catch (Exception e)
             {
                 _logger.LogError(e, e.Message);

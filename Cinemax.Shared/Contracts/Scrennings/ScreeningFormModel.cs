@@ -1,5 +1,6 @@
 ﻿using Cinemax.Shared.Common.Annotations;
 using Cinemax.Shared.Enums;
+using Cinemax.Shared.Resources.Validation;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cinemax.Shared.Contracts.Scrennings
@@ -8,14 +9,22 @@ namespace Cinemax.Shared.Contracts.Scrennings
     {
         public Guid? Id { get; set; }
 
-        [Required(ErrorMessage = "Film jest wymagany.")]
+        [Required(
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.Required_Movie))]
         public Guid MovieId { get; set; }
 
-        [Required(ErrorMessage = "Sala jest wymagana.")]
+        [Required(
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.Required_CinemaHall))]
         public Guid CinemaHallId { get; set; }
 
-        [Required(ErrorMessage = "Data jest wymagana.")]
-        [FutureDate(ErrorMessage = "Data musi być przyszła.")]
+        [Required(
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.Required_Date))]
+        [FutureDate(
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.FutureDate))]
         public DateTime StartTime { get; set; }
         public ScreeningStatus Status { get; set; }
     }

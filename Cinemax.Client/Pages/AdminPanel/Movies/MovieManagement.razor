@@ -1,11 +1,13 @@
 ﻿@using Cinemax.Client.Pages.Shared.AdminPanel
+@using Cinemax.Client.Services
 @using Cinemax.Shared.Contracts.Movies
 
 @page "/admin/movies"
 @attribute [Authorize(Roles = "Admin")]
 @layout AdminPanelLayout
 
-@inject HttpClient HttpClient
+@inject HttpClient _httpClient
+@inject NotificationService _notificationService
 
 <AdminContentCard Title="Filmy">
     <CardBody>
@@ -30,7 +32,8 @@
             <GridRowActions Context="movie">
                 <GridButton Icon="edit" Toggle="modal" Target="@_createMovieDialogId"
                             OnClick="@(() => SelectMovie(movie))" />
-                <GridButton Icon="delete" />
+                <GridButton Icon="delete" Toggle="modal" Target="@_deleteMovieModalId"
+                            OnClick="@(() => SelectMovieForDelete(movie))" />
             </GridRowActions>
         </DataGrid>
     </CardBody>
@@ -39,3 +42,9 @@
 <MovieFormDialog Id="@_createMovieDialogId"
                  Movie="@_selectedMovie"
                  OnSuccess="@RefreshDataAsync"/>
+
+<ConfirmDialog @ref="_deleteDialog"
+               Id="@_deleteMovieModalId"
+               OnSubmit="@DeleteMovieAsync"
+               Text="Czy na pewno chcesz usunąć ten film?"
+               IsSubmitting="@_isDeleting" />
