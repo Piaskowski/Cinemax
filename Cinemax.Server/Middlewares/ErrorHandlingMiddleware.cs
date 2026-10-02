@@ -1,6 +1,7 @@
 ﻿
 using Cinemax.Application.Exceptions;
 using Cinemax.Shared.Contracts.Common;
+using Cinemax.Shared.Resources.Validation;
 
 namespace Cinemax.Server.Middlewares
 {
@@ -19,7 +20,7 @@ namespace Cinemax.Server.Middlewares
                 context.Response.StatusCode = 400;
                 await context.Response.WriteAsJsonAsync(new ErrorResponse
                 {
-                    Message = "Wystąpiły błędy",
+                    Message = ValidationMessages.Error_ErrorsOccured,
                     Errors = [.. e.Errors]
                 });
             }
@@ -40,7 +41,7 @@ namespace Cinemax.Server.Middlewares
                 context.Response.StatusCode = 500;
                 await context.Response.WriteAsJsonAsync(new ErrorResponse
                 {
-                    Message = "Coś poszło nie tak. Skontaktuj się z administratorem!"
+                    Message = ValidationMessages.Error_SomethingWentWrong
                 });
             }
         }

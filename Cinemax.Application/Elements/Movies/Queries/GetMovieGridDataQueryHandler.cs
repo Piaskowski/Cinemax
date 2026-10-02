@@ -13,12 +13,12 @@ namespace Cinemax.Application.Elements.Movies.Queries
     {
         private readonly IMovieRepository _repository = repository;
         private readonly ILogger<GetMovieGridDataQueryHandler> _logger = logger;
-        public async Task<GridResponse<MovieDto>> Handle(GetMovieGridDataQuery query, CancellationToken cancellationToken)
+        public async Task<GridResponse<MovieDto>> Handle(GetMovieGridDataQuery query, CancellationToken ct)
         {
             var pageNumber = query.Request.PageNumber;
             var pageSize = query.Request.PageSize;
 
-            var totalCount = await _repository.CountAsync(cancellationToken);
+            var totalCount = await _repository.CountAsync(ct);
             var items = await _repository.GetPaged(pageNumber, pageSize)
                 .Select(m => new MovieDto
                 {
@@ -38,7 +38,7 @@ namespace Cinemax.Application.Elements.Movies.Queries
                             IsActive = g.IsActive
                         }).Where(g => g.IsActive)
                         .ToList()
-                }).ToListAsync(cancellationToken: cancellationToken);
+                }).ToListAsync(ct);
 
 
             return new GridResponse<MovieDto>

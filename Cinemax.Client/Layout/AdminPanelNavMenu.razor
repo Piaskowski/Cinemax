@@ -1,6 +1,6 @@
 ﻿<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">Cinemax.Client</a>
+        <a class="navbar-brand" href="">Cinemax</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -11,37 +11,37 @@
     <nav class="nav flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="admin/orders" Match="NavLinkMatch.All">
-                <i class="bi bi-archive nav-icon" aria-hidden="true"></i> Zamówienia
+                <i class="bi bi-archive nav-icon" aria-hidden="true"></i> @CommonL["Txt_Orders"]
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="admin/users" Match="NavLinkMatch.All">
-                <i class="bi bi-people nav-icon" aria-hidden="true"></i> Użytkownicy
+                <i class="bi bi-people nav-icon" aria-hidden="true"></i> @CommonL["Txt_Users"]
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="admin/screenings">
-                <i class="bi bi-projector nav-icon" aria-hidden="true"></i> Repertuar
+                <i class="bi bi-projector nav-icon" aria-hidden="true"></i> @CommonL["Txt_Showtimes"]
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="admin/movies">
-                <i class="bi bi-film nav-icon" aria-hidden="true"></i> Filmy
+                <i class="bi bi-film nav-icon" aria-hidden="true"></i> @CommonL["Txt_Movies"]
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="admin/genres">
-                <i class="bi bi-box nav-icon" aria-hidden="true"></i> Gatunki
+                <i class="bi bi-box nav-icon" aria-hidden="true"></i> @CommonL["Txt_Genres"]
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="admin/cinemahalls">
-                <i class="bi bi-border-style nav-icon" aria-hidden="true"></i> Sale kinowe
+                <i class="bi bi-border-style nav-icon" aria-hidden="true"></i> @CommonL["Txt_CinemaHalls"]
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="admin/ticket-prices">
-                <i class="bi bi-ticket-detailed nav-icon" aria-hidden="true"></i> Cennik
+                <i class="bi bi-ticket-detailed nav-icon" aria-hidden="true"></i> @CommonL["Txt_PriceList"]
             </NavLink>
         </div>
     </nav>

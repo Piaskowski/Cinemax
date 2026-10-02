@@ -18,14 +18,5 @@ namespace Cinemax.Server.Controllers
             var response = await _mediator.Send(query);
             return Ok(response);
         }
-
-        [HttpGet("{id:guid}")]
-        public async Task<IActionResult> GetScreeningSeats([FromRoute] Guid id)
-        {
-            var query = new GetSreeningSeatsQuery(id);
-
-            var response = await _mediator.Send(query);
-            return Ok(response);
-        }
     }
 }

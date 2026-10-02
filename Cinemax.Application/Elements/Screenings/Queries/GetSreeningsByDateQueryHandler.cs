@@ -17,7 +17,7 @@ namespace Cinemax.Application.Elements.Screenings.Queries
                 .Include(s => s.CinemaHall)
                 .Include(s => s.Movie)
                 .ThenInclude(m => m.Genres)
-                .Where(s => s.StartTime.Day == query.Date.Day && s.Status == ScreeningStatus.Scheduled);
+                .Where(s => DateOnly.FromDateTime(s.StartTime) == query.Date /*&& s.Status == ScreeningStatus.Scheduled*/);
 
             if (query.MovieId.HasValue && query.MovieId.Value != Guid.Empty)
             {

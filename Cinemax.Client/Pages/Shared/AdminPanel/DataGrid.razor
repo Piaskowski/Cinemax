@@ -51,7 +51,7 @@
         else
         {
             <tr>
-                <td class="text-center" colspan="@_columnsCount">Brak danych</td>
+                <td class="text-center" colspan="@_columnsCount">@CommonL["Txt_NoData"]</td>
             </tr>
         }
     </tbody>
@@ -63,7 +63,7 @@
                         <ul class="pagination mb-0">
                             <li class="page-item @(_isPreviousPageAvailable ? "" : "disabled")">
                                 <button class="page-link" @onclick="PreviousPage">
-                                    Previous
+                                    @CommonL["Btn_Previous"]
                                 </button>
                             </li>
 
@@ -75,7 +75,7 @@
 
                             <li class="page-item @(_isNextPageAvailable ? "" : "disabled")">
                                 <button class="page-link" @onclick="NextPage">
-                                    Next
+                                    @CommonL["Btn_Next"]
                                 </button>
                             </li>
                         </ul>

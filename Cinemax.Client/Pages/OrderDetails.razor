@@ -1,0 +1,123 @@
+﻿@page "/orders/{Id:guid}"
+@attribute [Authorize(Roles = "Customer")]
+
+@using Cinemax.Client.Pages.Shared
+@using Cinemax.Shared.Contracts.Orders
+@using Cinemax.Shared.Enums
+
+@inject HttpClient _httpClient
+
+<Loader IsLoading="@_isLoading"/>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="uppercase">@CommonL["Txt_Order"] @Id</h2>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(_errorMessage))
+            {
+                <FormAlert Title="@CommonL["Error_ErrorOccured"]" Message="@_errorMessage" Type="AlertType.Error" />
+            }
+            else
+            {
+                <ScreeningDetails MovieTitle="@_orderDetails.MovieTitle"
+                                  PosterUrl="@_orderDetails.PosterUrl"
+                                  StartTime="@_orderDetails.StartTime"
+                                  DurationMinutes="@_orderDetails.DurationMinutes" />
+
+                <div class="ticket-container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="ticket-qr">
+                                @if (_qrImage is not null)
+                                {
+                                    <img src="@_qrImage" alt="Order QR Code" />
+                                }
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="ticket-details">
+                                <div class="order-info">
+                                    <span><strong>@CommonL["Txt_CinemaHall"]: </strong>@_orderDetails.CinemaHallNumber</span>
+                                    <br />
+                                    <span><strong>@CommonL["Txt_Status"]: </strong></span><span class="@GetStatusClass()">@_orderDetails.Status</span>
+                                </div>
+
+                                <div class="tickets-title">@CommonL["Txt_Tickets"]: </div>
+
+                                @foreach (var group in _orderDetails.Reservations
+                                                            .GroupBy(t => new { t.TicketType, t.SeatType }))
+                                {
+                                    <div class="summary-row">
+                                        <span>
+                                            <strong>@group.Key.SeatType</strong>
+                                            @group.Key.TicketType
+                                        </span>
+
+                                        <span class="ticket-count">
+                                            × @group.Count()
+                                        </span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Guid Id { get; set; }
+
+    public GetUserOrderDetailsQueryResponse _orderDetails = new();
+    public string? _qrImage;
+
+    private string? _errorMessage;
+    private bool _isLoading = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetOrderDetails();
+    }
+
+    private async Task GetOrderDetails()
+    {
+        _isLoading = true;
+        try
+        {
+            var response = await _httpClient.GetAndReadAsync<GetUserOrderDetailsQueryResponse>($"api/order/orders/{Id}");
+
+            if (response.IsSuccess)
+            {
+                _orderDetails = response.Data!;
+                if (_orderDetails.QrPng != null)
+                {
+                    _qrImage = $"data:image/png;base64,{Convert.ToBase64String(_orderDetails.QrPng)}";
+                }
+            }
+            else
+            {
+                _errorMessage = response.ErrorMessage;
+            }
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+
+    private string GetStatusClass()
+    {
+        return _orderDetails.Status switch
+        {
+            OrderStatus.Pending => "text-warning",
+            OrderStatus.Confirmed => "text-success",
+            _ => "text-danger"
+        };
+    }
+}

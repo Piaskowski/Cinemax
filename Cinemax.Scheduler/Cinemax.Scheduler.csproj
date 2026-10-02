@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Quartz" Version="3.22.0" />
+    <PackageReference Include="Quartz.AspNetCore" Version="3.22.0" />
+    <PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.22.0" />
+    <PackageReference Include="Quartz.Extensions.Hosting" Version="3.22.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cinemax.Application\Cinemax.Application.csproj" />
+  </ItemGroup>
+
+</Project>

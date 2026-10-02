@@ -48,6 +48,7 @@ namespace Cinemax.Application.Elements.Screenings.Commands
             {
                 MovieId = request.MovieId,
                 CinemaHallId = request.CinemaHallId,
+                ScreeningType = request.ScreeningType,
                 StartTime = request.StartTime,
             };
 

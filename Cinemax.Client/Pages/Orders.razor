@@ -1,0 +1,103 @@
+﻿@page "/orders"
+@attribute [Authorize(Roles = "Customer")]
+
+@using Cinemax.Client.Pages.Shared
+@using Cinemax.Shared.Contracts.Orders
+
+@inject NavigationManager _navManager
+@inject HttpClient _httpClient
+
+<Loader IsLoading="@_isLoading" />
+<div class="container orders-container">
+    <div class="datepicker">
+        <div class="row">
+            <p class="breadcrumbs">
+                <a href="/" title="Start" aria-label="Start">
+                    Start
+                </a>
+                <i class="bi bi-caret-right"></i>
+                <span>
+                    @CommonL["Txt_OrdersHistory"]
+                </span>
+            </p>
+        </div>
+        <h3 class="uppercase">@CommonL["Txt_OrdersHistory"]</h3>
+    </div>
+    <div class="orders-list">
+        @foreach (var order in _myOrders)
+        { 
+            <div class="order-item">
+                <div class="gradient-space"></div>
+                <div class="row">
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <div class="poster-container">
+                            <div class="movie-poster">
+                                <img class="img-fluid w-100"
+                                     src="@order.PosterUrl"
+                                     alt="@order.MovieTitle" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="movie-basic-details">
+                            <h4 class="uppercase">@order.MovieTitle</h4>
+                            <div class="d-flex gap-1">
+                                <span>@order.CreatedAt</span>
+                                <span>@CommonL["Txt_Status"]: @order.Status</span>
+                            </div>
+                        </div>
+                        <a class="btn btn-view" href="/orders/@(order.Id.ToString())">@CommonL["Btn_View"]</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <Pagination Page="@Page"
+                TotalPages="@_totalPages"
+                Url="/movies" />
+</div>
+
+@code{
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "page")]
+    public int Page { get; set; }
+
+    private List<OrderItemDto> _myOrders = [];
+    private int _totalPages;
+    private bool _isLoading = false;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Page <= 0)
+        {
+            Page = 1;
+            var newUrl = $"/orders?page={Page}";
+
+            _navManager.NavigateTo(newUrl, replace: true);
+        }
+        else
+        {
+            await GetOrders();
+        }
+    }
+
+    private async Task GetOrders()
+    {
+        _isLoading = true;
+
+        try
+        {
+            var response = await _httpClient.GetAndReadAsync<GetUserOrderListQueryResponse>($"api/order/orders?page={Page}");
+            if (response.IsSuccess)
+            {
+                _myOrders = response.Data!.Items;
+                _totalPages = response.Data!.TotalPages;
+            }
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+}
+

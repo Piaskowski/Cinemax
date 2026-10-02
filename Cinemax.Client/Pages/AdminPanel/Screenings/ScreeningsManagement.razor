@@ -9,19 +9,19 @@
 @inject HttpClient _httpClient
 @inject NotificationService _notificationService
 
-<AdminContentCard Title="Repertuar">
+<AdminContentCard Title="@CommonL["Txt_Showtimes"]">
     <CardBody>
         <DataGrid @ref="_screeningGrid" TItem="ScreeningDto" LoadData="@LoadData">
             <GridToolbar>
                 <GridButton Icon="reload" OnClick="@RefreshDataAsync" />
-                <GridButton Text="Dodaj" Icon="add" Toggle="modal" Target="@_createScreeningDialogId" />
-                <GridButton Text="Import" Icon="import" Toggle="modal" Target="@_importScreeningsDialogId" />
+                <GridButton Text="@CommonL["Btn_Add"]" Icon="add" Toggle="modal" Target="@_createScreeningDialogId" />
+                <GridButton Text="@CommonL["Btn_Import"]" Icon="import" Toggle="modal" Target="@_importScreeningsDialogId" />
             </GridToolbar>
             <GridColumns>
-                <GridColumn Title="Tytuł filmu" Field="s => s.Movie.Title" />
-                <GridColumn Title="Numer sali" Field="s => s.CinemaHall.Number" />
-                <GridColumn Title="Data" Field="s => s.StartTime" />
-                <GridColumn Title="Status" Field="x => x.Status" />
+                <GridColumn Title="@CommonL["Txt_MovieTitle"]" Field="s => s.Movie.Title" />
+                <GridColumn Title="@CommonL["Txt_CinemaHallNumber"]" Field="s => s.CinemaHall.Number" />
+                <GridColumn Title="@CommonL["Txt_Date"]" Field="s => s.StartTime" />
+                <GridColumn Title="@CommonL["Txt_Status"]" Field="x => x.Status" />
             </GridColumns>
             <GridRowActions Context="screening">
                 <GridButton Icon="edit" Toggle="modal" Target="@_createScreeningDialogId"
@@ -43,7 +43,7 @@
 <ConfirmDialog @ref="_deleteDialog"
                Id="@_deleteScreeningModalId"
                OnSubmit="@DeleteScreeningAsync"
-               Text="Czy na pewno chcesz usunąć salę?"
+               Text="@CommonL["Info_ScreeningDeleteConfirmation"]"
                IsSubmitting="@_isDeleting" />
 
 

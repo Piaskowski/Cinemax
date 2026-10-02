@@ -1,6 +1,5 @@
 ﻿using Cinemax.Application.Elements.Tickets.Repositories;
 using Cinemax.Application.Exceptions;
-using Cinemax.Domain.Entities.Orders;
 using Cinemax.Shared.Resources.Validation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +17,7 @@ namespace Cinemax.Application.Elements.Tickets.Commands
                 .AnyAsync(
                     t => t.ScreeningType == request.ScreeningType &&
                     t.TicketType == request.TicketType &&
+                    t.SeatType == request.SeatType &&
                     t.Id != request.Id,
                     ct
                 );
@@ -30,6 +30,7 @@ namespace Cinemax.Application.Elements.Tickets.Commands
 
             editedTicketPrice.ScreeningType = request.ScreeningType;
             editedTicketPrice.TicketType = request.TicketType;
+            editedTicketPrice.SeatType = request.SeatType;
             editedTicketPrice.Price = request.Price;
             editedTicketPrice.IsActive = request.IsActive;
 

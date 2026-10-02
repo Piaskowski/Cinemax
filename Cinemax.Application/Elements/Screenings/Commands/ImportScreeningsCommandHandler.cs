@@ -5,6 +5,7 @@ using Cinemax.Application.Elements.Screenings.Repositories;
 using Cinemax.Application.Exceptions;
 using Cinemax.Domain.Entities;
 using Cinemax.Shared.Contracts.Scrennings;
+using Cinemax.Shared.Resources.Common;
 using Cinemax.Shared.Resources.Validation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -46,7 +47,7 @@ namespace Cinemax.Application.Elements.Screenings.Commands
 
                 if (movie == null)
                 {
-                    errors.Add($"Wiersz {rowNumber}: {ValidationMessages.Movie_NotExists}");
+                    errors.Add($"{CommonMessages.Txt_Row} {rowNumber}: {ValidationMessages.Movie_NotExists}");
                     continue;
                 }
 
@@ -57,7 +58,7 @@ namespace Cinemax.Application.Elements.Screenings.Commands
 
                 if (cinemahall == null)
                 {
-                    errors.Add($"Wiersz {rowNumber}: {ValidationMessages.Cinemahall_NotExists}");
+                    errors.Add($"{CommonMessages.Txt_Row} {rowNumber}: {ValidationMessages.Cinemahall_NotExists}");
                     continue;
                 }
 
@@ -68,7 +69,7 @@ namespace Cinemax.Application.Elements.Screenings.Commands
                     {
                         var start = screening.StartTime.TimeOfDay;
                         var end = screening.StartTime.AddMinutes(screening.Movie.DurationMinutes).TimeOfDay;
-                        errors.Add(string.Format($"Wiersz {rowNumber}:" + ValidationMessages.Screening_DateCollision, start, end));
+                        errors.Add(string.Format($"{CommonMessages.Txt_Row} {rowNumber}:" + ValidationMessages.Screening_DateCollision, start, end));
                     }
                 }
 

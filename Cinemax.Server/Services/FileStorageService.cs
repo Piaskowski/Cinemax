@@ -1,5 +1,6 @@
 ﻿using Cinemax.Application.Abstractions.Interfaces;
 using Cinemax.Application.Exceptions;
+using Cinemax.Shared.Resources.Validation;
 using System.Threading;
 
 namespace Cinemax.Server.Services
@@ -13,7 +14,7 @@ namespace Cinemax.Server.Services
 
             var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
             if (!allowedExtensions.Contains(extension))
-                throw new ValidationException(["Nieprawidłowe rozszerzenie pliku."]);
+                throw new ValidationException([ValidationMessages.Error_InvalidFileExtension]);
 
             var fileName = $"{Guid.NewGuid()}{extension}";
 

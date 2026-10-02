@@ -14,8 +14,9 @@ namespace Cinemax.Db.Configurations
             builder.Property(order => order.Source)
                 .HasConversion<string>();
 
-            builder.HasIndex(order => order.PublicToken)
-                .IsUnique();
+            builder.HasIndex(o => o.QrToken)
+                .IsUnique()
+                .HasFilter("[QrToken] IS NOT NULL");
         }
     }
 }

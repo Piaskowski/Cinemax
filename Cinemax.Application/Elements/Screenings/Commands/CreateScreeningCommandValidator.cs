@@ -20,6 +20,10 @@ namespace Cinemax.Application.Elements.Screenings.Commands
                 .NotEmpty()
                 .WithMessage(ValidationMessages.Required_CinemaHall);
 
+            RuleFor(x => x.Request.ScreeningType)
+                .NotNull()
+                .WithMessage(ValidationMessages.Required_ScreeningType);
+
             RuleFor(x => x.Request.StartTime)
                 .NotNull()
                 .WithMessage(ValidationMessages.Required_Date);

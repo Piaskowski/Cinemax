@@ -19,6 +19,10 @@ namespace Cinemax.Application.Elements.Tickets.Commands
                 .NotNull()
                 .WithMessage(ValidationMessages.Required_TicketType);
 
+            RuleFor(x => x.Request.SeatType)
+                .NotNull()
+                .WithMessage(ValidationMessages.Required_SeatType);
+
             RuleFor(x => x.Request.Price)
                 .GreaterThan(0)
                 .PrecisionScale(18, 2, true)

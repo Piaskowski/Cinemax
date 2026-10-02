@@ -2,6 +2,7 @@
 @using Cinemax.Client.Pages.Shared.AdminPanel
 @using Cinemax.Client.Services
 @using Cinemax.Shared.Contracts.Identity
+@using Cinemax.Shared.Resources.Auth
 
 @page "/admin/users"
 @attribute [Authorize(Roles = "Admin")]
@@ -9,23 +10,24 @@
 
 @inject HttpClient _httpClient
 @inject NotificationService _notificationService
+@inject IStringLocalizer<AuthMessages> _authL
 
-<AdminContentCard Title="Użytkownicy">
+<AdminContentCard Title="@CommonL["Txt_Users"]">
     <CardBody>
         <DataGrid @ref="_userGrid" TItem="UserDto" LoadData="@LoadData">
             <GridToolbar>
                 <GridButton Icon="reload" OnClick="@RefreshDataAsync"/>
-                <GridButton Text="Dodaj" Icon="add" Toggle="modal" Target="@_createUserDialogId" />
+                <GridButton Text="@CommonL["Btn_Add"]" Icon="add" Toggle="modal" Target="@_createUserDialogId" />
             </GridToolbar>
             <GridColumns>
-                <GridColumn Title="Imię" Field="u => u.FirstName" />
-                <GridColumn Title="Nazwisko" Field="u => u.LastName" />
-                <GridColumn Title="Email" Field="u => u.Email" />
-                <GridColumn Title="Rola" Field="u => u.Role" />
-                <GridColumn Title="Czy Aktywny" Field="u => u.IsActive" />
-                <GridColumn Title="Data utworzenia" Field="u => u.CreatedAt" />
-                <GridColumn Title="Data Modyfikacji" Field="u => u.ModifiedAt" />
-                <GridColumn Title="Zmodyfikowane przez" Field="u => u.ModifiedBy" />
+                <GridColumn Title="@_authL["Label_FirstName"]" Field="u => u.FirstName" />
+                <GridColumn Title="@_authL["Label_LastName"]" Field="u => u.LastName" />
+                <GridColumn Title="@_authL["Label_Email"]" Field="u => u.Email" />
+                <GridColumn Title="@_authL["Txt_Role"]" Field="u => u.Role" />
+                <GridColumn Title="@CommonL["Txt_Active"]" Field="u => u.IsActive" />
+                <GridColumn Title="@CommonL["Txt_CreatedAt"]" Field="u => u.CreatedAt" />
+                <GridColumn Title="@CommonL["Txt_ModifiedAt"]" Field="u => u.ModifiedAt" />
+                <GridColumn Title="@CommonL["Txt_ModifiedBy"]" Field="u => u.ModifiedBy" />
             </GridColumns>
             <GridRowActions Context="user">
                 <GridButton Icon="edit" Toggle="modal" Target="@_createUserDialogId"
@@ -44,6 +46,6 @@
 <ConfirmDialog @ref="_deleteDialog"
                Id="@_deleteUserModalId"
                OnSubmit="@DeleteUserAsync"
-               Text="Czy na pewno chcesz usunąć tego użytkownika?"
+               Text="@CommonL["Info_UserDeleteConfirmation"]"
                IsSubmitting="@_isDeleting" />
 

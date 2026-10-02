@@ -16,14 +16,14 @@
                 IsSubmitting="@_isSubmitting">
     <Body>
         <div class="form-group mt-3">
-            <label class="form-label">Numer:</label>
+            <label class="form-label">@CommonL["Txt_Number"]:</label>
             <InputNumber @bind-Value="@Hall.Number" class="form-control"></InputNumber>
             <div class="alert-danger">
                 <ValidationMessage For="(() => Hall.Number)" />
             </div>
         </div>
         <div class="form-group mt-3">
-            <label class="form-label">Typ:</label>
+            <label class="form-label">@CommonL["Txt_Type"]:</label>
             <InputSelect class="form-select" @bind-Value="@Hall.Type">
                 @foreach (var type in Enum.GetValues<CinemaHallType>())
                 {
@@ -37,7 +37,7 @@
         @if (IsEditMode)
         {
             <div class="form-group mt-3">
-                <label class="form-label">Aktywny:</label>
+                <label class="form-label">@CommonL["Txt_Active"]:</label>
                 <InputCheckbox @bind-Value="@Hall.IsActive" class="form-check-input"></InputCheckbox>
             </div>
         }

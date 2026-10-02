@@ -1,0 +1,72 @@
+﻿@page "/my-account"
+@attribute [Authorize]
+
+@using Cinemax.Shared.Contracts.User
+@using Cinemax.Client.Pages.Shared
+@using Cinemax.Shared.Resources.Auth
+
+@inject HttpClient _httpClient
+@inject IStringLocalizer<AuthMessages> _authL
+
+<Loader IsLoading="_isLoading" />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+                <div class="card">
+                <div class="card-header"><h2>@CommonL["Title_MyAccount"]</h2></div>
+                    <div class="card-body">
+                        <div class="account-data">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h2><i class="bi bi-person-square"></i></h2>
+                                </div>
+                                <div class="col-sm-8 align-content-center">
+                                    <div class="row">
+                                    <div class="col-sm-4 text-muted">@_authL["Label_FirstName"]:</div>
+                                        <div class="col-sm-8 fw-semibold">@_account.FirstName</div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-sm-4 text-muted">@_authL["Label_LastName"]:</div>
+                                        <div class="col-sm-8 fw-semibold">@_account.LastName</div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-sm-4 text-muted">@_authL["Label_Email"]:</div>
+                                        <div class="col-sm-8 fw-semibold">@_account.Email</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private GetMyAccountDataResponse _account = new();
+    private bool _isLoading = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetAccountData();
+    }
+
+    private async Task GetAccountData()
+    {
+        _isLoading = true;
+
+        try
+        {
+            var response = await _httpClient.GetAndReadAsync<GetMyAccountDataResponse>($"api/account");
+            if (response.IsSuccess)
+            {
+                _account = response.Data!;
+            }
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+}

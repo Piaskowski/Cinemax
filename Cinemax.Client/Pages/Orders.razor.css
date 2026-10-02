@@ -1,0 +1,62 @@
+﻿/* SCREENINGS */
+.orders-container {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+}
+
+.datepicker {
+    color: black;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+    .datepicker h3 {
+        margin-top: 10px;
+    }
+
+.datepicker-row {
+    justify-content: start;
+    display: flex;
+    align-items: center;
+}
+
+    .datepicker-row .btn-day {
+        font-size: x-large;
+    }
+
+        .datepicker-row .btn-day:hover {
+            color: crimson;
+        }
+
+        .datepicker-row .btn-day.active {
+            color: crimson;
+            font-weight: bold;
+            border: none;
+        }
+
+.order-item {
+    padding-bottom: 20px;
+}
+
+.poster-container {
+    width: 200px;
+    align-items: center;
+}
+
+.btn-view {
+    padding: 12px 10px;
+    min-width: 60px;
+    text-align: center;
+    margin-bottom: 24px;
+    margin-right: 3px;
+    background-color: crimson;
+    display: inline-block;
+    transition: all 0.3s;
+    color: #FFFFFF; /*#FFF4D4;*/
+    font-weight: bold;
+}
+
+    .btn-view:hover {
+        background-color: lightcoral;
+    }

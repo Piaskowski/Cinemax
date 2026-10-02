@@ -1,0 +1,94 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using Cinemax.Shared.Contracts.Orders
+@using Microsoft.AspNetCore.Components.Authorization
+
+<div id="order-summary">
+    <div id="summary-details" class="container con-flex-center">
+        <h2 class="text-center mt-5">@CommonL["Txt_Summary"]</h2>
+        @if (OrderSummaryDto is not null)
+        {
+            <div class="order-summary">
+                @foreach (var group in OrderSummaryDto.Tickets.GroupBy(t => new { t.TicketType, t.SeatType }))
+                {
+                    <div class="summary-row">
+                        <span>
+                            <strong>@group.Key.SeatType</strong> @group.Key.TicketType
+                            <span class="ticket-count">x @group.Count()</span>
+                        </span>
+
+                        <span>
+                            @group.Sum(t => t.Price).ToString("0.00") @CommonL["Txt_Pln"]
+                        </span>
+                    </div>
+                }
+
+                <hr />
+
+                <div class="summary-row summary-total">
+                    <span>@CommonL["Txt_Total"]</span>
+                    <span>@OrderSummaryDto.TotalPrice.ToString("0.00") @CommonL["Txt_Pln"]</span>
+                </div>
+            </div>
+        }
+    </div>
+    <div id="order-details" class="container">
+        <h2 class="text-center mb-4">@CommonL["Txt_Order"]</h2>
+        <div id="order-form" class="mx-auto">
+            <EditForm Model="@Order" OnValidSubmit="() => OnValidSubmit.InvokeAsync(_orderAction)">
+                <DataAnnotationsValidator />
+                <div class="mb-3">
+                    <label class="form-label">@CommonL["Label_Email"]</label>
+
+                    <InputText @bind-Value="Order.Email"
+                               class="form-control" />
+
+                    <ValidationMessage For="@(() => Order.Email)"
+                                       class="text-danger" />
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-check">
+                        <InputCheckbox @bind-Value="Order.IsAcceptedTerms"
+                                       class="form-check-input" />
+
+                        <label class="form-check-label">
+                            @CommonL["Chk_AcceptTerms"].
+                        </label>
+                    </div>
+
+                    <ValidationMessage For="@(() => Order.IsAcceptedTerms)"
+                                       class="text-danger" />
+                </div>
+                <div id="summary">
+                    <div class="row justify-content-center">
+                        <div class="col-md-3">
+                            <a class="btn btn-cancel" @onclick="GoBack"><i class="bi bi-caret-left-fill"></i>@CommonL["Btn_Back"]</a>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-next" type="submit" 
+                                    disabled="@(OrderSummaryDto is null)" 
+                                    @onclick="(() => _orderAction = OrderAction.Reserve)">
+                                @CommonL["Btn_Reserve"]
+                            </button>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-next" type="submit"
+                                    disabled="@(OrderSummaryDto is null)"
+                                    @onclick="(() => _orderAction = OrderAction.Purchase)">
+                                @CommonL["Btn_Purchase"]
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public OrderSummaryDto? OrderSummaryDto { get; set; }
+    [Parameter] public OrderModel Order { get; set; } = default!;
+    [Parameter] public EventCallback GoBack { get; set; }
+    [Parameter] public EventCallback<OrderAction> OnValidSubmit { get; set; }
+    [Parameter] public OrderAction _orderAction { get; set; }
+}

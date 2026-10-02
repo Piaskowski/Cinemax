@@ -16,33 +16,33 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <i class="bi bi-person-square gold-gradient"></i>
-                Moje konto
+                @CommonL["Title_MyAccount"]
             </a>
 
-            <ul class="dropdown-menu" aria-labelledby="my-account">
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="my-account">
                 <AuthorizeView Roles="Admin" Context="adminAuth">
                     <Authorized>
                         <li>
                             <NavLink class="dropdown-item" href="admin/orders">
-                                Panel administratora
+                                @CommonL["Txt_AdminPanel"]
                             </NavLink>
                         </li>
                     </Authorized>
                 </AuthorizeView>
                 <li>
-                    <NavLink class="dropdown-item" href="a">
-                        Historia zamówień
+                    <NavLink class="dropdown-item" href="orders">
+                        @CommonL["Txt_OrdersHistory"]
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink class="dropdown-item" href="a">
-                        Zarządzaj kontem
+                    <NavLink class="dropdown-item" href="my-account">
+                        @CommonL["Title_MyAccount"]
                     </NavLink>
                 </li>
                 <li>
                     <a class="dropdown-item" href="" @onclick="@LogoutHandler">
                         <i class="bi bi-box-arrow-right gold-gradient"></i>
-                        Wyloguj
+                        @CommonL["Btn_LogOut"]
                     </a>
                 </li>
             </ul>
@@ -51,11 +51,11 @@
     <NotAuthorized>
         <NavLink href="account/login">
             <i class="bi bi-person gold-gradient"></i>
-            Logowanie
+            @CommonL["Btn_SignIn"]
         </NavLink>
         <NavLink class="border-gold" href="account/register">
             <i class="bi bi-person-plus gold-gradient"></i>
-            Rejestracja
+            @CommonL["Txt_Register"]
         </NavLink>
     </NotAuthorized>
 </AuthorizeView>

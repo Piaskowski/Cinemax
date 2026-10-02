@@ -9,21 +9,21 @@
 @inject HttpClient _httpClient
 @inject NotificationService _notificationService
 
-<AdminContentCard Title="Sale kinowe">
+<AdminContentCard Title="@CommonL["Txt_CinemaHalls"]">
     <CardBody>
         <DataGrid @ref="_cinemahallGrid" TItem="CinemaHallDto" LoadData="@LoadData">
             <GridToolbar>
                 <GridButton Icon="reload" OnClick="@RefreshDataAsync" />
-                <GridButton Text="Dodaj" Icon="add" Toggle="modal" Target="@_createCinemahallModalId" />
+                <GridButton Text="@CommonL["Btn_Add"]" Icon="add" Toggle="modal" Target="@_createCinemahallModalId" />
             </GridToolbar>
             <GridColumns>
-                <GridColumn Title="Numer Sali" Field="x => x.Number" />
-                <GridColumn Title="Typ" Field="x => x.Type" />
-                <GridColumn Title="Liczba miejsc" Field="x => x.SeatCount" />
-                <GridColumn Title="Aktywny" Field="@(x => x.IsActive ? "Tak" : "Nie")" />
+                <GridColumn Title="@CommonL["Txt_CinemaHallNumber"]" Field="x => x.Number" />
+                <GridColumn Title="@CommonL["Txt_Type"]" Field="x => x.Type" />
+                <GridColumn Title="@CommonL["Txt_SeatsCount"]" Field="x => x.SeatCount" />
+                <GridColumn Title="@CommonL["Txt_Active"]" Field="@(x => x.IsActive ? @CommonL["Txt_Yes"] : @CommonL["Txt_No"])" />
             </GridColumns>
             <GridRowActions Context="cinemaHall">
-                <GridButton Icon="edit" Text="Siedzenia" Toggle="modal" Target="@_createSeatsModalId"
+                <GridButton Icon="edit" Text="@CommonL["Txt_Seats"]" Toggle="modal" Target="@_createSeatsModalId"
                             OnClick="@(() => SelectCinemaHall(cinemaHall))" />
                 <GridButton Icon="edit" Toggle="modal" Target="@_createCinemahallModalId"
                             OnClick="@(() => SelectCinemaHall(cinemaHall))" />
@@ -45,7 +45,7 @@
 <ConfirmDialog @ref="_deleteDialog" 
                Id="@_deleteCinemahallModalId"
                OnSubmit="@DeleteCinemaHallAsync" 
-               Text="Czy na pewno chcesz usunąć salę?"
+               Text="@CommonL["Info_CinemaHallDeleteConfirmation"]"
                IsSubmitting="@_isDeleting"/>
 
 

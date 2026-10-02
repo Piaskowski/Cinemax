@@ -16,7 +16,7 @@
                  IsSubmitting="@_isSubmitting">
     <Body>
         <div class="form-group mt-3">
-            <label class="form-label">Nazwa:</label>
+            <label class="form-label">@CommonL["Txt_Name"]:</label>
             <InputText @bind-Value="@Genre.Name" class="form-control"></InputText>
             <div class="alert-danger">
                 <ValidationMessage For="(() => Genre.Name)" />
@@ -25,7 +25,7 @@
         @if (IsEditMode)
         {
             <div class="form-group mt-3">
-                <label class="form-label">Aktywny:</label>
+                <label class="form-label">@CommonL["Txt_Active"]:</label>
                 <InputCheckbox @bind-Value="@Genre.IsActive" class="form-check-input"></InputCheckbox>
             </div>
         }

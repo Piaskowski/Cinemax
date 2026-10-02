@@ -5,7 +5,7 @@
         <div class="modal-content">
             <Loader IsLoading="@IsSubmitting" />
             <div class="modal-header">
-                <h5 class="modal-title">Potwierdzenie operacji</h5>
+                <h5 class="modal-title">@CommonL["Txt_ConfirmOperation"]</h5>
                 <button type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
@@ -19,10 +19,14 @@
                 <button class="btn btn-outline-primary float-end" 
                         data-bs-dismiss="modal" 
                         type="submit"
-                        @onclick="OnSubmit">Ok</button>
+                        @onclick="OnSubmit">
+                    @CommonL["Btn_Ok"]
+                </button>
                 <button class="btn btn-outline-secondary float-end"
                         data-bs-dismiss="modal"
-                        type="button">Anuluj</button>
+                        type="button">
+                    @CommonL["Btn_Cancel"]
+                </button>
             </div>
         </div>
     </div>

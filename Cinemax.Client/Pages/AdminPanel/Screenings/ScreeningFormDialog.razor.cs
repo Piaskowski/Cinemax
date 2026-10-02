@@ -53,6 +53,7 @@ namespace Cinemax.Client.Pages.AdminPanel.Screenings
             {
                 MovieId = Screening.MovieId,
                 CinemaHallId = Screening.CinemaHallId,
+                ScreeningType = Screening.ScreeningType,
                 StartTime = Screening.StartTime
             };
 
@@ -93,6 +94,7 @@ namespace Cinemax.Client.Pages.AdminPanel.Screenings
                 Id = Screening.Id!.Value,
                 MovieId = Screening.MovieId,
                 CinemaHallId = Screening.CinemaHallId,
+                ScreeningType = Screening.ScreeningType,
                 StartTime = Screening.StartTime,
                 Status = Screening.Status
             };

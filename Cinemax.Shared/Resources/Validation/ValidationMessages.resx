@@ -267,4 +267,70 @@
   <data name="NotFound_Movie" xml:space="preserve">
     <value>Nie znaleziono filmu.</value>
   </data>
+  <data name="Required_SeatType" xml:space="preserve">
+    <value>Typ siedzenia jest wymagany.</value>
+  </data>
+  <data name="Error_AppUrlNotConfigured" xml:space="preserve">
+    <value>Brak ustawionego adresu URL aplikacji</value>
+  </data>
+  <data name="Error_EmailTemplateNotFound" xml:space="preserve">
+    <value>Szablon {0] nie został znaleziony.</value>
+  </data>
+  <data name="Error_InvalidActivationUrl" xml:space="preserve">
+    <value>Nieprawidłowy link aktywacyjny</value>
+  </data>
+  <data name="NotFound_User" xml:space="preserve">
+    <value>Nie znaleziono użytkownika</value>
+  </data>
+  <data name="NotFound_Order" xml:space="preserve">
+    <value>Nie znaleziono zamówienia.</value>
+  </data>
+  <data name="Error_CannotChangeStatus" xml:space="preserve">
+    <value>Nie można zmienić statusu {0}</value>
+  </data>
+  <data name="Error_CannotChangeReservationStatus" xml:space="preserve">
+    <value>Nie można zmienić statusu rezerwacji {0}</value>
+  </data>
+  <data name="Error_CannotChangeOrderStatus" xml:space="preserve">
+    <value>Nie można zmienić statusu zamówienia {0}</value>
+  </data>
+  <data name="Error_CannotFindReservartion" xml:space="preserve">
+    <value>Nie można znaleźć rezerwacji: {0}</value>
+  </data>
+  <data name="Error_OrderContainsNoSeats" xml:space="preserve">
+    <value>Zamówienie nie zawiera miejsc.</value>
+  </data>
+  <data name="Error_OrderContainsDuplicateSeats" xml:space="preserve">
+    <value>Zamówienie zawiera duplikaty miejsc.</value>
+  </data>
+  <data name="Error_OrderContainsInvalidSeats" xml:space="preserve">
+    <value> Zamówienie zawiera nieprawidłowe miejsca.</value>
+  </data>
+  <data name="Error_SelectedSeatsExpired" xml:space="preserve">
+    <value>Dostępność wybranych miejsc wygasła. Proszę wybrać ponownie.</value>
+  </data>
+  <data name="Error_TicketTypeUnavailableForSeat" xml:space="preserve">
+    <value>Wybrany typ biletu jest niedostępny dla tego miejsca.</value>
+  </data>
+  <data name="Error_OrderCannotBeConfirmedInCurrentState" xml:space="preserve">
+    <value>Zamówienie nie może zostać zatwierdzone w obecnym stanie.</value>
+  </data>
+  <data name="Error_OrderContainsNoPendingReservations" xml:space="preserve">
+    <value>Zamówienie nie zawiera żadnych rezerwacji oczekujących na zatwierdzenie.</value>
+  </data>
+  <data name="Error_NoResults" xml:space="preserve">
+    <value>Brak wyników.</value>
+  </data>
+  <data name="NotFound_Screening" xml:space="preserve">
+    <value>Nie znaleziono seansu.</value>
+  </data>
+  <data name="Error_ErrorsOccured" xml:space="preserve">
+    <value>Wystąpiły błędy</value>
+  </data>
+  <data name="Error_SomethingWentWrong" xml:space="preserve">
+    <value>Coś poszło nie tak. Skontaktuj się z administratorem!</value>
+  </data>
+  <data name="Error_InvalidFileExtension" xml:space="preserve">
+    <value>Nieprawidłowe rozszerzenie pliku.</value>
+  </data>
 </root>

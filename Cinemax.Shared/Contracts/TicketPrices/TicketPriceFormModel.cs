@@ -18,6 +18,10 @@ namespace Cinemax.Shared.Contracts.TicketPrices
             ErrorMessageResourceType = typeof(ValidationMessages),
             ErrorMessageResourceName = nameof(ValidationMessages.Required_TicketType))]
         public TicketType TicketType { get; set; }
+        [Required(
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.Required_SeatType))]
+        public SeatType SeatType { get; set; }
 
         [Range(0.01, double.MaxValue, 
             ErrorMessageResourceType = typeof(ValidationMessages),

@@ -7,24 +7,32 @@
 
 @inject HttpClient HttpClient
 
-<AdminContentCard Title="Zamówienia">
+<AdminContentCard Title="@CommonL["Txt_Orders"]">
     <CardBody>
         <DataGrid @ref="_ordersGrid" TItem="OrderDto" LoadData="@LoadData">
             <GridToolbar>
                 <GridButton Icon="reload" OnClick="@RefreshDataAsync" />
             </GridToolbar>
             <GridColumns>
-                <GridColumn Title="Email klienta" Field="o => o.CustomerEmail" />
-                <GridColumn Title="Utworzone przez" Field="o => o.CreatedByUserEmail" />
-                <GridColumn Title="Źródło" Field="o => o.Source" />
-                <GridColumn Title="Id seansu" Field="o => o.ScreeningId" />
-                <GridColumn Title="Data seansu" Field="o => o.ScreeningDate" />
-                <GridColumn Title="Liczba biletów" Field="o => o.ReservationCount" />
-                <GridColumn Title="Status" Field="o => o.Status" />
-                <GridColumn Title="Data utworzenia" Field="o => o.CreatedAt" />
-                <GridColumn Title="Termin ważności rezerwacji" Field="o => o.ExpiresAt" />
+                <GridColumn Title="@CommonL["Txt_CustomerEmail"]" Field="o => o.CustomerEmail" />
+                <GridColumn Title="@CommonL["Txt_CreatedBy"]" Field="o => o.CreatedByUserEmail" />
+                <GridColumn Title="@CommonL["Txt_Source"]" Field="o => o.Source" />
+                <GridColumn Title="@CommonL["Txt_ScreeningId"]" Field="o => o.ScreeningId" />
+                <GridColumn Title="@CommonL["Txt_ScreeningDate"]" Field="o => o.ScreeningDate" />
+                <GridColumn Title="@CommonL["Txt_TicketsCount"]" Field="o => o.ReservationCount" />
+                <GridColumn Title="@CommonL["Txt_Status"]" Field="o => o.Status" />
+                <GridColumn Title="@CommonL["Txt_CreatedAt"]" Field="o => o.CreatedAt" />
+                <GridColumn Title="@CommonL["Txt_ReservationExpiryDate"]" Field="o => o.ExpiresAt" />
             </GridColumns>
+            <GridRowActions Context="order">
+                <GridButton Icon="edit" Toggle="modal" Target="@_editOrderDialogId"
+                            OnClick="@(() => SelectOrder(order))" />
+            </GridRowActions>
         </DataGrid>
     </CardBody>
 </AdminContentCard>
+
+<OrderEditFormDialog Id="@_editOrderDialogId"
+                     OrderModel="@_selectedOrder"
+                     OnSuccess=@RefreshDataAsync />
 

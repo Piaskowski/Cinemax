@@ -7,7 +7,7 @@
 
 <AdminFormDialog @ref="_form"
                  Id="@Id"
-                 Title="Zaimportuj seanse"
+                 Title="@CommonL["Txt_ImportScreenings"]"
                  Model="@_screenings"
                  OnValidSubmit="@HandleImportScreenings"
                  OnCancel="@HandleCanel"
@@ -16,7 +16,7 @@
                  IsSubmitting="@_isSubmitting">
     <Body>
         <div class="form-group mt-3">
-            <label class="form-label">Wybierz plik do importu (.xlsx):</label>
+            <label class="form-label">@CommonL["Txt_SelectImportFile"] (.xlsx):</label>
             <InputFile OnChange="@OnFileSelected" accept=".xlsx"></InputFile>
             <div class="alert-danger">
                 <ValidationMessage For="(() => _screenings.File)" />

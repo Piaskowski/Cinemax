@@ -248,6 +248,34 @@ namespace Cinemax.Db.Migrations
                     b.ToTable("EmailNotifications");
                 });
 
+            modelBuilder.Entity("Cinemax.Domain.Entities.Notifications.EmailNotificationResource", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("Content")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ContentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("EmailNotificationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmailNotificationId");
+
+                    b.ToTable("EmailNotificationsResources");
+                });
+
             modelBuilder.Entity("Cinemax.Domain.Entities.Notifications.MessageTemplate", b =>
                 {
                     b.Property<Guid>("Id")
@@ -268,6 +296,9 @@ namespace Cinemax.Db.Migrations
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -296,10 +327,9 @@ namespace Cinemax.Db.Migrations
                     b.Property<DateTime>("ExpiresAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PublicToken")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
+                    b.Property<string>("QrToken")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<Guid>("ScreeningId")
                         .HasColumnType("uniqueidentifier");
@@ -319,8 +349,9 @@ namespace Cinemax.Db.Migrations
 
                     b.HasIndex("CreatedByUserId");
 
-                    b.HasIndex("PublicToken")
-                        .IsUnique();
+                    b.HasIndex("QrToken")
+                        .IsUnique()
+                        .HasFilter("[QrToken] IS NOT NULL");
 
                     b.HasIndex("ScreeningId");
 
@@ -348,6 +379,9 @@ namespace Cinemax.Db.Migrations
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TicketType")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -377,13 +411,18 @@ namespace Cinemax.Db.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("SeatType")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
                     b.Property<string>("TicketType")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ScreeningType", "TicketType")
+                    b.HasIndex("ScreeningType", "TicketType", "SeatType")
                         .IsUnique();
 
                     b.ToTable("TicketPrices");
@@ -400,6 +439,12 @@ namespace Cinemax.Db.Migrations
 
                     b.Property<Guid>("MovieId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ScreeningType")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("T2D");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
@@ -608,6 +653,17 @@ namespace Cinemax.Db.Migrations
                     b.Navigation("MessageTemplate");
                 });
 
+            modelBuilder.Entity("Cinemax.Domain.Entities.Notifications.EmailNotificationResource", b =>
+                {
+                    b.HasOne("Cinemax.Domain.Entities.Notifications.EmailNotification", "EmailNotification")
+                        .WithMany("Resources")
+                        .HasForeignKey("EmailNotificationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EmailNotification");
+                });
+
             modelBuilder.Entity("Cinemax.Domain.Entities.Orders.Order", b =>
                 {
                     b.HasOne("Cinemax.Domain.Entities.Identity.ApplicationUser", "CreatedByUser")
@@ -749,6 +805,11 @@ namespace Cinemax.Db.Migrations
             modelBuilder.Entity("Cinemax.Domain.Entities.CinemaHall", b =>
                 {
                     b.Navigation("Seats");
+                });
+
+            modelBuilder.Entity("Cinemax.Domain.Entities.Notifications.EmailNotification", b =>
+                {
+                    b.Navigation("Resources");
                 });
 
             modelBuilder.Entity("Cinemax.Domain.Entities.Orders.Order", b =>

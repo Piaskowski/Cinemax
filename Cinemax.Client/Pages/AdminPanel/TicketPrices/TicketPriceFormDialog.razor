@@ -16,7 +16,7 @@
     IsSubmitting="@_isSubmitting">
     <Body>
         <div class="form-group">
-            <label class="form-label">Typ seansu:</label>
+            <label class="form-label">@CommonL["Txt_ScreeningType"]:</label>
             <InputSelect class="form-select" @bind-Value="TicketPrice.ScreeningType">
                 @foreach (var screeningType in Enum.GetValues<ScreeningType>())
                 {
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-label">Typ biletu:</label>
+            <label class="form-label">@CommonL["Txt_TicketType"]:</label>
             <InputSelect class="form-select" @bind-Value="TicketPrice.TicketType">
                 @foreach (var ticketType in Enum.GetValues<TicketType>())
                 {
@@ -40,7 +40,19 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-label">Cena zł:</label>
+            <label class="form-label">@CommonL["Txt_SeatType"]:</label>
+            <InputSelect class="form-select" @bind-Value="TicketPrice.SeatType">
+                @foreach (var seatType in Enum.GetValues<SeatType>())
+                {
+                    <option value="@seatType">@seatType</option>
+                }
+            </InputSelect>
+            <div class="alert-danger">
+                <ValidationMessage For="(() => TicketPrice.SeatType)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">@CommonL["Txt_Price"] @CommonL["Txt_Pln"]:</label>
             <InputNumber class="form-control" @bind-Value="@TicketPrice.Price"></InputNumber>
             <div class="alert-danger">
                 <ValidationMessage For="(() => TicketPrice.Price)" />
@@ -49,7 +61,7 @@
         @if (IsEditMode)
         {
             <div class="form-group mt-3">
-                <label class="form-label">Aktywny:</label>
+                <label class="form-label">@CommonL["Txt_Active"]:</label>
                 <InputCheckbox @bind-Value="@TicketPrice.IsActive" class="form-check-input"></InputCheckbox>
             </div>
         }

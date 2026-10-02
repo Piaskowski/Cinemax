@@ -1,4 +1,5 @@
-﻿using Cinemax.Shared.Enums;
+﻿using Cinemax.Shared.Contracts.Reservations;
+using Cinemax.Shared.Enums;
 
 namespace Cinemax.Shared.Contracts.Orders
 {
@@ -9,7 +10,9 @@ namespace Cinemax.Shared.Contracts.Orders
         public string? CreatedByUserEmail { get; set; }
         public Guid ScreeningId { get; set; }
         public DateTime ScreeningDate { get; set; }
+        public List<AdminOrderReservationDto> Reservations { get; set; } = [];
         public int ReservationCount { get; set; }
+        public decimal TotalPrice { get; set; }
         public OrderStatus Status { get; set; }
         public OrderSource Source { get; set; }
         public required DateTime CreatedAt { get; set; }

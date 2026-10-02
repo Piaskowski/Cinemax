@@ -8,7 +8,7 @@
 @inject IStringLocalizer<CommonMessages> CommonL
 
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-lg-6">
             <EditForm Enhance Model="_user" OnValidSubmit="@HandleRegistration">
                 <DataAnnotationsValidator />
@@ -23,7 +23,7 @@
                         }
                         @if (!string.IsNullOrEmpty(_successMessage))
                         {
-                            <FormAlert Title="Konto utworzone"
+                            <FormAlert Title="@AuthL["Info_AccountCreated"]"
                                        Message="@_successMessage"
                                        Type="AlertType.Success" />
                         }

@@ -1,0 +1,78 @@
+﻿@page "/confirm-email"
+@using Cinemax.Client.Pages.Shared
+@using Cinemax.Shared.Resources.Auth
+
+@inject HttpClient _httpClient
+@inject IStringLocalizer<AuthMessages> AuthL
+@inject IStringLocalizer<CommonMessages> CommonL
+
+<Cinemax.Client.Pages.Shared.Loader IsLoading="_isLoading" />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+                <div class="card">
+                <div class="card-header">@AuthL["Title_ConfirmEmail"]</div>
+                    <div class="card-body">
+                        @if (_emailConfirmed)
+                        {
+                            <FormAlert Title="@_errorMessage"
+                                       Errors="@_errors"
+                                       Type="AlertType.Error" />
+                        }
+                        @if (!string.IsNullOrEmpty(_errorMessage))
+                        {
+                            <FormAlert Title="@_errorMessage"
+                                       Errors="@_errors"
+                                       Type="AlertType.Error" />
+                        }
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "userId")]
+    public Guid UserId { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "token")]
+    public string Token { get; set; } = default!;
+
+
+    private bool _emailConfirmed = false;
+    private string? _errorMessage;
+    private IEnumerable<string> _errors = [];
+    private bool _isLoading = false;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await ConfirmPassword();
+    }
+
+    private async Task ConfirmPassword()
+    {
+        _isLoading = true;
+        _errors = [];
+
+        try
+        {
+            var response = await _httpClient.GetAndReadAsync<bool>($"api/account/confirm-email");
+
+            if (response.IsSuccess)
+            {
+                _emailConfirmed = true;
+            }
+            else
+            {
+                _errorMessage = response.ErrorMessage;
+                _errors = response.Errors;
+            }
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+}

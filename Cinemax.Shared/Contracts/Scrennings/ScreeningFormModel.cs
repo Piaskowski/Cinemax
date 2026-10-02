@@ -27,5 +27,10 @@ namespace Cinemax.Shared.Contracts.Scrennings
             ErrorMessageResourceName = nameof(ValidationMessages.FutureDate))]
         public DateTime StartTime { get; set; }
         public ScreeningStatus Status { get; set; }
+
+        [Required(
+            ErrorMessageResourceType = typeof(ValidationMessages),
+            ErrorMessageResourceName = nameof(ValidationMessages.Required_ScreeningType))]
+        public ScreeningType ScreeningType { get; set; }
     }
 }

@@ -41,6 +41,7 @@ namespace Cinemax.Client.Pages.AdminPanel.TicketPrices
             {
                 TicketType = TicketPrice.TicketType,
                 ScreeningType = TicketPrice.ScreeningType,
+                SeatType = TicketPrice.SeatType,
                 Price = TicketPrice.Price
             };
 
@@ -81,6 +82,7 @@ namespace Cinemax.Client.Pages.AdminPanel.TicketPrices
                 Id = TicketPrice.Id!.Value,
                 TicketType = TicketPrice.TicketType,
                 ScreeningType = TicketPrice.ScreeningType,
+                SeatType = TicketPrice.SeatType,
                 Price = TicketPrice.Price,
                 IsActive = TicketPrice.IsActive
             };

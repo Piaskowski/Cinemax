@@ -61,11 +61,155 @@ namespace Cinemax.Shared.Resources.Common {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Dodaj.
+        /// </summary>
+        public static string Btn_Add {
+            get {
+                return ResourceManager.GetString("Btn_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wróć.
+        /// </summary>
+        public static string Btn_Back {
+            get {
+                return ResourceManager.GetString("Btn_Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Anuluj.
+        /// </summary>
+        public static string Btn_Cancel {
+            get {
+                return ResourceManager.GetString("Btn_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zatwierdź miejsca.
+        /// </summary>
+        public static string Btn_ConfirmSeats {
+            get {
+                return ResourceManager.GetString("Btn_ConfirmSeats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Import.
+        /// </summary>
+        public static string Btn_Import {
+            get {
+                return ResourceManager.GetString("Btn_Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wyloguj.
+        /// </summary>
+        public static string Btn_LogOut {
+            get {
+                return ResourceManager.GetString("Btn_LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Dalej.
+        /// </summary>
+        public static string Btn_Next {
+            get {
+                return ResourceManager.GetString("Btn_Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Ok.
+        /// </summary>
+        public static string Btn_Ok {
+            get {
+                return ResourceManager.GetString("Btn_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wstecz.
+        /// </summary>
+        public static string Btn_Previous {
+            get {
+                return ResourceManager.GetString("Btn_Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zakup.
+        /// </summary>
+        public static string Btn_Purchase {
+            get {
+                return ResourceManager.GetString("Btn_Purchase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Rezerwuj.
+        /// </summary>
+        public static string Btn_Reserve {
+            get {
+                return ResourceManager.GetString("Btn_Reserve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zapisz.
+        /// </summary>
+        public static string Btn_Save {
+            get {
+                return ResourceManager.GetString("Btn_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zaloguj.
+        /// </summary>
+        public static string Btn_SignIn {
+            get {
+                return ResourceManager.GetString("Btn_SignIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zatwierdź.
         /// </summary>
         public static string Btn_Submit {
             get {
                 return ResourceManager.GetString("Btn_Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Podgląd.
+        /// </summary>
+        public static string Btn_View {
+            get {
+                return ResourceManager.GetString("Btn_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Przeczytałam(em) i akceptuję Regulamin zakupu przez Internet.
+        /// </summary>
+        public static string Chk_AcceptTerms {
+            get {
+                return ResourceManager.GetString("Chk_AcceptTerms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wystąpił błąd.
+        /// </summary>
+        public static string Error_ErrorOccured {
+            get {
+                return ResourceManager.GetString("Error_ErrorOccured", resourceCulture);
             }
         }
         
@@ -93,6 +237,861 @@ namespace Cinemax.Shared.Resources.Common {
         public static string Error_UnexpectedError {
             get {
                 return ResourceManager.GetString("Error_UnexpectedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Ups! Strona o podanym adresie nie istnieje..
+        /// </summary>
+        public static string Info_BadAddress {
+            get {
+                return ResourceManager.GetString("Info_BadAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Czy na pewno chcesz usunąć salę?.
+        /// </summary>
+        public static string Info_CinemaHallDeleteConfirmation {
+            get {
+                return ResourceManager.GetString("Info_CinemaHallDeleteConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Czy na pewno chcesz usunąć gatunek?.
+        /// </summary>
+        public static string Info_GenreDeleteConfirmation {
+            get {
+                return ResourceManager.GetString("Info_GenreDeleteConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Jeśli dokonywałeś zakupu jako gość, rozpocznij nowe zamówienie, aby spróbować ponownie.
+        /// </summary>
+        public static string Info_GuestCreateNewOrder {
+            get {
+                return ResourceManager.GetString("Info_GuestCreateNewOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Czy na pewno chcesz usunąć ten film?.
+        /// </summary>
+        public static string Info_MovieDeleteConfirmation {
+            get {
+                return ResourceManager.GetString("Info_MovieDeleteConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Brak wyświetlanych filmów na ten moment.
+        /// </summary>
+        public static string Info_NoMoviesOnScreen {
+            get {
+                return ResourceManager.GetString("Info_NoMoviesOnScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Brak nadchodzących premier.
+        /// </summary>
+        public static string Info_NoMoviesSoon {
+            get {
+                return ResourceManager.GetString("Info_NoMoviesSoon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie pobrano opłaty.
+        /// </summary>
+        public static string Info_NotCharged {
+            get {
+                return ResourceManager.GetString("Info_NotCharged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Szczegóły zamówienia możesz zobaczyć.
+        /// </summary>
+        public static string Info_OrderDetails {
+            get {
+                return ResourceManager.GetString("Info_OrderDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Szczegóły dotyczące zamówienia zostały wysłane na podany adres mailowy.
+        /// </summary>
+        public static string Info_OrderDetailsSentToEmail {
+            get {
+                return ResourceManager.GetString("Info_OrderDetailsSentToEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Płatność wykonana pomyślnie.
+        /// </summary>
+        public static string Info_PaymentSuccessful {
+            get {
+                return ResourceManager.GetString("Info_PaymentSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Płatność nie została ukończona.
+        /// </summary>
+        public static string Info_PaymentUncompleted {
+            get {
+                return ResourceManager.GetString("Info_PaymentUncompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Czy na pewno chcesz usunąć tę cenę?.
+        /// </summary>
+        public static string Info_PriceDeleteConfirmation {
+            get {
+                return ResourceManager.GetString("Info_PriceDeleteConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Czy na pewno chcesz usunąć seans?.
+        /// </summary>
+        public static string Info_ScreeningDeleteConfirmation {
+            get {
+                return ResourceManager.GetString("Info_ScreeningDeleteConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Czy na pewno chcesz usunąć tego użytkownika?.
+        /// </summary>
+        public static string Info_UserDeleteConfirmation {
+            get {
+                return ResourceManager.GetString("Info_UserDeleteConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Reżyser.
+        /// </summary>
+        public static string Label_Director {
+            get {
+                return ResourceManager.GetString("Label_Director", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Email.
+        /// </summary>
+        public static string Label_Email {
+            get {
+                return ResourceManager.GetString("Label_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Gatunek.
+        /// </summary>
+        public static string Label_Genres {
+            get {
+                return ResourceManager.GetString("Label_Genres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Tytuł.
+        /// </summary>
+        public static string Label_Title {
+            get {
+                return ResourceManager.GetString("Label_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Moje konto.
+        /// </summary>
+        public static string Title_MyAccount {
+            get {
+                return ResourceManager.GetString("Title_MyAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybór miejsc.
+        /// </summary>
+        public static string Title_SelectSeats {
+            get {
+                return ResourceManager.GetString("Title_SelectSeats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybierz bilety.
+        /// </summary>
+        public static string Title_SelectTickets {
+            get {
+                return ResourceManager.GetString("Title_SelectTickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Aktywny.
+        /// </summary>
+        public static string Txt_Active {
+            get {
+                return ResourceManager.GetString("Txt_Active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Panel administratora.
+        /// </summary>
+        public static string Txt_AdminPanel {
+            get {
+                return ResourceManager.GetString("Txt_AdminPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu godzina.
+        /// </summary>
+        public static string Txt_At {
+            get {
+                return ResourceManager.GetString("Txt_At", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Sala.
+        /// </summary>
+        public static string Txt_CinemaHall {
+            get {
+                return ResourceManager.GetString("Txt_CinemaHall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Numer Sali.
+        /// </summary>
+        public static string Txt_CinemaHallNumber {
+            get {
+                return ResourceManager.GetString("Txt_CinemaHallNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Sale kinowe.
+        /// </summary>
+        public static string Txt_CinemaHalls {
+            get {
+                return ResourceManager.GetString("Txt_CinemaHalls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Potwierdzenie operacji.
+        /// </summary>
+        public static string Txt_ConfirmOperation {
+            get {
+                return ResourceManager.GetString("Txt_ConfirmOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Data utworzenia.
+        /// </summary>
+        public static string Txt_CreatedAt {
+            get {
+                return ResourceManager.GetString("Txt_CreatedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Utworzone przez.
+        /// </summary>
+        public static string Txt_CreatedBy {
+            get {
+                return ResourceManager.GetString("Txt_CreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Klient.
+        /// </summary>
+        public static string Txt_Customer {
+            get {
+                return ResourceManager.GetString("Txt_Customer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Email klienta.
+        /// </summary>
+        public static string Txt_CustomerEmail {
+            get {
+                return ResourceManager.GetString("Txt_CustomerEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Data.
+        /// </summary>
+        public static string Txt_Date {
+            get {
+                return ResourceManager.GetString("Txt_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Opis.
+        /// </summary>
+        public static string Txt_Description {
+            get {
+                return ResourceManager.GetString("Txt_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Czas trwania.
+        /// </summary>
+        public static string Txt_Duration {
+            get {
+                return ResourceManager.GetString("Txt_Duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Gatunki.
+        /// </summary>
+        public static string Txt_Genres {
+            get {
+                return ResourceManager.GetString("Txt_Genres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Przejdź do zamówienia.
+        /// </summary>
+        public static string Txt_GoToOrderDetails {
+            get {
+                return ResourceManager.GetString("Txt_GoToOrderDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu tutaj.
+        /// </summary>
+        public static string Txt_Here {
+            get {
+                return ResourceManager.GetString("Txt_Here", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zaimportuj seanse.
+        /// </summary>
+        public static string Txt_ImportScreenings {
+            get {
+                return ResourceManager.GetString("Txt_ImportScreenings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zaimportuj miejsca siedzące.
+        /// </summary>
+        public static string Txt_ImportSeats {
+            get {
+                return ResourceManager.GetString("Txt_ImportSeats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Data modyfikacji.
+        /// </summary>
+        public static string Txt_ModifiedAt {
+            get {
+                return ResourceManager.GetString("Txt_ModifiedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zmodyfikowane przez.
+        /// </summary>
+        public static string Txt_ModifiedBy {
+            get {
+                return ResourceManager.GetString("Txt_ModifiedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Czas trwania filmu.
+        /// </summary>
+        public static string Txt_MovieDuration {
+            get {
+                return ResourceManager.GetString("Txt_MovieDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Filmy.
+        /// </summary>
+        public static string Txt_Movies {
+            get {
+                return ResourceManager.GetString("Txt_Movies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Tytuł filmu.
+        /// </summary>
+        public static string Txt_MovieTitle {
+            get {
+                return ResourceManager.GetString("Txt_MovieTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nazwa.
+        /// </summary>
+        public static string Txt_Name {
+            get {
+                return ResourceManager.GetString("Txt_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie.
+        /// </summary>
+        public static string Txt_No {
+            get {
+                return ResourceManager.GetString("Txt_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Brak danych.
+        /// </summary>
+        public static string Txt_NoData {
+            get {
+                return ResourceManager.GetString("Txt_NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Brak adresu e-mail.
+        /// </summary>
+        public static string Txt_NoEmail {
+            get {
+                return ResourceManager.GetString("Txt_NoEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Numer.
+        /// </summary>
+        public static string Txt_Number {
+            get {
+                return ResourceManager.GetString("Txt_Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Na Ekranie.
+        /// </summary>
+        public static string Txt_OnScreen {
+            get {
+                return ResourceManager.GetString("Txt_OnScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zamówienie.
+        /// </summary>
+        public static string Txt_Order {
+            get {
+                return ResourceManager.GetString("Txt_Order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zamówienie zostało złożone.
+        /// </summary>
+        public static string Txt_OrderCreated {
+            get {
+                return ResourceManager.GetString("Txt_OrderCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Numer zamówienia.
+        /// </summary>
+        public static string Txt_OrderNumber {
+            get {
+                return ResourceManager.GetString("Txt_OrderNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zamówienia.
+        /// </summary>
+        public static string Txt_Orders {
+            get {
+                return ResourceManager.GetString("Txt_Orders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Historia zamówień.
+        /// </summary>
+        public static string Txt_OrdersHistory {
+            get {
+                return ResourceManager.GetString("Txt_OrdersHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Status zamówienia.
+        /// </summary>
+        public static string Txt_OrderStatus {
+            get {
+                return ResourceManager.GetString("Txt_OrderStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu zł.
+        /// </summary>
+        public static string Txt_Pln {
+            get {
+                return ResourceManager.GetString("Txt_Pln", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Plakat.
+        /// </summary>
+        public static string Txt_Poster {
+            get {
+                return ResourceManager.GetString("Txt_Poster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Url plakatu.
+        /// </summary>
+        public static string Txt_PosterUrl {
+            get {
+                return ResourceManager.GetString("Txt_PosterUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Cena.
+        /// </summary>
+        public static string Txt_Price {
+            get {
+                return ResourceManager.GetString("Txt_Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Cennik.
+        /// </summary>
+        public static string Txt_PriceList {
+            get {
+                return ResourceManager.GetString("Txt_PriceList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Rejestracja.
+        /// </summary>
+        public static string Txt_Register {
+            get {
+                return ResourceManager.GetString("Txt_Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Rezerwacja jest ważna do.
+        /// </summary>
+        public static string Txt_ReservationExpiresOn {
+            get {
+                return ResourceManager.GetString("Txt_ReservationExpiresOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Termin ważności rezerwacji.
+        /// </summary>
+        public static string Txt_ReservationExpiryDate {
+            get {
+                return ResourceManager.GetString("Txt_ReservationExpiryDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Rezerwacje.
+        /// </summary>
+        public static string Txt_Reservations {
+            get {
+                return ResourceManager.GetString("Txt_Reservations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Spróbuj zapłacić ponownie.
+        /// </summary>
+        public static string Txt_RetryPayment {
+            get {
+                return ResourceManager.GetString("Txt_RetryPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Rząd.
+        /// </summary>
+        public static string Txt_Row {
+            get {
+                return ResourceManager.GetString("Txt_Row", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Seans.
+        /// </summary>
+        public static string Txt_Screening {
+            get {
+                return ResourceManager.GetString("Txt_Screening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Data seansu.
+        /// </summary>
+        public static string Txt_ScreeningDate {
+            get {
+                return ResourceManager.GetString("Txt_ScreeningDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Id seansu.
+        /// </summary>
+        public static string Txt_ScreeningId {
+            get {
+                return ResourceManager.GetString("Txt_ScreeningId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Typ seansu.
+        /// </summary>
+        public static string Txt_ScreeningType {
+            get {
+                return ResourceManager.GetString("Txt_ScreeningType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Miejsce.
+        /// </summary>
+        public static string Txt_SeatNumber {
+            get {
+                return ResourceManager.GetString("Txt_SeatNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Siedzenia.
+        /// </summary>
+        public static string Txt_Seats {
+            get {
+                return ResourceManager.GetString("Txt_Seats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybrano.
+        /// </summary>
+        public static string Txt_SeatsCount {
+            get {
+                return ResourceManager.GetString("Txt_SeatsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Typ miejsca.
+        /// </summary>
+        public static string Txt_SeatType {
+            get {
+                return ResourceManager.GetString("Txt_SeatType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybierz gatunki.
+        /// </summary>
+        public static string Txt_SelectGenres {
+            get {
+                return ResourceManager.GetString("Txt_SelectGenres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybierz plik do importu.
+        /// </summary>
+        public static string Txt_SelectImportFile {
+            get {
+                return ResourceManager.GetString("Txt_SelectImportFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Proszę wybrać typy biletów.
+        /// </summary>
+        public static string Txt_SelectTicketTypes {
+            get {
+                return ResourceManager.GetString("Txt_SelectTicketTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Repertuar.
+        /// </summary>
+        public static string Txt_Showtimes {
+            get {
+                return ResourceManager.GetString("Txt_Showtimes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wkrótce.
+        /// </summary>
+        public static string Txt_Soon {
+            get {
+                return ResourceManager.GetString("Txt_Soon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Źródło.
+        /// </summary>
+        public static string Txt_Source {
+            get {
+                return ResourceManager.GetString("Txt_Source", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Status.
+        /// </summary>
+        public static string Txt_Status {
+            get {
+                return ResourceManager.GetString("Txt_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Podsumowanie.
+        /// </summary>
+        public static string Txt_Summary {
+            get {
+                return ResourceManager.GetString("Txt_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Bilety.
+        /// </summary>
+        public static string Txt_Tickets {
+            get {
+                return ResourceManager.GetString("Txt_Tickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Liczba biletów.
+        /// </summary>
+        public static string Txt_TicketsCount {
+            get {
+                return ResourceManager.GetString("Txt_TicketsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Typ biletu.
+        /// </summary>
+        public static string Txt_TicketType {
+            get {
+                return ResourceManager.GetString("Txt_TicketType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Dziś.
+        /// </summary>
+        public static string Txt_Today {
+            get {
+                return ResourceManager.GetString("Txt_Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Razem.
+        /// </summary>
+        public static string Txt_Total {
+            get {
+                return ResourceManager.GetString("Txt_Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zwiastun.
+        /// </summary>
+        public static string Txt_Trailer {
+            get {
+                return ResourceManager.GetString("Txt_Trailer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Url zwiastunu.
+        /// </summary>
+        public static string Txt_TrailerUrl {
+            get {
+                return ResourceManager.GetString("Txt_TrailerUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Typ.
+        /// </summary>
+        public static string Txt_Type {
+            get {
+                return ResourceManager.GetString("Txt_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Użytkownicy.
+        /// </summary>
+        public static string Txt_Users {
+            get {
+                return ResourceManager.GetString("Txt_Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Tak.
+        /// </summary>
+        public static string Txt_Yes {
+            get {
+                return ResourceManager.GetString("Txt_Yes", resourceCulture);
             }
         }
     }

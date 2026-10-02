@@ -13,12 +13,12 @@
                     </a>
                     <i class="bi bi-caret-right"></i>
                     <span>
-                        Repertuar
+                        @CommonL["Txt_Showtimes"]
                     </span>
                 </p>
             </div>
         }
-        <h3 class="uppercase">Repertuar</h3>
+        <h3 class="uppercase">@CommonL["Txt_Showtimes"]</h3>
         <div class="datepicker-row">
             <div class="btn-group">
                 @for (var i = 0; i < 7; i++)
@@ -27,7 +27,7 @@
                     string day;
                     if (i == 0)
                     {
-                        day = "Dziś";
+                        day = CommonL["Txt_Today"];
                     }
                     else
                     {
@@ -42,56 +42,63 @@
         </div>
     </div>
     <div id="movie-screenings">
-        @foreach (var movie in MovieShowtimes)
+        @if (MovieShowtimes.Count() > 0)
         {
-            <div class="movie-screening">
-                <div class="gradient-space"></div>
-                <div class="row">
-                    <div class="col-md-3 d-flex justify-content-center">
-                        <div class="poster-container">
-                            <div class="movie-poster">
-                                <img class="img-fluid w-100"
-                                     src="@movie.PosterUrl"
-                                     alt="@movie.Title" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="movie-basic-details">
-                            <h4 class="uppercase">@movie.Title</h4>
-                            <div class="d-flex gap-1">
-                                <span>@string.Join(", ", movie.Genres)</span>
-                                <span>|</span>
-                                <span>@movie.DurationMinutes min</span>
-                            </div>
-                        </div>
-                        <div class="movie-showtimes">
-                            @{
-                                var groupIndex = 0;
-                            }
-                            @foreach (var group in movie.Showtimes.GroupBy(s => s.Type))
-                            {
-                                <div id="@group.Key.ToString().ToLower()">
-                                    @if (groupIndex > 0)
-                                    {
-                                        <div class="gradient-space"></div>
-                                    }
-
-                                    <span><strong>@group.Key</strong></span>
-
-                                    <div class="d-flex gap-1">
-                                        @foreach (var showtime in group.OrderBy(s => s.StartTime))
-                                        {
-                                            <a class="btn btn-showtime" href="/order/@(showtime.Id.ToString())">@showtime.StartTime.ToShortTimeString()</a>
-                                        }
-                                    </div>
+            @foreach (var movie in MovieShowtimes)
+            {
+                <div class="movie-screening">
+                    <div class="gradient-space"></div>
+                    <div class="row">
+                        <div class="col-md-3 d-flex justify-content-center">
+                            <div class="poster-container">
+                                <div class="movie-poster">
+                                    <img class="img-fluid w-100"
+                                         src="@movie.PosterUrl"
+                                         alt="@movie.Title" />
                                 </div>
-                                groupIndex++;
-                            }
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="movie-basic-details">
+                                <h4 class="uppercase">@movie.Title</h4>
+                                <div class="d-flex gap-1">
+                                    <span>@string.Join(", ", movie.Genres)</span>
+                                    <span>|</span>
+                                    <span>@movie.DurationMinutes min</span>
+                                </div>
+                            </div>
+                            <div class="movie-showtimes">
+                                @{
+                                    var groupIndex = 0;
+                                }
+                                @foreach (var group in movie.Showtimes.GroupBy(s => s.Type))
+                                {
+                                    <div id="@group.Key.ToString().ToLower()">
+                                        @if (groupIndex > 0)
+                                        {
+                                            <div class="gradient-space"></div>
+                                        }
+
+                                        <span><strong>@group.Key</strong></span>
+
+                                        <div class="d-flex gap-1">
+                                            @foreach (var showtime in group.OrderBy(s => s.StartTime))
+                                            {
+                                                <a class="btn btn-showtime @(showtime.StartTime < DateTime.Now ? "disabled-link" : "")" href="/order/@(showtime.Id.ToString())">@showtime.StartTime.ToShortTimeString()</a>
+                                            }
+                                        </div>
+                                    </div>
+                                    groupIndex++;
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
+        }
+        else
+        {
+            <p class="text-muted align-center text-center pt-3 pb-4 fs-5">@CommonL["Info_NoMoviesOnScreen"]</p>
         }
     </div>
 </div>

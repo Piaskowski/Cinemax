@@ -24,5 +24,6 @@ namespace Cinemax.Domain.Entities.Notifications
         [MaxLength(1000)]
         public string? ErrorMessage { get; set; }
         public int RetryCount { get; set; }
+        public ICollection<EmailNotificationResource> Resources { get; set; } = [];
     }
 }

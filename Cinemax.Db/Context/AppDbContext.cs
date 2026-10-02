@@ -16,7 +16,7 @@ namespace Cinemax.Db.Context
         ICurrentUserService currentUserService) : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>(options), IUnitOfWork
     {
         private IDbContextTransaction? _currentTransaction;
-        private ICurrentUserService _currentUserService = currentUserService;
+        private readonly ICurrentUserService _currentUserService = currentUserService;
 
         public DbSet<CinemaHall> CinemaHalls { get; set; }
         public DbSet<Seat> Seats { get; set; }
@@ -24,6 +24,7 @@ namespace Cinemax.Db.Context
         public DbSet<Movie> Movies { get; set; }
         public DbSet<TicketPrice> TicketPrices { get; set; }
         public DbSet<EmailNotification> EmailNotifications { get; set; }
+        public DbSet<EmailNotificationResource> EmailNotificationsResources { get; set; }
         public DbSet<MessageTemplate> MessageTemplates { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Reservation> Reservations { get; set; }

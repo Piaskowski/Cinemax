@@ -14,6 +14,12 @@ namespace Cinemax.Db.Configurations
 
             builder.Property(x => x.Status)
                 .HasDefaultValue(ScreeningStatus.Scheduled);
+
+            builder.Property(x => x.ScreeningType)
+                .HasConversion<string>();
+
+            builder.Property(x => x.ScreeningType)
+                .HasDefaultValue(ScreeningType.T2D);
         }
     }
 }

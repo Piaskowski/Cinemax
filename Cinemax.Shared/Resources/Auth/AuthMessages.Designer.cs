@@ -61,11 +61,29 @@ namespace Cinemax.Shared.Resources.Auth {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie pamiętam hasła.
+        /// </summary>
+        public static string Btn_ForgotPassword {
+            get {
+                return ResourceManager.GetString("Btn_ForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Użytkownik został utworzony.
         /// </summary>
         public static string CreateSuccess {
             get {
                 return ResourceManager.GetString("CreateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Adres email nie został zatwierdzony..
+        /// </summary>
+        public static string Error_EmailNotConfirmed {
+            get {
+                return ResourceManager.GetString("Error_EmailNotConfirmed", resourceCulture);
             }
         }
         
@@ -79,11 +97,38 @@ namespace Cinemax.Shared.Resources.Auth {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nieprawidłowy link do resetowania hasła.
+        /// </summary>
+        public static string Error_InvalidResetPasswordUrl {
+            get {
+                return ResourceManager.GetString("Error_InvalidResetPasswordUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Logowanie nie powiodło się.
+        /// </summary>
+        public static string Error_LoginFailed {
+            get {
+                return ResourceManager.GetString("Error_LoginFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nieprawidłowy email lub hasło..
         /// </summary>
         public static string Error_WrongLoginOrPassword {
             get {
                 return ResourceManager.GetString("Error_WrongLoginOrPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Konto utworzone.
+        /// </summary>
+        public static string Info_AccountCreated {
+            get {
+                return ResourceManager.GetString("Info_AccountCreated", resourceCulture);
             }
         }
         
@@ -165,6 +210,42 @@ namespace Cinemax.Shared.Resources.Auth {
         public static string Required_Role {
             get {
                 return ResourceManager.GetString("Required_Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Finalizacja rejestracji.
+        /// </summary>
+        public static string Title_CompleteRegistration {
+            get {
+                return ResourceManager.GetString("Title_CompleteRegistration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Aktywacja adresu email.
+        /// </summary>
+        public static string Title_ConfirmEmail {
+            get {
+                return ResourceManager.GetString("Title_ConfirmEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zresetuj hasło.
+        /// </summary>
+        public static string Title_ForgotPassword {
+            get {
+                return ResourceManager.GetString("Title_ForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Rola.
+        /// </summary>
+        public static string Txt_Role {
+            get {
+                return ResourceManager.GetString("Txt_Role", resourceCulture);
             }
         }
     }

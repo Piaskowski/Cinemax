@@ -117,14 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Btn_ForgotPassword" xml:space="preserve">
+    <value>I forgot my password</value>
+  </data>
   <data name="CreateSuccess" xml:space="preserve">
     <value>User has been created.</value>
+  </data>
+  <data name="Error_EmailNotConfirmed" xml:space="preserve">
+    <value>The email address was not confirmed.</value>
   </data>
   <data name="Error_InactiveUser" xml:space="preserve">
     <value>The account is inactive.</value>
   </data>
+  <data name="Error_InvalidResetPasswordUrl" xml:space="preserve">
+    <value>Invalid password reset link</value>
+  </data>
+  <data name="Error_LoginFailed" xml:space="preserve">
+    <value>Login failed</value>
+  </data>
   <data name="Error_WrongLoginOrPassword" xml:space="preserve">
     <value>Incorrect email or password.</value>
+  </data>
+  <data name="Info_AccountCreated" xml:space="preserve">
+    <value>Account has beeen created</value>
   </data>
   <data name="Info_AccountSuccessfullyCreated" xml:space="preserve">
     <value>Your account has been created. An activation link has been sent to the email address you provided.</value>
@@ -152,5 +167,17 @@
   </data>
   <data name="Required_Role" xml:space="preserve">
     <value>Role is required.</value>
+  </data>
+  <data name="Title_CompleteRegistration" xml:space="preserve">
+    <value>Complete Registration</value>
+  </data>
+  <data name="Title_ConfirmEmail" xml:space="preserve">
+    <value>Email Confirmation</value>
+  </data>
+  <data name="Title_ForgotPassword" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="Txt_Role" xml:space="preserve">
+    <value>Role</value>
   </data>
 </root>

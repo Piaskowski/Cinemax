@@ -4,6 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>bb3740b5-7a35-4cfe-a270-8bacd30f733a</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="QRCoder" Version="1.8.0" />
+    <PackageReference Include="Stripe.net" Version="52.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +24,7 @@
     <ProjectReference Include="..\Cinemax.Client\Cinemax.Client.csproj" />
     <ProjectReference Include="..\Cinemax.Db\Cinemax.Db.csproj" />
     <ProjectReference Include="..\Cinemax.Domain\Cinemax.Domain.csproj" />
+    <ProjectReference Include="..\Cinemax.Mailing\Cinemax.Mailing.csproj" />
     <ProjectReference Include="..\Cinemax.Shared\Cinemax.Shared.csproj" />
   </ItemGroup>
 
@@ -28,5 +32,7 @@
     <Folder Include="wwwroot\" />
     <Folder Include="wwwroot\uploads\movies\" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Cinemax.Domain.Constants;
+using Cinemax.Shared.Enums;
 
 namespace Cinemax.Domain.Entities.Orders
 {
@@ -10,6 +11,7 @@ namespace Cinemax.Domain.Entities.Orders
         public Guid SeatId { get; set; }
         public Seat Seat { get; set; } = default!;
         public ReservationStatus Status { get; set; }
+        public TicketType TicketType { get; set; }
         public decimal FinalPrice { get; set; }
     }
 }

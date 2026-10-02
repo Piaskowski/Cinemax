@@ -2,10 +2,11 @@
 @using Cinemax.Client.Pages.Shared.AdminPanel
 @using Cinemax.Client.Services
 @using Cinemax.Shared.Enums
+@using Cinemax.Shared.Resources.Auth
 
 @inject HttpClient _httpClient
-@inject IStringLocalizer<CommonMessages> CommonL
 @inject NotificationService _notificationService
+@inject IStringLocalizer<AuthMessages> _authL
 
 <AdminFormDialog @ref="_form"
     Id="@Id" 
@@ -18,28 +19,28 @@
     IsSubmitting="@_isSubmitting">
     <Body>
         <div class="form-group mt-3">
-            <label class="form-label">Imię:</label>
+            <label class="form-label">@_authL["Label_FirstName"]:</label>
             <InputText @bind-Value="@User.FirstName" class="form-control"></InputText>
             <div class="alert-danger">
                 <ValidationMessage For="(() => User.FirstName)" />
             </div>
         </div>
         <div class="form-group mt-3">
-            <label class="form-label">Nazwisko:</label>
+            <label class="form-label">@_authL["Label_LastName"]:</label>
             <InputText class="form-control" @bind-Value="@User.LastName"></InputText>
             <div class="alert-danger">
                 <ValidationMessage For="(() => User.LastName)" />
             </div>
         </div>
         <div class="form-group mt-3">
-            <label class="form-label">Email:</label>
+            <label class="form-label">@_authL["Label_Email"]:</label>
             <InputText class="form-control" @bind-Value="@User.Email"></InputText>
             <div class="alert-danger">
                 <ValidationMessage For="(() => User.Email)" />
             </div>
         </div>
         <div class="form-group mt-3">
-            <label class="form-label">Rola:</label>
+            <label class="form-label">@_authL["Txt_Role"]:</label>
             <InputSelect class="form-select" @bind-Value="@User.Role">
                 @foreach (var role in Enum.GetValues<UserRole>())
                 {
@@ -53,7 +54,7 @@
         @if (IsEditMode)
         {
             <div class="form-group mt-3">
-                <label class="form-label">Aktywny:</label>
+                <label class="form-label">@CommonL["Txt_Active"]:</label>
                 <InputCheckbox @bind-Value="@User.IsActive" class="form-check-input"></InputCheckbox>
             </div>
         }

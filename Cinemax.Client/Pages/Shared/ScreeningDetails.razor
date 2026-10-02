@@ -1,0 +1,39 @@
+﻿@using Cinemax.Shared.Contracts.Scrennings
+
+<div class="screening-details">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-2 d-flex justify-content-center">
+                <div class="poster-container">
+                    <div class="movie-poster">
+                        <img class="img-fluid w-100"
+                             src="@PosterUrl"
+                             alt="@MovieTitle" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <h4 class="uppercase">@MovieTitle</h4>
+                <p><i class="bi bi-calendar4-week gold-gradient"></i> @CommonL["Txt_ScreeningDate"]: @StartTime</p>
+                <p><i class="bi bi-clock gold-gradient"></i> @DurationMinutes min</p>
+                @* <p><i class="bi bi-calendar-event gold-gradient"></i> Premiera 21 sierpnia</p> *@
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public string MovieTitle { get; set; }
+    [Parameter]
+    [EditorRequired]
+    public int DurationMinutes { get; set; }
+    [Parameter]
+    [EditorRequired]
+    public string PosterUrl { get; set; }
+    [Parameter]
+    [EditorRequired]
+    public DateTime StartTime { get; set; }
+}

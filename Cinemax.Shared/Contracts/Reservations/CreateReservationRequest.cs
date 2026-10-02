@@ -1,8 +1,10 @@
-﻿namespace Cinemax.Shared.Contracts.Reservations
+﻿using Cinemax.Shared.Enums;
+
+namespace Cinemax.Shared.Contracts.Reservations
 {
     public class CreateReservationRequest
     {
         public Guid SeatId { get; set; }
-        public Guid TicketPriceId { get; set; }
+        public TicketType TicketType { get; set; }
     }
 }

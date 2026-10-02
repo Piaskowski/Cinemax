@@ -9,20 +9,20 @@
 @inject HttpClient _httpClient
 @inject NotificationService _notificationService
 
-<AdminContentCard Title="Gatunki">
+<AdminContentCard Title="@CommonL["Txt_Genres"]">
     <CardBody>
         <DataGrid @ref="_genresGrid" TItem="GenreDto" LoadData="@LoadData">
             <GridToolbar>
                 <GridButton Icon="reload" OnClick="@RefreshDataAsync" />
-                <GridButton Text="Dodaj" 
-                    Icon="add" 
+                <GridButton Text="@CommonL["Btn_Add"]"
+                            Icon="add" 
                     Toggle="modal" 
                     Target="@_genresFormDialogId" />
                 <GridButton Text="Import" Icon="import" />
             </GridToolbar>
             <GridColumns>
-                <GridColumn Field="g => g.Name" />
-                <GridColumn Title="Aktywny" Field="@(x => x.IsActive ? "Tak" : "Nie")" />
+                <GridColumn Title="@CommonL["Txt_Name"]" Field="g => g.Name" />
+                <GridColumn Title="@CommonL["Txt_Active"]" Field="@(x => x.IsActive ? @CommonL["Txt_Yes"] : @CommonL["Txt_No"])" />
             </GridColumns>
             <GridRowActions Context="genre">
                 <GridButton Icon="edit" Toggle="modal" Target="@_genresFormDialogId"
@@ -41,5 +41,5 @@
 <ConfirmDialog @ref="_deleteDialog"
                Id="@_deleteGenreModalId"
                OnSubmit="@DeleteGenreAsync"
-               Text="Czy na pewno chcesz usunąć gatunek?"
+               Text="@CommonL["Info_GenreDeleteConfirmation"]"
                IsSubmitting="@_isDeleting" />

@@ -35,12 +35,6 @@
         border: none;
     }
 
-.gradient-space {
-    height: 32px;
-    box-shadow: 0 -1px #ddd;
-    background-image: linear-gradient(#f4f4f4, #fff);
-}
-
 .movie-screening {
     padding-bottom: 20px;
 }
@@ -63,6 +57,12 @@
     font-weight: bold;
 }
 
-    .btn-showtime:hover {
-        background-color: lightcoral;
-    }
+.btn-showtime:hover {
+    background-color: lightcoral;
+}
+
+.btn-showtime.disabled-link {
+    background-color: gray;
+    pointer-events: none;
+    cursor: default;
+}

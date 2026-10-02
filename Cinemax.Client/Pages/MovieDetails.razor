@@ -18,8 +18,8 @@
                                 Start
                             </a>
                             <i class="bi bi-caret-right"></i>
-                            <a href="/movies" title="Filmy" aria-label="Filmy">
-                                Filmy
+                            <a href="/movies" title="@CommonL["Txt_Movies"]" aria-label="@CommonL["Txt_Movies"]">
+                                @CommonL["Txt_Movies"]
                             </a>
                             <i class="bi bi-caret-right"></i>
                             <span>
@@ -37,7 +37,7 @@
                                 <i class="bi bi-clock"></i>
 
                                 <div>
-                                    <h4>Czas trwania filmu</h4>
+                                    <h4>@CommonL["Txt_MovieDuration"]</h4>
                                     <p>@_movieDto.DurationMinutes min</p>
                                 </div>
                             </div>
@@ -49,17 +49,17 @@
                     <div id="movie-details-table">
                         <dl class="mb-0">
                             <div class="row movie-detail-row">
-                                <dt class="col-sm-4">Tytuł:</dt>
+                                <dt class="col-sm-4">@CommonL["Label_Title"]:</dt>
                                 <dd class="col-sm-8">@_movieDto.Title</dd>
                             </div>
 
                             <div class="row movie-detail-row">
-                                <dt class="col-sm-4">Reżyser:</dt>
+                                <dt class="col-sm-4">@CommonL["Label_Director"]:</dt>
                                 <dd class="col-sm-8">@_movieDto.Director</dd>
                             </div>
 
                             <div class="row movie-detail-row">
-                                <dt class="col-sm-4">Gatunek:</dt>
+                                <dt class="col-sm-4">@CommonL["Label_Genres"]:</dt>
                                 <dd class="col-sm-8">
                                     @string.Join(", ", _movieDto.Genres.Select(g => g.Name))
                                 </dd>
@@ -83,10 +83,10 @@
         <section id="trailer">
             <div class="container">
                 <div class="mt-4 mb-5">
-                    <h2 class="mb-3">Zwiastun</h2>
+                    <h2 class="mb-3">@CommonL["Txt_Trailer"]</h2>
                     <div class="ratio ratio-16x9">
                         <iframe src="@_movieDto.TrailerUrl"
-                                title="Zwiastun filmu @_movieDto.Title"
+                                title="@CommonL["Txt_Trailer"] @_movieDto.Title"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>
                         </iframe>
@@ -111,7 +111,7 @@
     private bool _isLoading = false;
 
     private IEnumerable<MovieShowtimesDto> _showtimes = [];
-    private DateOnly _selectedDate { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+    private DateOnly _selectedDate { get; set; } = DateOnly.FromDateTime(DateTime.UtcNow);
 
     private string? _errorMessage;
     private IEnumerable<string> _errors = [];

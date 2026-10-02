@@ -7,6 +7,7 @@ namespace Cinemax.Shared.Contracts.TicketPrices
         public Guid Id { get; set; }
         public ScreeningType ScreeningType { get; set; }
         public TicketType TicketType { get; set; }
+        public SeatType SeatType { get; set; }
         public decimal Price { get; set; }
         public bool IsActive { get; set; }  
     }

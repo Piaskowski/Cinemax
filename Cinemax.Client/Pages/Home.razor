@@ -7,26 +7,41 @@
 
 <PageTitle>Home</PageTitle>
 <div class="col-12 movies-container">
-    <h2>Na Ekranie</h2>
-    <Swiper Id="on-screen-swiper"
-            Class="movie-swiper"
-            TItem="MovieCarouselDto"
-            Items="@_moviesComingSoon"
-            GetUrl="@(m => $"/movies/{m.Id.ToString()}")"
-            GetTitle="m => m.Title"
-            GetImageUrl="m => m.PosterUrl" />
-    <h2>Wkrótce</h2>
-    <Swiper Id="coming-soon-swiper"
-            Class="movie-swiper"
-            TItem="MovieCarouselDto"
-            Items="@_moviesComingSoon"
-            GetTitle="m => m.Title"
-            GetImageUrl="m => m.PosterUrl" />
+    <h2>@CommonL["Txt_OnScreen"]</h2>
+    @if (_moviesOnScreen.Count() > 0)
+    {
+        <Swiper Id="on-screen-swiper"
+                Class="movie-swiper"
+                TItem="MovieDisplayCardDto"
+                Items="@_moviesOnScreen"
+                GetUrl="@(m => $"/movies/{m.Id.ToString()}")"
+                GetTitle="m => m.Title"
+                GetImageUrl="m => m.PosterUrl" />
+    }
+    else
+    {
+        <p class="text-muted align-center text-center fs-5">@CommonL["Info_NoMoviesOnScreen"]</p>
+    }
+    <h2>@CommonL["Txt_Soon"]</h2>
+    @if(_moviesComingSoon.Count() > 0)
+    {
+        <Swiper Id="coming-soon-swiper"
+                Class="movie-swiper"
+                TItem="MovieDisplayCardDto"
+                Items="@_moviesComingSoon"
+                GetUrl="@(m => $"/movies/{m.Id.ToString()}")"
+                GetTitle="m => m.Title"
+                GetImageUrl="m => m.PosterUrl" />
+    }
+    else
+    {
+        <p class="text-muted align-center text-center fs-5">@CommonL["Info_NoMoviesSoon"]</p>
+    }
 </div>
 
 @code{
-    private IEnumerable<MovieCarouselDto> _moviesOnScreen = [];
-    private IEnumerable<MovieCarouselDto> _moviesComingSoon = [];
+    private IEnumerable<MovieDisplayCardDto> _moviesOnScreen = [];
+    private IEnumerable<MovieDisplayCardDto> _moviesComingSoon = [];
 
     private string? _errorMessage;
     private IEnumerable<string> _errors = [];

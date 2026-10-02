@@ -1,28 +1,4 @@
-﻿#screening-details {
-    height: auto;
-    max-height: 300px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    background-color: lightslategray;
-    color: white;
-    border-radius: 10px;
-}
-
-#screening-details p {
-    margin-bottom: 5px;
-}
-
-#screening-details .poster-container {
-    width: auto;
-    max-width: 150px;
-}
-
-#screening-details img {
-    border: 2px solid white;
-    border-radius: inherit;
-}
-
-#screen {
+﻿#screen {
     width: 100%;
     max-width: 600px;
     perspective: 400px;
@@ -39,6 +15,7 @@
     justify-content: center;
     align-items: center;
 }
+
 #cinema-hall-seats {
     margin-top: 10px;
 }
@@ -88,13 +65,14 @@
     font-weight: bold;
     cursor: pointer;
 }
+
     .seat.available, .seat.available::after {
         background-color: var(--available-color);
     }
 
-    .seat.available:hover, .seat.available:hover::after {
-        background-color: var(--available-color-hover);
-    }
+        .seat.available:hover, .seat.available:hover::after {
+            background-color: var(--available-color-hover);
+        }
 
     .seat.booked, .seat.booked::after {
         background-color: var(--booked-color);
@@ -133,47 +111,11 @@
         width: 80px;
     }
 
-    .seat.sofa::before {
-        width: 80px;
-    }
+        .seat.sofa::before {
+            width: 80px;
+        }
 
-    .seat.sofa::after {
-        width: 74px;
-        left: 4px;
-    }
-#summary {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-#selected-seats {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-.btn-next {
-    --bs-btn-color: white;
-    --bs-btn-bg: crimson;
-    --bs-btn-border-color: crimson;
-    --bs-btn-hover-color: black;
-    --bs-btn-hover-bg: lightcoral;
-    --bs-btn-hover-border-color: lightcoral;
-    --bs-btn-active-color: black;
-    --bs-btn-active-bg: lightcoral;
-    --bs-btn-active-border-color: lightcoral;
-    width: 100%;
-}
-
-.btn-cancel {
-    --bs-btn-color: crimson;
-    --bs-btn-bg: white;
-    --bs-btn-border-color: white;
-    --bs-btn-hover-color: lightcoral;
-    --bs-btn-hover-bg: white;
-    --bs-btn-hover-border-color: white;
-    --bs-btn-active-color: lightcoral;
-    --bs-btn-active-bg: white;
-    --bs-btn-active-border-color: white;
-    width: 100%;
-    text-align: left;
-}
+        .seat.sofa::after {
+            width: 74px;
+            left: 4px;
+        }

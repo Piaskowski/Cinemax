@@ -117,8 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Btn_Back" xml:space="preserve">
+    <value>Wróć</value>
+  </data>
+  <data name="Btn_Purchase" xml:space="preserve">
+    <value>Zakup</value>
+  </data>
+  <data name="Btn_Reserve" xml:space="preserve">
+    <value>Rezerwuj</value>
+  </data>
   <data name="Btn_Submit" xml:space="preserve">
     <value>Zatwierdź</value>
+  </data>
+  <data name="Chk_AcceptTerms" xml:space="preserve">
+    <value>Przeczytałam(em) i akceptuję Regulamin zakupu przez Internet</value>
   </data>
   <data name="Error_LostConnection" xml:space="preserve">
     <value>Nie udało się połączyć z serwerem.</value>
@@ -128,5 +140,326 @@
   </data>
   <data name="Error_UnexpectedError" xml:space="preserve">
     <value>Wystąpił nieoczekiwany błąd. Spróbuj ponownie później.</value>
+  </data>
+  <data name="Info_OrderDetails" xml:space="preserve">
+    <value>Szczegóły zamówienia możesz zobaczyć</value>
+  </data>
+  <data name="Label_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Title_MyAccount" xml:space="preserve">
+    <value>Moje konto</value>
+  </data>
+  <data name="Title_SelectSeats" xml:space="preserve">
+    <value>Wybór miejsc</value>
+  </data>
+  <data name="Txt_At" xml:space="preserve">
+    <value>godzina</value>
+  </data>
+  <data name="Txt_Here" xml:space="preserve">
+    <value>tutaj</value>
+  </data>
+  <data name="Txt_Order" xml:space="preserve">
+    <value>Zamówienie</value>
+  </data>
+  <data name="Txt_OrderCreated" xml:space="preserve">
+    <value>Zamówienie zostało złożone</value>
+  </data>
+  <data name="Txt_OrderNumber" xml:space="preserve">
+    <value>Numer zamówienia</value>
+  </data>
+  <data name="Txt_Pln" xml:space="preserve">
+    <value>zł</value>
+  </data>
+  <data name="Txt_ReservationExpiresOn" xml:space="preserve">
+    <value>Rezerwacja jest ważna do</value>
+  </data>
+  <data name="Txt_Summary" xml:space="preserve">
+    <value>Podsumowanie</value>
+  </data>
+  <data name="Txt_Today" xml:space="preserve">
+    <value>Dziś</value>
+  </data>
+  <data name="Txt_Total" xml:space="preserve">
+    <value>Razem</value>
+  </data>
+  <data name="Info_OrderDetailsSentToEmail" xml:space="preserve">
+    <value>Szczegóły dotyczące zamówienia zostały wysłane na podany adres mailowy</value>
+  </data>
+  <data name="Info_PaymentSuccessful" xml:space="preserve">
+    <value>Płatność wykonana pomyślnie</value>
+  </data>
+  <data name="Info_PaymentUncompleted" xml:space="preserve">
+    <value>Płatność nie została ukończona</value>
+  </data>
+  <data name="Info_NotCharged" xml:space="preserve">
+    <value>Nie pobrano opłaty</value>
+  </data>
+  <data name="Txt_RetryPayment" xml:space="preserve">
+    <value>Spróbuj zapłacić ponownie</value>
+  </data>
+  <data name="Txt_GoToOrderDetails" xml:space="preserve">
+    <value>Przejdź do zamówienia</value>
+  </data>
+  <data name="Info_GuestCreateNewOrder" xml:space="preserve">
+    <value>Jeśli dokonywałeś zakupu jako gość, rozpocznij nowe zamówienie, aby spróbować ponownie</value>
+  </data>
+  <data name="Txt_CinemaHall" xml:space="preserve">
+    <value>Sala</value>
+  </data>
+  <data name="Btn_ConfirmSeats" xml:space="preserve">
+    <value>Zatwierdź miejsca</value>
+  </data>
+  <data name="Btn_Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="Txt_Row" xml:space="preserve">
+    <value>Rząd</value>
+  </data>
+  <data name="Title_SelectTickets" xml:space="preserve">
+    <value>Wybierz bilety</value>
+  </data>
+  <data name="Txt_SeatsCount" xml:space="preserve">
+    <value>Wybrano</value>
+  </data>
+  <data name="Txt_SelectTicketTypes" xml:space="preserve">
+    <value>Proszę wybrać typy biletów</value>
+  </data>
+  <data name="Txt_SeatNumber" xml:space="preserve">
+    <value>Miejsce</value>
+  </data>
+  <data name="Txt_OnScreen" xml:space="preserve">
+    <value>Na Ekranie</value>
+  </data>
+  <data name="Txt_Soon" xml:space="preserve">
+    <value>Wkrótce</value>
+  </data>
+  <data name="Txt_Movies" xml:space="preserve">
+    <value>Filmy</value>
+  </data>
+  <data name="Txt_MovieDuration" xml:space="preserve">
+    <value>Czas trwania filmu</value>
+  </data>
+  <data name="Label_Title" xml:space="preserve">
+    <value>Tytuł</value>
+  </data>
+  <data name="Label_Director" xml:space="preserve">
+    <value>Reżyser</value>
+  </data>
+  <data name="Label_Genres" xml:space="preserve">
+    <value>Gatunek</value>
+  </data>
+  <data name="Txt_Trailer" xml:space="preserve">
+    <value>Zwiastun</value>
+  </data>
+  <data name="Error_ErrorOccured" xml:space="preserve">
+    <value>Wystąpił błąd</value>
+  </data>
+  <data name="Txt_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Txt_Tickets" xml:space="preserve">
+    <value>Bilety</value>
+  </data>
+  <data name="Txt_OrdersHistory" xml:space="preserve">
+    <value>Historia zamówień</value>
+  </data>
+  <data name="Btn_View" xml:space="preserve">
+    <value>Podgląd</value>
+  </data>
+  <data name="Txt_Showtimes" xml:space="preserve">
+    <value>Repertuar</value>
+  </data>
+  <data name="Txt_ScreeningDate" xml:space="preserve">
+    <value>Data seansu</value>
+  </data>
+  <data name="Btn_Save" xml:space="preserve">
+    <value>Zapisz</value>
+  </data>
+  <data name="Txt_ConfirmOperation" xml:space="preserve">
+    <value>Potwierdzenie operacji</value>
+  </data>
+  <data name="Btn_Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Txt_NoData" xml:space="preserve">
+    <value>Brak danych</value>
+  </data>
+  <data name="Btn_Previous" xml:space="preserve">
+    <value>Wstecz</value>
+  </data>
+  <data name="Btn_Next" xml:space="preserve">
+    <value>Dalej</value>
+  </data>
+  <data name="Btn_Add" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="Txt_Active" xml:space="preserve">
+    <value>Aktywny</value>
+  </data>
+  <data name="Txt_CinemaHallNumber" xml:space="preserve">
+    <value>Numer Sali</value>
+  </data>
+  <data name="Txt_Type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="Txt_Yes" xml:space="preserve">
+    <value>Tak</value>
+  </data>
+  <data name="Txt_No" xml:space="preserve">
+    <value>Nie</value>
+  </data>
+  <data name="Info_CinemaHallDeleteConfirmation" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć salę?</value>
+  </data>
+  <data name="Txt_SelectImportFile" xml:space="preserve">
+    <value>Wybierz plik do importu</value>
+  </data>
+  <data name="Txt_ImportSeats" xml:space="preserve">
+    <value>Zaimportuj miejsca siedzące</value>
+  </data>
+  <data name="Txt_Number" xml:space="preserve">
+    <value>Numer</value>
+  </data>
+  <data name="Txt_Name" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="Info_GenreDeleteConfirmation" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć gatunek?</value>
+  </data>
+  <data name="Txt_Genres" xml:space="preserve">
+    <value>Gatunki</value>
+  </data>
+  <data name="Txt_Description" xml:space="preserve">
+    <value>Opis</value>
+  </data>
+  <data name="Txt_Duration" xml:space="preserve">
+    <value>Czas trwania</value>
+  </data>
+  <data name="Txt_PosterUrl" xml:space="preserve">
+    <value>Url plakatu</value>
+  </data>
+  <data name="Txt_TrailerUrl" xml:space="preserve">
+    <value>Url zwiastunu</value>
+  </data>
+  <data name="Info_MovieDeleteConfirmation" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć ten film?</value>
+  </data>
+  <data name="Txt_SelectGenres" xml:space="preserve">
+    <value>Wybierz gatunki</value>
+  </data>
+  <data name="Txt_Poster" xml:space="preserve">
+    <value>Plakat</value>
+  </data>
+  <data name="Txt_ReservationExpiryDate" xml:space="preserve">
+    <value>Termin ważności rezerwacji</value>
+  </data>
+  <data name="Txt_CreatedAt" xml:space="preserve">
+    <value>Data utworzenia</value>
+  </data>
+  <data name="Txt_TicketsCount" xml:space="preserve">
+    <value>Liczba biletów</value>
+  </data>
+  <data name="Txt_ScreeningId" xml:space="preserve">
+    <value>Id seansu</value>
+  </data>
+  <data name="Txt_Source" xml:space="preserve">
+    <value>Źródło</value>
+  </data>
+  <data name="Txt_CreatedBy" xml:space="preserve">
+    <value>Utworzone przez</value>
+  </data>
+  <data name="Txt_CustomerEmail" xml:space="preserve">
+    <value>Email klienta</value>
+  </data>
+  <data name="Txt_Orders" xml:space="preserve">
+    <value>Zamówienia</value>
+  </data>
+  <data name="Txt_Customer" xml:space="preserve">
+    <value>Klient</value>
+  </data>
+  <data name="Txt_NoEmail" xml:space="preserve">
+    <value>Brak adresu e-mail</value>
+  </data>
+  <data name="Txt_Screening" xml:space="preserve">
+    <value>Seans</value>
+  </data>
+  <data name="Txt_OrderStatus" xml:space="preserve">
+    <value>Status zamówienia</value>
+  </data>
+  <data name="Txt_Reservations" xml:space="preserve">
+    <value>Rezerwacje</value>
+  </data>
+  <data name="Txt_TicketType" xml:space="preserve">
+    <value>Typ biletu</value>
+  </data>
+  <data name="Txt_SeatType" xml:space="preserve">
+    <value>Typ miejsca</value>
+  </data>
+  <data name="Btn_Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="Txt_MovieTitle" xml:space="preserve">
+    <value>Tytuł filmu</value>
+  </data>
+  <data name="Txt_Date" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Info_ScreeningDeleteConfirmation" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć seans?</value>
+  </data>
+  <data name="Txt_ImportScreenings" xml:space="preserve">
+    <value>Zaimportuj seanse</value>
+  </data>
+  <data name="Txt_Price" xml:space="preserve">
+    <value>Cena</value>
+  </data>
+  <data name="Txt_ScreeningType" xml:space="preserve">
+    <value>Typ seansu</value>
+  </data>
+  <data name="Info_PriceDeleteConfirmation" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć tę cenę?</value>
+  </data>
+  <data name="Txt_ModifiedAt" xml:space="preserve">
+    <value>Data modyfikacji</value>
+  </data>
+  <data name="Txt_ModifiedBy" xml:space="preserve">
+    <value>Zmodyfikowane przez</value>
+  </data>
+  <data name="Info_UserDeleteConfirmation" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć tego użytkownika?</value>
+  </data>
+  <data name="Txt_Users" xml:space="preserve">
+    <value>Użytkownicy</value>
+  </data>
+  <data name="Txt_PriceList" xml:space="preserve">
+    <value>Cennik</value>
+  </data>
+  <data name="Txt_CinemaHalls" xml:space="preserve">
+    <value>Sale kinowe</value>
+  </data>
+  <data name="Txt_Seats" xml:space="preserve">
+    <value>Siedzenia</value>
+  </data>
+  <data name="Btn_LogOut" xml:space="preserve">
+    <value>Wyloguj</value>
+  </data>
+  <data name="Btn_SignIn" xml:space="preserve">
+    <value>Zaloguj</value>
+  </data>
+  <data name="Txt_Register" xml:space="preserve">
+    <value>Rejestracja</value>
+  </data>
+  <data name="Txt_AdminPanel" xml:space="preserve">
+    <value>Panel administratora</value>
+  </data>
+  <data name="Info_BadAddress" xml:space="preserve">
+    <value>Ups! Strona o podanym adresie nie istnieje.</value>
+  </data>
+  <data name="Info_NoMoviesSoon" xml:space="preserve">
+    <value>Brak nadchodzących premier</value>
+  </data>
+  <data name="Info_NoMoviesOnScreen" xml:space="preserve">
+    <value>Brak wyświetlanych filmów na ten moment</value>
   </data>
 </root>

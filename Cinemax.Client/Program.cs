@@ -4,6 +4,7 @@ using Cinemax.Client.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using System.Globalization;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -25,6 +26,21 @@ builder.Services.AddScoped(sp =>
         .CreateClient("AuthorizedClient"));
 
 builder.Services.AddAuthorizationCore();
+
+
 builder.Services.AddLocalization();
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+
+// Localization
+var httpClient = host.Services.GetRequiredService<HttpClient>();
+
+var cultureName =
+    await httpClient.GetStringAsync("Culture/Get");
+
+var culture = new CultureInfo(cultureName);
+
+CultureInfo.DefaultThreadCurrentCulture = culture;
+CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+await host.RunAsync();

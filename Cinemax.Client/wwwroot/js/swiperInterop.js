@@ -7,22 +7,15 @@
         }
 
         new Swiper(element, {
-            //effect: "coverflow",
             grabCursor: true,
-            centeredSlides: true,
+
             slidesPerView: "auto",
             spaceBetween: 10,
 
-            //coverflowEffect: {
-            //    rotate: 10,
-            //    stretch: 0,
-            //    depth: 100,
-            //    modifier: 1,
-            //    slideShadows: false
-            //},
-
             loop: true,
-            grabCursor: true,
+            centeredSlides: false,
+            centerInsufficientSlides: true,
+
             freeMode: {
                 enabled: true,
                 sticky: true,
@@ -31,14 +24,15 @@
                 momentumVelocityRatio: 0.5,
                 momentumBounce: false
             },
+
             scrollbar: {
-                el: '.swiper-scrollbar',
+                el: element.querySelector(".swiper-scrollbar"),
                 draggable: true,
             },
+
             navigation: {
                 nextEl: element.querySelector(".swiper-button-next"),
                 prevEl: element.querySelector(".swiper-button-prev"),
-                addIcons: true,
             },
         });
     }

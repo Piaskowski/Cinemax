@@ -1,6 +1,8 @@
 ﻿using Cinemax.Application.Elements.Orders.Repositories;
 using Cinemax.Shared.Contracts.Common;
 using Cinemax.Shared.Contracts.Orders;
+using Cinemax.Shared.Contracts.Reservations;
+using Cinemax.Shared.Enums;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -26,7 +28,18 @@ namespace Cinemax.Application.Elements.Orders.Queries
                     CreatedByUserEmail = o.CreatedByUser != null ? o.CreatedByUser.Email : null,
                     ScreeningId = o.ScreeningId,
                     ScreeningDate = o.Screening.StartTime,
+                    Reservations = o.Reservations.Select(r => new AdminOrderReservationDto
+                    {
+                        Id = r.Id,
+                        Status = r.Status,
+                        SeatNum = r.Seat.Number,
+                        Row = r.Seat.Row,
+                        TicketType = r.TicketType,
+                    }).ToList(),
                     ReservationCount = o.Reservations.Count,
+                    TotalPrice = o.Reservations.Where(r => !r.Status.Equals(ReservationStatus.Expired) || 
+                        !r.Status.Equals(ReservationStatus.Cancelled))
+                        .Sum(r => r.FinalPrice),
                     Status = o.Status,
                     Source = o.Source,
                     CreatedAt = o.CreatedAt,

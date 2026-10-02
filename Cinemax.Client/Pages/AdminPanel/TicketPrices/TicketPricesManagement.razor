@@ -9,19 +9,19 @@
 @inject HttpClient _httpClient
 @inject NotificationService _notificationService
 
-<AdminContentCard Title="Cennik">
+<AdminContentCard Title="@CommonL["Txt_PriceList"]">
     <CardBody>
         <DataGrid @ref="_ticketPricesGrid" TItem="TicketPriceDto" LoadData="@LoadData">
             <GridToolbar>
                 <GridButton Icon="reload" OnClick="@RefreshDataAsync" />
-                <GridButton Text="Dodaj" Icon="add" Toggle="modal" 
-                    Target="@_createTicketPriceDialogId" />
+                <GridButton Text="@CommonL["Btn_Add"]" Icon="add" Toggle="modal"
+                            Target="@_createTicketPriceDialogId" />
             </GridToolbar>
             <GridColumns>
-                <GridColumn Title="Typ seansu" Field="t => t.ScreeningType" />
-                <GridColumn Title="Typ biletu" Field="t => t.TicketType" />
-                <GridColumn Title="Cena" Field="t => t.Price" />
-                <GridColumn Title="Aktywny" Field="@(x => x.IsActive ? "Tak" : "Nie")" />
+                <GridColumn Title="@CommonL["Txt_ScreeningType"]" Field="t => t.ScreeningType" />
+                <GridColumn Title="@CommonL["Txt_TicketType"]" Field="t => t.TicketType" />
+                <GridColumn Title="@CommonL["Txt_Price"]" Field="t => t.Price" />
+                <GridColumn Title="@CommonL["Txt_Active"]" Field="@(x => x.IsActive ? CommonL["Txt_Yes"] : CommonL["Txt_No"])" />
             </GridColumns>
             <GridRowActions Context="ticketPrice">
                 <GridButton Icon="edit" Toggle="modal" Target="@_createTicketPriceDialogId"
@@ -40,5 +40,5 @@
 <ConfirmDialog @ref="_deleteDialog"
                Id="@_deleteTicketPriceModalId"
                OnSubmit="@DeleteTicketPriceAsync"
-               Text="Czy na pewno chcesz usunąć tę cenę?"
+               Text="@CommonL["Info_PriceDeleteConfirmation"]"
                IsSubmitting="@_isDeleting" />

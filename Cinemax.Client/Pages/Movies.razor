@@ -1,0 +1,77 @@
+﻿@page "/movies"
+@using Cinemax.Shared.Contracts.Movies
+@using Cinemax.Client.Pages.Shared
+
+@inject HttpClient _httpClient
+@inject NavigationManager _navManager
+
+<Loader IsLoading="@_isLoading" />
+<h1 class="text-center">@CommonL["Txt_Movies"]</h1>
+<div class="container">
+    <div class="row g-3">
+        @foreach (var item in _movies)
+        {
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="movie-card">
+                    <a href="@($"/movies/{item.Id}")">
+                        <div class="movie-poster">
+                            <img src="@item.PosterUrl"
+                                 alt="@item.Title" />
+                        </div>
+
+                        <div class="movie-title">
+                            @item.Title
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+    <Pagination Page="@Page" 
+                TotalPages="@_totalPages" 
+                Url="/movies" />
+</div>
+
+@code {
+    private List<MovieDisplayCardDto> _movies = [];
+    private int _totalPages;
+    private bool _isLoading = false;
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "page")]
+    public int Page { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Page <= 0)
+        {
+            Page = 1;
+            var newUrl = $"/movies?page={Page}";
+
+            _navManager.NavigateTo(newUrl, replace: true);
+        }
+        else
+        {
+            await GetMovies();
+        }
+    }
+
+    private async Task GetMovies()
+    {
+        _isLoading = true;
+
+        try
+        {
+            var response = await _httpClient.GetAndReadAsync<GetMoviesResponse>($"api/movies?page={Page}");
+            if (response.IsSuccess)
+            {
+                _movies = response.Data!.Movies.ToList();
+                _totalPages = response.Data!.TotalPages;
+            }
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+}

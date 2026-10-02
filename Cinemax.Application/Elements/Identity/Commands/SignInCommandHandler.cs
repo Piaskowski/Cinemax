@@ -26,6 +26,9 @@ namespace Cinemax.Application.Elements.Identity.Commands
             if (!isValidPassword)
                 throw new ValidationException([AuthMessages.Error_WrongLoginOrPassword]);
 
+            if (!user.EmailConfirmed)
+                throw new ValidationException([AuthMessages.Error_EmailNotConfirmed]);
+
             if (!user.IsActive)
                 throw new ValidationException([AuthMessages.Error_InactiveUser]);
 

@@ -106,6 +106,168 @@ namespace Cinemax.Shared.Resources.Validation {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Brak ustawionego adresu URL aplikacji.
+        /// </summary>
+        public static string Error_AppUrlNotConfigured {
+            get {
+                return ResourceManager.GetString("Error_AppUrlNotConfigured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie można zmienić statusu zamówienia {0}.
+        /// </summary>
+        public static string Error_CannotChangeOrderStatus {
+            get {
+                return ResourceManager.GetString("Error_CannotChangeOrderStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie można zmienić statusu rezerwacji {0}.
+        /// </summary>
+        public static string Error_CannotChangeReservationStatus {
+            get {
+                return ResourceManager.GetString("Error_CannotChangeReservationStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie można zmienić statusu {0}.
+        /// </summary>
+        public static string Error_CannotChangeStatus {
+            get {
+                return ResourceManager.GetString("Error_CannotChangeStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie można znaleźć rezerwacji: {0}.
+        /// </summary>
+        public static string Error_CannotFindReservartion {
+            get {
+                return ResourceManager.GetString("Error_CannotFindReservartion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Szablon {0] nie został znaleziony..
+        /// </summary>
+        public static string Error_EmailTemplateNotFound {
+            get {
+                return ResourceManager.GetString("Error_EmailTemplateNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wystąpiły błędy.
+        /// </summary>
+        public static string Error_ErrorsOccured {
+            get {
+                return ResourceManager.GetString("Error_ErrorsOccured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nieprawidłowy link aktywacyjny.
+        /// </summary>
+        public static string Error_InvalidActivationUrl {
+            get {
+                return ResourceManager.GetString("Error_InvalidActivationUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nieprawidłowe rozszerzenie pliku..
+        /// </summary>
+        public static string Error_InvalidFileExtension {
+            get {
+                return ResourceManager.GetString("Error_InvalidFileExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Brak wyników..
+        /// </summary>
+        public static string Error_NoResults {
+            get {
+                return ResourceManager.GetString("Error_NoResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zamówienie nie może zostać zatwierdzone w obecnym stanie..
+        /// </summary>
+        public static string Error_OrderCannotBeConfirmedInCurrentState {
+            get {
+                return ResourceManager.GetString("Error_OrderCannotBeConfirmedInCurrentState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zamówienie zawiera duplikaty miejsc..
+        /// </summary>
+        public static string Error_OrderContainsDuplicateSeats {
+            get {
+                return ResourceManager.GetString("Error_OrderContainsDuplicateSeats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu  Zamówienie zawiera nieprawidłowe miejsca..
+        /// </summary>
+        public static string Error_OrderContainsInvalidSeats {
+            get {
+                return ResourceManager.GetString("Error_OrderContainsInvalidSeats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zamówienie nie zawiera żadnych rezerwacji oczekujących na zatwierdzenie..
+        /// </summary>
+        public static string Error_OrderContainsNoPendingReservations {
+            get {
+                return ResourceManager.GetString("Error_OrderContainsNoPendingReservations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zamówienie nie zawiera miejsc..
+        /// </summary>
+        public static string Error_OrderContainsNoSeats {
+            get {
+                return ResourceManager.GetString("Error_OrderContainsNoSeats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Dostępność wybranych miejsc wygasła. Proszę wybrać ponownie..
+        /// </summary>
+        public static string Error_SelectedSeatsExpired {
+            get {
+                return ResourceManager.GetString("Error_SelectedSeatsExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Coś poszło nie tak. Skontaktuj się z administratorem!.
+        /// </summary>
+        public static string Error_SomethingWentWrong {
+            get {
+                return ResourceManager.GetString("Error_SomethingWentWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybrany typ biletu jest niedostępny dla tego miejsca..
+        /// </summary>
+        public static string Error_TicketTypeUnavailableForSeat {
+            get {
+                return ResourceManager.GetString("Error_TicketTypeUnavailableForSeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Data musi być przyszła..
         /// </summary>
         public static string FutureDate {
@@ -286,6 +448,33 @@ namespace Cinemax.Shared.Resources.Validation {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie znaleziono zamówienia..
+        /// </summary>
+        public static string NotFound_Order {
+            get {
+                return ResourceManager.GetString("NotFound_Order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie znaleziono seansu..
+        /// </summary>
+        public static string NotFound_Screening {
+            get {
+                return ResourceManager.GetString("NotFound_Screening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie znaleziono użytkownika.
+        /// </summary>
+        public static string NotFound_User {
+            get {
+                return ResourceManager.GetString("NotFound_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie przesłano wymaganych danych..
         /// </summary>
         public static string NotNull {
@@ -417,6 +606,15 @@ namespace Cinemax.Shared.Resources.Validation {
         public static string Required_ScreeningType {
             get {
                 return ResourceManager.GetString("Required_ScreeningType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Typ siedzenia jest wymagany..
+        /// </summary>
+        public static string Required_SeatType {
+            get {
+                return ResourceManager.GetString("Required_SeatType", resourceCulture);
             }
         }
         

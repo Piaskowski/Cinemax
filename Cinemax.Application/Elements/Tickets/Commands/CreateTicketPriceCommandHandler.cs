@@ -18,7 +18,8 @@ namespace Cinemax.Application.Elements.Tickets.Commands
             var exists = await _repository.Query()
                 .AnyAsync(
                     t => t.ScreeningType == request.ScreeningType &&
-                    t.TicketType == request.TicketType,
+                    t.TicketType == request.TicketType &&
+                    t.SeatType == request.SeatType,
                     ct
                 );
 
@@ -29,10 +30,11 @@ namespace Cinemax.Application.Elements.Tickets.Commands
             {
                 ScreeningType = request.ScreeningType,
                 TicketType = request.TicketType,
+                SeatType = request.SeatType,
                 Price = request.Price,
             };
 
-            await _repository.CreateAsync(ticketPrice);
+            await _repository.CreateAsync(ticketPrice, ct);
         }
     }
 }

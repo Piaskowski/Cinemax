@@ -17,11 +17,10 @@ namespace Cinemax.Domain.Entities.Orders
         public Guid ScreeningId { get; set; }
         public Screening Screening { get; set; } = default!;
         public ICollection<Reservation> Reservations { get; set; } = [];
-        [Required]
-        [MaxLength(32)]
-        public required string PublicToken { get; set; }
         public OrderStatus Status { get; set; }
         public OrderSource Source { get; set; }
+        [MaxLength(64)]
+        public string? QrToken { get; set; }
         public required DateTime CreatedAt { get; set; }
         public required DateTime ExpiresAt { get; set; }
     }

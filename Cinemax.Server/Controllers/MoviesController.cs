@@ -10,6 +10,15 @@ namespace Cinemax.Server.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
+        [HttpGet]
+        public async Task<IActionResult> GetMovies([FromQuery] int page)
+        {
+            var query = new GetMoviesQuery(page);
+
+            var response = await _mediator.Send(query);
+            return Ok(response);
+        }
+
         [HttpGet("highlights")]
         public async Task<IActionResult> GetMovieSwipers()
         {

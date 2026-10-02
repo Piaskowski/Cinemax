@@ -23,6 +23,10 @@ namespace Cinemax.Application.Elements.Screenings.Commands
                 .NotNull()
                 .WithMessage(ValidationMessages.Required_Date);
 
+            RuleFor(x => x.Request.ScreeningType)
+                .NotNull()
+                .WithMessage(ValidationMessages.Required_ScreeningType);
+
             RuleFor(x => x.Request.StartTime)
                 .GreaterThan(DateTime.UtcNow)
                 .WithMessage(ValidationMessages.FutureDate);

@@ -1,0 +1,104 @@
+﻿@page "/payment/result"
+@using Cinemax.Shared.Contracts.Orders
+@using Cinemax.Shared.Enums
+@using Microsoft.AspNetCore.Components.Authorization
+
+@inject HttpClient _httpClient
+@inject NavigationManager _navigationManager
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body text-center">
+
+            @if (Result == "success")
+            {
+                <div class="alert alert-success">
+                    <h3>@CommonL["Info_PaymentSuccessful"]</h3>
+                    <p>
+                        <strong class="d-block mb-2 text-center">
+                            @CommonL["Txt_OrderCreated"]. @CommonL["Txt_OrderNumber"]:
+                        </strong>
+                        <h3 class="text-center">@OrderId</h3>
+                        <AuthorizeView>
+                            <Authorized>
+                                <br />@CommonL["Info_OrderDetails"] <a href="@($"/account/orders/{OrderId}")">
+                                    @CommonL["Txt_Here"].
+                                </a>
+                            </Authorized>
+                        </AuthorizeView>
+                        <br /> @CommonL["Info_OrderDetailsSentToEmail"].
+                    </p>
+
+                </div>
+            }
+            else if (Result == "cancel")
+            {
+                <div class="alert alert-warning">
+                    <h3>@CommonL["Info_PaymentUncompleted"]</h3>
+                    <p>
+                        @CommonL["Info_NotCharged"].
+                    </p>
+                </div>
+
+                <AuthorizeView>
+                    <Authorized>
+                        <button class="btn btn-primary"
+                                @onclick="RetryPayment"
+                                disabled="@_isLoading">
+                            @CommonL["Txt_RetryPayment"]
+                        </button>
+
+                        <a class="btn btn-outline-secondary ms-2"
+                           href="@($"/account/orders/{OrderId}")">
+                            @CommonL["Txt_GoToOrderDetails"]
+                        </a>
+                    </Authorized>
+
+                    <NotAuthorized>
+                        <p class="mt-3">
+                            @CommonL["Info_GuestCreateNewOrder"].
+                        </p>
+                    </NotAuthorized>
+                </AuthorizeView>
+            }
+
+        </div>
+    </div>
+</div>
+
+@code{
+    [SupplyParameterFromQuery]
+    public Guid OrderId { get; set; }
+
+    [SupplyParameterFromQuery]
+    public string? Result { get; set; }
+
+    private bool _isLoading;
+
+    private async Task RetryPayment()
+    {
+        try
+        {
+            _isLoading = true;
+
+            var response = await _httpClient.PostAsync(
+                $"api/orders/{OrderId}/retry-payment", null);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return;
+            }
+
+            var result =
+                await response.Content.ReadFromJsonAsync<PurchaseTicketsResponse>();
+
+            _navigationManager.NavigateTo(
+                result!.CheckoutUrl,
+                forceLoad: true);
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+}

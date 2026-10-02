@@ -1,6 +1,7 @@
 ﻿using Cinemax.Application.Elements.Movies.Repositories;
 using Cinemax.Application.Elements.Screenings.Repositories;
 using Cinemax.Shared.Contracts.Movies;
+using Cinemax.Shared.Enums;
 using Cinemax.Shared.Settings;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -18,22 +19,31 @@ namespace Cinemax.Application.Elements.Movies.Queries
         public async Task<GetMovieCarouselsResponse> Handle(GetMovieCarouselsQuery query, CancellationToken ct)
         {
             var moviesOnScreen = await _screenings.Query()
-                .Where(s => s.Status == Shared.Enums.ScreeningStatus.Scheduled && s.Movie.IsActive)
-                .Take(_moviesPerCarousel)
-                .Select(s => new MovieCarouselDto
+                .Where(s =>
+                    s.Status == ScreeningStatus.Scheduled &&
+                    s.Movie.IsActive)
+                .GroupBy(s => new
                 {
-                    Id = s.Movie.Id,
-                    Title = s.Movie.Title,
-                    PosterUrl = s.Movie.PosterUrl
+                    s.Movie.Id,
+                    s.Movie.Title,
+                    s.Movie.PosterUrl
                 })
-                .ToListAsync();
+                .OrderBy(g => g.Min(s => s.StartTime))
+                .Take(_moviesPerCarousel)
+                .Select(g => new MovieDisplayCardDto
+                {
+                    Id = g.Key.Id,
+                    Title = g.Key.Title,
+                    PosterUrl = g.Key.PosterUrl
+                })
+                .ToListAsync(ct);
 
             var movisComingSoon = await _movies.Query()
             .Where(m =>
                 m.IsActive &&
                 !_screenings.Query().Any(s => s.MovieId == m.Id))
             .Take(_moviesPerCarousel)
-            .Select(m => new MovieCarouselDto
+            .Select(m => new MovieDisplayCardDto
             {
                 Id = m.Id,
                 Title = m.Title,

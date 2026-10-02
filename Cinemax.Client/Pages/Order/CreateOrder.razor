@@ -1,0 +1,72 @@
+﻿@page "/order/{Id:guid}"
+
+@using Cinemax.Client.Pages.Shared
+@using Cinemax.Client.Services
+@using Cinemax.Shared.Contracts.Scrennings
+@using Cinemax.Shared.Contracts.Seats
+@using Cinemax.Shared.Enums
+@using Microsoft.AspNetCore.Components.Authorization
+
+@inject HttpClient _httpClient
+@inject NavigationManager _navigationManager
+@inject AuthenticationStateProvider _authStateProvider
+
+<Loader IsLoading="_isLoading" />
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>@CommonL["Title_SelectSeats"]</h2>
+        </div>
+        <div class="card-body">
+            <ScreeningDetails MovieTitle="@_screening.MovieTitle" 
+                PosterUrl="@_screening.PosterUrl"
+                StartTime="@_screening.StartTime"
+                DurationMinutes="@_screening.DurationMinutes" />
+
+            @if (_stage == OrderStage.SelectingSeats)
+            {
+                <SelectSeats CinemaHallNumber="@_screening.CinemaHallNumber"
+                             SeatsRows="@_screening.SeatsRows"
+                             SelectedSeats="@_selectedSeats"
+                             ConfirmSeats="@ProceedToTicketSelection"/>
+            }
+            else if (_stage == OrderStage.EditingTickets)
+            {
+                <SelectTickets SelectedSeats="@_selectedSeats"
+                               Tickets="@_tickets"
+                               TicketPrices="@_ticketPrices"
+                               ConfirmTickets="@ProceedToOrderSummary"
+                               GoBack="@GoToSeatsSelection" />       
+            }
+            else if (_stage == OrderStage.OrderSummary)
+            {
+                <OrderSummary OrderSummaryDto="@_orderSummary"
+                              Order="@_order"
+                              OnValidSubmit="@OnValidSubmit"
+                GoBack="@BackToTicketSelection" />
+            }
+            else if(_stage == OrderStage.OrderCreated)
+            {
+                <div class="alert alert-success mt-5 mb-5">
+                    <strong class="d-block mb-2 text-center">
+                        @CommonL["Txt_OrderCreated"]. @CommonL["Txt_OrderNumber"]:
+                    </strong>
+                    <h3 class="text-center">@_orderId</h3>
+                    <p>
+                        @if (_action == OrderAction.Reserve)
+                        {
+                            <span>@CommonL["Txt_ReservationExpiresOn"]: <strong>@_expiresAt!.Value.ToString($"dd.MM.yyyy '{CommonL["Txt_At"]}' HH:mm")</strong></span>
+                        }
+                        <AuthorizeView>
+                            <Authorized>
+                                <br />@CommonL["Info_OrderDetails"] <a href="@($"/account/orders/{_orderId}")">
+                                    @CommonL["Txt_Here"].
+                                </a>
+                            </Authorized>
+                        </AuthorizeView>
+                    </p>
+                </div>
+            }
+        </div>
+    </div>
+</div>

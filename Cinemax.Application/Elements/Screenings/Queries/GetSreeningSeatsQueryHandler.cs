@@ -5,6 +5,7 @@ using Cinemax.Domain.Constants;
 using Cinemax.Shared.Contracts.Scrennings;
 using Cinemax.Shared.Contracts.Seats;
 using Cinemax.Shared.Enums;
+using Cinemax.Shared.Resources.Validation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -49,7 +50,7 @@ namespace Cinemax.Application.Elements.Screenings.Queries
                         })
                         .OrderBy(row => row.Row)
                         .ToList()
-                }).FirstOrDefaultAsync(ct) ?? throw new NotFoundException("Brak wyników.");
+                }).FirstOrDefaultAsync(ct) ?? throw new NotFoundException(ValidationMessages.Error_NoResults);
 
             // == Collecting booked/sold seats for the given screening ==
             var ignoredStatuses = new[]

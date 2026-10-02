@@ -343,7 +343,7 @@ code {
     font-size: 0.875rem;
 }
 
-/* SWIPERS */
+/* MOVIE CARDS, SWIPERS */
 .movies-container {
     width: 100%;
     max-width: 100%;
@@ -387,18 +387,30 @@ code {
     transition-duration: 0.4s;
 }
 
-.movie-swiper .swiper-slide:hover {
+.movie-card {
+    width: 250px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.movie-swiper .swiper-slide:hover,
+.movie-card:hover {
     transform: scale(1.1);
 }
 
-.movie-swiper .swiper-slide a{
+.movie-swiper .swiper-slide a,
+.movie-card a{
     color: white;
     text-decoration: none;
 }
 
 .movie-poster {
     width: 100%;
-    aspect-ratio: 5 / 7;
+    aspect-ratio: 5 / 7.4;
     overflow: hidden;
     flex-shrink: 0;
     border-radius: 12px;
@@ -459,8 +471,19 @@ code {
 }
 
 /* COMMON */
+.con-flex-center {
+    display: flex;
+    justify-content: center;
+}
+
 .uppercase {
     text-transform: uppercase;
+}
+
+.gradient-space {
+    height: 32px;
+    box-shadow: 0 -1px #ddd;
+    background-image: linear-gradient(#f4f4f4, #fff);
 }
 
 .gold-gradient {
@@ -495,4 +518,71 @@ code {
 
 .breadcrumbs i {
     color: gray;
+}
+
+#summary {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#selected-seats {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.btn-next {
+    --bs-btn-color: white;
+    --bs-btn-bg: crimson;
+    --bs-btn-border-color: crimson;
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: lightcoral;
+    --bs-btn-hover-border-color: lightcoral;
+    --bs-btn-active-color: black;
+    --bs-btn-active-bg: lightcoral;
+    --bs-btn-active-border-color: lightcoral;
+    width: 100%;
+}
+
+.btn-cancel {
+    --bs-btn-color: crimson;
+    --bs-btn-bg: white;
+    --bs-btn-border-color: white;
+    --bs-btn-hover-color: lightcoral;
+    --bs-btn-hover-bg: white;
+    --bs-btn-hover-border-color: white;
+    --bs-btn-active-color: lightcoral;
+    --bs-btn-active-bg: white;
+    --bs-btn-active-border-color: white;
+    width: 100%;
+    text-align: left;
+}
+
+/* PAGINATION */
+.btn-page {
+    padding: 10px 10px;
+    min-width: 45px;
+    text-align: center;
+    margin-bottom: 24px;
+    margin-right: 3px;
+    background-color: crimson;
+    display: inline-block;
+    transition: all 0.3s;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.btn-page:hover {
+    background-color: lightcoral;
+}
+
+.btn-page.active {
+    border-color: darksalmon;
+    background-color: darksalmon;
+    color: black;
+}
+
+.btn-page.disabled-link {
+    background-color: gray;
+    pointer-events: none;
+    cursor: default;
 }

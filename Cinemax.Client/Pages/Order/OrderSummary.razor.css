@@ -1,0 +1,44 @@
+﻿
+#order-form {
+    max-width: 600px;
+    width: auto;
+}
+
+#summary-details {
+    flex-direction: column;
+}
+
+.order-summary {
+    width: 100%;
+    max-width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.ticket-count {
+    margin-left: 8px;
+    opacity: 0.7;
+}
+
+.summary-total {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#order-form label,
+#order-form input {
+    margin: 10px 0 10px 0;
+}
+
+#order-form label {
+    font-weight: bold;
+}

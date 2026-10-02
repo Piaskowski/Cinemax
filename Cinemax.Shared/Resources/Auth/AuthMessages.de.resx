@@ -117,14 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Btn_ForgotPassword" xml:space="preserve">
+    <value>Ich habe mein Passwort vergessen</value>
+  </data>
   <data name="CreateSuccess" xml:space="preserve">
     <value>Der Benutzer wurde erstellt.</value>
+  </data>
+  <data name="Error_EmailNotConfirmed" xml:space="preserve">
+    <value>Die Email-Adresse wurde nicht bestätigt.</value>
   </data>
   <data name="Error_InactiveUser" xml:space="preserve">
     <value>Das Konto ist inaktiv.</value>
   </data>
+  <data name="Error_InvalidResetPasswordUrl" xml:space="preserve">
+    <value>Ungültiger Link zur Passwortzurücksetzung</value>
+  </data>
+  <data name="Error_LoginFailed" xml:space="preserve">
+    <value>Anmeldung fehlgeschlagen</value>
+  </data>
   <data name="Error_WrongLoginOrPassword" xml:space="preserve">
     <value>Email oder Passwort ist falsh.</value>
+  </data>
+  <data name="Info_AccountCreated" xml:space="preserve">
+    <value>Das Konto wurde erstellt</value>
   </data>
   <data name="Info_AccountSuccessfullyCreated" xml:space="preserve">
     <value>Ihr Konto wurde erstellt. Ein Aktivierungslink wurde an die von Ihnen angegebene E-Mail-Adresse gesendet.</value>
@@ -152,5 +167,17 @@
   </data>
   <data name="Required_Role" xml:space="preserve">
     <value>Role ist erforderlich.</value>
+  </data>
+  <data name="Title_CompleteRegistration" xml:space="preserve">
+    <value>Abschluss der Registrierun</value>
+  </data>
+  <data name="Title_ConfirmEmail" xml:space="preserve">
+    <value>Aktivierung der E-Mail-Adresse</value>
+  </data>
+  <data name="Title_ForgotPassword" xml:space="preserve">
+    <value>Passwortzurücksetzung</value>
+  </data>
+  <data name="Txt_Role" xml:space="preserve">
+    <value>Rolle</value>
   </data>
 </root>

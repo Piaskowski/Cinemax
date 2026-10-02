@@ -267,4 +267,70 @@
   <data name="NotFound_Movie" xml:space="preserve">
     <value>Der Film wurde nicht gefunden.</value>
   </data>
+  <data name="Required_SeatType" xml:space="preserve">
+    <value>Die Art des Sitzplatzes ist erforderlich.</value>
+  </data>
+  <data name="Error_AppUrlNotConfigured" xml:space="preserve">
+    <value>App-URL ist nicht konfiguriert</value>
+  </data>
+  <data name="Error_EmailTemplateNotFound" xml:space="preserve">
+    <value>Vorlage {0} wurde nicht gefunden</value>
+  </data>
+  <data name="Error_InvalidActivationUrl" xml:space="preserve">
+    <value>Ungültiger Aktivierungslink</value>
+  </data>
+  <data name="NotFound_User" xml:space="preserve">
+    <value>Benutzer nicht gefunden</value>
+  </data>
+  <data name="NotFound_Order" xml:space="preserve">
+    <value>Bestellung nicht gefunden.</value>
+  </data>
+  <data name="Error_CannotChangeStatus" xml:space="preserve">
+    <value>Status {0} kann nicht geändert werden</value>
+  </data>
+  <data name="Error_CannotChangeReservationStatus" xml:space="preserve">
+    <value>Reservationstatus {0} kann nicht geändert werden</value>
+  </data>
+  <data name="Error_CannotChangeOrderStatus" xml:space="preserve">
+    <value>Bestellungsstatus {0} kann nicht geändert werden</value>
+  </data>
+  <data name="Error_CannotFindReservartion" xml:space="preserve">
+    <value>Reservierung nicht gefunden: {0}</value>
+  </data>
+  <data name="Error_OrderContainsNoSeats" xml:space="preserve">
+    <value>Die Bestellung enthält keine Sitzplätze.</value>
+  </data>
+  <data name="Error_OrderContainsDuplicateSeats" xml:space="preserve">
+    <value>Die Bestellung enthält doppelte Sitzplätze.</value>
+  </data>
+  <data name="Error_OrderContainsInvalidSeats" xml:space="preserve">
+    <value>Die Bestellung enthält ungültige Sitzplätze.</value>
+  </data>
+  <data name="Error_SelectedSeatsExpired" xml:space="preserve">
+    <value>Die Verfügbarkeit der ausgewählten Sitzplätze ist abgelaufen. Bitte wählen Sie erneut.</value>
+  </data>
+  <data name="Error_TicketTypeUnavailableForSeat" xml:space="preserve">
+    <value>Die gewählte Ticketart ist für diesen Sitzplatz nicht verfügbar.</value>
+  </data>
+  <data name="Error_OrderCannotBeConfirmedInCurrentState" xml:space="preserve">
+    <value>Die Bestellung kann im aktuellen Zustand nicht bestätigt werden.</value>
+  </data>
+  <data name="Error_OrderContainsNoPendingReservations" xml:space="preserve">
+    <value>Die Bestellung enthält keine Reservierungen, die auf eine Bestätigung warten.</value>
+  </data>
+  <data name="Error_NoResults" xml:space="preserve">
+    <value>Keine Ergebnisse gefunden.</value>
+  </data>
+  <data name="NotFound_Screening" xml:space="preserve">
+    <value>Die Vorstellung wurde nicht gefunden.</value>
+  </data>
+  <data name="Error_ErrorsOccured" xml:space="preserve">
+    <value>Fehler sind aufgetreten</value>
+  </data>
+  <data name="Error_SomethingWentWrong" xml:space="preserve">
+    <value>Etwas ist schiefgelaufen. Bitte kontaktieren Sie den Administrator!</value>
+  </data>
+  <data name="Error_InvalidFileExtension" xml:space="preserve">
+    <value>Ungültige Dateiendung</value>
+  </data>
 </root>

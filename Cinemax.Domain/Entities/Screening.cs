@@ -10,6 +10,7 @@ namespace Cinemax.Domain.Entities
         public Guid CinemaHallId { get; set; }
         public CinemaHall CinemaHall { get; set; } = default!;
         public DateTime StartTime { get; set; }
+        public ScreeningType ScreeningType { get; set; }
         public ScreeningStatus Status { get; set; } = ScreeningStatus.Scheduled;
     }
 }

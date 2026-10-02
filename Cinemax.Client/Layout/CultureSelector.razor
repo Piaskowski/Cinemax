@@ -1,0 +1,83 @@
+﻿@using System.Globalization
+@using Cinemax.Client.Configuration
+
+@inject NavigationManager _navManager
+@inject IConfiguration _configuration
+
+<div class="dropdown">
+    <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center gap-2"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false">
+        @if(_selectedCulture is not null)
+        {
+            <img src="@GetFlagPath(_selectedCulture)"
+                alt="@_selectedCulture.Name"
+                width="24"
+                height="18" />
+                <span>@_selectedCulture.Name</span>
+        }
+    </button>
+
+    <ul class="dropdown-menu">
+        @foreach (var culture in _supportedCultures)
+        {
+            <li>
+                <button class="dropdown-item d-flex align-items-center gap-2"
+                        type="button"
+                        @onclick="() => ChangeCulture(culture)">
+                    @if (culture is not null)
+                    {
+                        <img src="@GetFlagPath(culture)"
+                             alt="@culture.Name"
+                             width="24"
+                             height="18" />
+                        <span>@culture.Name</span>
+                    }
+                </button>
+            </li>
+        }
+    </ul>
+</div>
+
+@code {
+            private IEnumerable<CultureOption> _supportedCultures = [];
+            private CultureOption? _selectedCulture;
+
+            protected override void OnInitialized()
+            {
+
+                _supportedCultures =
+                    _configuration
+                        .GetSection("Localization:SupportedCultures")
+                        .Get<IEnumerable<CultureOption>>()
+                    ?? [];
+
+                _selectedCulture = _supportedCultures
+                    .FirstOrDefault(x =>
+                    x.Code == CultureInfo.CurrentUICulture.Name);
+            }
+
+            private void ChangeCulture(CultureOption culture)
+            {
+                if (CultureInfo.CurrentUICulture.Name == culture.Code)
+                    return;
+
+                var uri = new Uri(_navManager.Uri)
+                    .GetComponents(
+                        UriComponents.PathAndQuery,
+                        UriFormat.Unescaped);
+
+                var cultureEscaped = Uri.EscapeDataString(culture.Code);
+                var uriEscaped = Uri.EscapeDataString(uri);
+
+                _navManager.NavigateTo(
+                    $"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}",
+                    forceLoad: true);
+            }
+
+            private static string GetFlagPath(CultureOption culture)
+            {
+                return $"/images/flags/{culture.Code}.svg";
+            }
+}

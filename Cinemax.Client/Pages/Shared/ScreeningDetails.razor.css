@@ -1,0 +1,23 @@
+﻿.screening-details {
+    height: auto;
+    max-height: 300px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background-color: lightslategray;
+    color: white;
+    border-radius: 10px;
+}
+
+    .screening-details p {
+        margin-bottom: 5px;
+    }
+
+    .screening-details .poster-container {
+        width: auto;
+        max-width: 150px;
+    }
+
+    .screening-details img {
+        border: 2px solid white;
+        border-radius: inherit;
+    }

@@ -1,0 +1,59 @@
+﻿@using Cinemax.Shared.Contracts.Seats
+@using Cinemax.Shared.Contracts.TicketPrices
+
+<div id="select-tickets" class="container">
+    <h1>@CommonL["Title_SelectTickets"]</h1>
+    <p>@CommonL["Txt_SeatsCount"]: @SelectedSeats.Count. @CommonL["Txt_SelectTicketTypes"]:</p>
+    <div id="tickets" class="container align-items-center">
+        @foreach (var ticket in Tickets)
+        {
+            <div class="gradient-space"></div>
+            <div class="row ticket-row">
+                <div class="col-md-1">
+                    <i class="bi bi-ticket-detailed bi-align-center fs-1 gold-gradient"></i>
+                </div>
+                <div class="col-md-1">
+                    @ticket.Seat.Type
+                </div>
+                <div class="col-md-2 text-end">
+                    @CommonL["Txt_Row"]: @ticket.Seat.Row | @CommonL["Txt_SeatNumber"] @ticket.Seat.Number
+                </div>
+                <div class="col-md-2">
+                    <InputSelect class="form-select" @bind-Value="ticket.TicketType" @bind-Value:after="() => OnTicketTypeChanged(ticket)">
+                        @foreach (var ticketPrice in TicketPrices.Where(t => t.SeatType == ticket.Seat.Type))
+                        {
+                            <option value="@ticketPrice.TicketType">@ticketPrice.TicketType</option>
+                        }
+                    </InputSelect>
+                </div>
+                <div class="col-md-1">@ticket.Price @CommonL["Txt_Pln"]</div>
+            </div>
+        }
+        <div id="summary">
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <a class="btn btn-cancel" @onclick="GoBack"><i class="bi bi-caret-left-fill"></i>@CommonL["Title_SelectSeats"]</a>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-next" disabled="@(!(Tickets.Count > 0))" @onclick="ConfirmTickets">@CommonL["Btn_Submit"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public List<ScreeningSeatDto> SelectedSeats { get; set; } = [];
+    [Parameter] public List<Ticket> Tickets { get; set; } = [];
+    [Parameter] public IEnumerable<SelectTicketPriceDto> TicketPrices { get; set; } = [];
+    [Parameter] public EventCallback ConfirmTickets { get; set; }
+    [Parameter] public EventCallback GoBack { get; set; }
+
+    private void OnTicketTypeChanged(Ticket ticket)
+    {
+        ticket.Price = TicketPrices
+                    .Where(t => t.TicketType == ticket.TicketType && t.SeatType == ticket.Seat.Type)
+                    .Select(t => t.Price)
+                    .First();
+    }
+}

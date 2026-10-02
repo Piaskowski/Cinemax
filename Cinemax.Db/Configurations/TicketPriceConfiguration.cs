@@ -1,4 +1,5 @@
 ﻿using Cinemax.Domain.Entities.Orders;
+using Cinemax.Shared.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -17,11 +18,14 @@ namespace Cinemax.Db.Configurations
             builder.Property(x => x.Price)
                 .HasPrecision(18, 2);
 
-            builder.HasIndex(x => new { x.ScreeningType, x.TicketType })
+            builder.HasIndex(x => new { x.ScreeningType, x.TicketType, x.SeatType })
                 .IsUnique();
 
             builder.Property(x => x.IsActive)
                 .HasDefaultValue(true);
+
+            builder.Property(x => x.SeatType)
+                .HasDefaultValue(SeatType.Standard);
         }
     }
 }

@@ -5,5 +5,6 @@ namespace Cinemax.Application.Elements.Notifications.Repositories
 {
     public interface IEmailMessageRepository : IBaseRepository<MessageTemplate, Guid>
     {
+        Task<MessageTemplate?> GetByCode(string code);
     }
 }

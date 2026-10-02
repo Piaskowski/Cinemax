@@ -1,4 +1,6 @@
 ﻿
+using Cinemax.Shared.Resources.Validation;
+
 namespace Cinemax.Application.Exceptions
 {
     public class ValidationException : Exception
@@ -6,7 +8,7 @@ namespace Cinemax.Application.Exceptions
         public IReadOnlyList<string> Errors { get; }
 
         public ValidationException(IEnumerable<string> errors)
-            : base("Wystąpiły błędy")
+            : base(ValidationMessages.Error_ErrorsOccured)
         {
             Errors = [.. errors];
         }

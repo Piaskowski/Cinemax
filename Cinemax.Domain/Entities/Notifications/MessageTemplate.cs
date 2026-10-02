@@ -1,4 +1,5 @@
 ﻿
+using Cinemax.Shared.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cinemax.Domain.Entities.Notifications
@@ -9,6 +10,7 @@ namespace Cinemax.Domain.Entities.Notifications
         [Required]
         [MaxLength(100)]
         public required string Code; 
+        public EmailTemplateType Type { get; set; }
         [Required]
         [MaxLength(256)]
         public required string Subject { get; set; }

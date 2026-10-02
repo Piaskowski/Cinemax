@@ -1,0 +1,103 @@
+﻿@page "/complete-registration"
+@using Cinemax.Client.Pages.Shared
+@using Cinemax.Shared.Contracts.Identity
+@using Cinemax.Shared.Resources.Auth
+
+@inject HttpClient _httpClient
+@inject IStringLocalizer<AuthMessages> AuthL
+@inject IStringLocalizer<CommonMessages> CommonL
+
+<Cinemax.Client.Pages.Shared.Loader IsLoading="_isLoading" />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <EditForm Enhance Model="_model" OnValidSubmit="@HandleLogin">
+                <DataAnnotationsValidator />
+                <div class="card">
+                    <div class="card-header">@AuthL["Title_CompleteRegistration"]</div>
+                    <div class="card-body">
+                        @if (!string.IsNullOrEmpty(_errorMessage))
+                        {
+                            <FormAlert Title="@_errorMessage"
+                                       Errors="@_errors"
+                                       Type="AlertType.Error" />
+                        }
+                        @if (!string.IsNullOrEmpty(_successMessage))
+                        {
+                            <FormAlert Title="Konto utworzone"
+                                       Message="@_successMessage"
+                                       Type="AlertType.Success" />
+                        }
+                        <div class="form-group mt-3">
+                            <label class="form-label">@AuthL["Label_Password"]:</label>
+                            <input id="login-password" type="password" @bind="_model.Password" class="form-control"></input>
+                            <div id="login-password-validation" class="alert-danger">
+                                <ValidationMessage For="@(() => _model.Password)" />
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label">@AuthL["Label_ConfirmPassword"]:</label>
+                            <InputText id="register-confirm-password-input" type="password" @bind-value="_model.ConfirmPassword" class="form-control"></InputText>
+                            <div id="register-confirm-password-validation" class="alert-danger">
+                                <ValidationMessage For="@(() => _model.ConfirmPassword)" />
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <button id="login-submit-button" class="btn btn-outline-primary float-end" type="submit">@CommonL["Btn_Submit"]</button>
+                        </div>
+                    </div>
+                    </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "userId")]
+    public Guid UserId { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "emailToken")]
+    public string EmailToken { get; set; } = default!;
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "passwordToken")]
+    public string PasswordToken { get; set; } = default!;
+
+    private ResetPasswordModel _model = new();
+
+    private string? _successMessage;
+    private string? _errorMessage;
+    private IEnumerable<string> _errors = [];
+    private bool _isLoading = false;
+
+    private async Task HandleLogin()
+    {
+        _isLoading = true;
+        _errors = [];
+
+        try
+        {
+            var request = new CompleteRegistrationRequest
+            {
+                Password = _model.Password
+            };
+            var response = await _httpClient.PostAndReadAsync($"api/account/complete-registration?userId={UserId}&emailToken={EmailToken}&passwordToken={PasswordToken}", request);
+
+            if (response.IsSuccess)
+            {
+                _successMessage = "Rejestracja zakończona pomyślnie";
+            }
+            else
+            {
+                _errorMessage = response.ErrorMessage;
+                _errors = response.Errors;
+            }
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+}
