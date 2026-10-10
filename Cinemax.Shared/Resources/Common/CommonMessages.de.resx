@@ -462,4 +462,13 @@
   <data name="Info_NoMoviesOnScreen" xml:space="preserve">
     <value>Aktuell sind keine Filme verfügbar</value>
   </data>
+  <data name="Info_Success" xml:space="preserve">
+    <value>Erfolg</value>
+  </data>
+  <data name="Title_EditCinemaHall" xml:space="preserve">
+    <value>Bearbeitung des Kinosaals</value>
+  </data>
+  <data name="Title_CreateCinemaHall" xml:space="preserve">
+    <value>Erstellung des Kinosaals</value>
+  </data>
 </root>

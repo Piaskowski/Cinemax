@@ -81,7 +81,7 @@ namespace Cinemax.Application.Elements.Identity.Commands
             var values = new Dictionary<string, string>
             {
                 ["FirstName"] = user.FirstName,
-                ["CompleteRegistration"] = activationLink
+                ["CompleteRegistrationLink"] = activationLink
             };
 
             var notification = new EmailNotification

@@ -15,9 +15,9 @@
                     <div class="card-body">
                         @if (_emailConfirmed)
                         {
-                            <FormAlert Title="@_errorMessage"
-                                       Errors="@_errors"
-                                       Type="AlertType.Error" />
+                        <FormAlert Title="@CommonL["Info_Success"]"
+                                       Message="@AuthL["Info_EmailConfirmed"]"
+                                       Type="AlertType.Success" />
                         }
                         @if (!string.IsNullOrEmpty(_errorMessage))
                         {
@@ -58,7 +58,7 @@
 
         try
         {
-            var response = await _httpClient.GetAndReadAsync<bool>($"api/account/confirm-email");
+            var response = await _httpClient.GetAndReadAsync<bool>($"api/account/confirm-email?userId={UserId}&token={Token}");
 
             if (response.IsSuccess)
             {

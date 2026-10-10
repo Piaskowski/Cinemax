@@ -28,23 +28,26 @@
                                        Message="@_successMessage"
                                        Type="AlertType.Success" />
                         }
-                        <div class="form-group mt-3">
-                            <label class="form-label">@AuthL["Label_Password"]:</label>
-                            <input id="login-password" type="password" @bind="_model.Password" class="form-control"></input>
-                            <div id="login-password-validation" class="alert-danger">
-                                <ValidationMessage For="@(() => _model.Password)" />
+                        @if (!_isSubmitted)
+                        {
+                            <div class="form-group mt-3">
+                                <label class="form-label">@AuthL["Label_Password"]:</label>
+                                <input id="login-password" type="password" @bind="_model.Password" class="form-control"></input>
+                                <div id="login-password-validation" class="alert-danger">
+                                    <ValidationMessage For="@(() => _model.Password)" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <label class="form-label">@AuthL["Label_ConfirmPassword"]:</label>
-                            <InputText id="register-confirm-password-input" type="password" @bind-value="_model.ConfirmPassword" class="form-control"></InputText>
-                            <div id="register-confirm-password-validation" class="alert-danger">
-                                <ValidationMessage For="@(() => _model.ConfirmPassword)" />
+                            <div class="form-group mt-3">
+                                <label class="form-label">@AuthL["Label_ConfirmPassword"]:</label>
+                                <InputText id="register-confirm-password-input" type="password" @bind-value="_model.ConfirmPassword" class="form-control"></InputText>
+                                <div id="register-confirm-password-validation" class="alert-danger">
+                                    <ValidationMessage For="@(() => _model.ConfirmPassword)" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <button id="login-submit-button" class="btn btn-outline-primary float-end" type="submit">@CommonL["Btn_Submit"]</button>
-                        </div>
+                            <div class="form-group mt-3">
+                                <button id="login-submit-button" class="btn btn-outline-primary float-end" type="submit">@CommonL["Btn_Submit"]</button>
+                            </div>
+                        }
                     </div>
                     </div>
             </EditForm>
@@ -71,6 +74,7 @@
     private string? _errorMessage;
     private IEnumerable<string> _errors = [];
     private bool _isLoading = false;
+    private bool _isSubmitted = false;
 
     private async Task HandleLogin()
     {
@@ -87,7 +91,8 @@
 
             if (response.IsSuccess)
             {
-                _successMessage = "Rejestracja zakończona pomyślnie";
+                _successMessage = AuthL["Info_RegistrationCompleted"];
+                _isSubmitted = true;
             }
             else
             {

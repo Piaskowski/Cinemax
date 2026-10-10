@@ -367,6 +367,15 @@ namespace Cinemax.Shared.Resources.Common {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Sukces.
+        /// </summary>
+        public static string Info_Success {
+            get {
+                return ResourceManager.GetString("Info_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Czy na pewno chcesz usunąć tego użytkownika?.
         /// </summary>
         public static string Info_UserDeleteConfirmation {
@@ -408,6 +417,24 @@ namespace Cinemax.Shared.Resources.Common {
         public static string Label_Title {
             get {
                 return ResourceManager.GetString("Label_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Dodawanie sali kinowej.
+        /// </summary>
+        public static string Title_CreateCinemaHall {
+            get {
+                return ResourceManager.GetString("Title_CreateCinemaHall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Edycja sali kinowej.
+        /// </summary>
+        public static string Title_EditCinemaHall {
+            get {
+                return ResourceManager.GetString("Title_EditCinemaHall", resourceCulture);
             }
         }
         

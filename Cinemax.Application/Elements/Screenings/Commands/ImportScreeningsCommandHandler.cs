@@ -41,7 +41,11 @@ namespace Cinemax.Application.Elements.Screenings.Commands
                 rowNumber++;
 
                 if (item.StartTime <= DateTime.UtcNow)
-                    throw new ValidationException([ValidationMessages.FutureDate]);
+                {
+                    
+                    errors.Add($"{CommonMessages.Txt_Row} {rowNumber}: {ValidationMessages.FutureDate}");
+                    continue;
+                }
 
                 var movie = await _movies.Query().FirstOrDefaultAsync(m => m.Title.ToUpper().Equals(item.MovieTitle.ToUpper()), ct);
 

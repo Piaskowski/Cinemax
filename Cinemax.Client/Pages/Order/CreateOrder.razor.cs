@@ -28,6 +28,9 @@ namespace Cinemax.Client.Pages.Order
 
         private OrderStage _stage = OrderStage.SelectingSeats;
         private OrderAction _action;
+
+        private string? _errorMessage;
+        private IEnumerable<string> _errors = [];
         private bool _isLoading = false;
 
         protected override async Task OnInitializedAsync()
@@ -126,6 +129,11 @@ namespace Cinemax.Client.Pages.Order
                 if (response.IsSuccess)
                 {
                     _screening = response.Data!;
+                }
+                else
+                {
+                    _errorMessage = response.ErrorMessage;
+                    _errors = response.Errors;
                 }
             }
             finally

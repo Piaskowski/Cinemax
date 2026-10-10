@@ -142,6 +142,24 @@ namespace Cinemax.Shared.Resources.Auth {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Email został aktywowany. Możesz się nim zalogować do aplikacji.
+        /// </summary>
+        public static string Info_EmailConfirmed {
+            get {
+                return ResourceManager.GetString("Info_EmailConfirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Rejestracja zakończona pomyślnie.
+        /// </summary>
+        public static string Info_RegistrationCompleted {
+            get {
+                return ResourceManager.GetString("Info_RegistrationCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Potwierdź Hasło.
         /// </summary>
         public static string Label_ConfirmPassword {

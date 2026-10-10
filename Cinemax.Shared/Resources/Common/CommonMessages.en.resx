@@ -462,4 +462,13 @@
   <data name="Info_NoMoviesOnScreen" xml:space="preserve">
     <value>No showtimes available at this time</value>
   </data>
+  <data name="Info_Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="Title_EditCinemaHall" xml:space="preserve">
+    <value>Cinema hall editing</value>
+  </data>
+  <data name="Title_CreateCinemaHall" xml:space="preserve">
+    <value>Create cinema hall</value>
+  </data>
 </root>

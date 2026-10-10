@@ -144,6 +144,12 @@
   <data name="Info_AccountSuccessfullyCreated" xml:space="preserve">
     <value>Konto zostało utworzone. Na podany adres email został wysłany link aktywacyjny.</value>
   </data>
+  <data name="Info_EmailConfirmed" xml:space="preserve">
+    <value>Email został aktywowany. Możesz się nim zalogować do aplikacji</value>
+  </data>
+  <data name="Info_RegistrationCompleted" xml:space="preserve">
+    <value>Rejestracja zakończona pomyślnie</value>
+  </data>
   <data name="Label_ConfirmPassword" xml:space="preserve">
     <value>Potwierdź Hasło</value>
   </data>
